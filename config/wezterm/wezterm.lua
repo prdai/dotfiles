@@ -54,7 +54,7 @@ config.colors = {
 }
 
 -- Keys / leader
-config.default_prog = { "/usr/bin/bash" }
+config.default_prog = { "/bin/zsh" }
 config.disable_default_key_bindings = true
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 
