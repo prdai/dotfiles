@@ -10,3 +10,4 @@ vim.opt.expandtab = true
 vim.opt.termguicolors = true
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.clipboard = "unnamedplus"
+vim.lsp.enable("bashls")

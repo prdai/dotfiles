@@ -234,19 +234,19 @@ require("lazy").setup({
 		end,
 	},
 	{ "github/copilot.vim" },
-	{
-		"xiyaowong/transparent.nvim",
-		lazy = false,
-		config = function()
-			require("transparent").setup({
-				exclude_groups = {},
-			})
+	{ 'diogo464/kubernetes.nvim' } ,{
+	"xiyaowong/transparent.nvim",
+	lazy = false,
+	config = function()
+		require("transparent").setup({
+			exclude_groups = {},
+		})
 
-			vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-			vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-			vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
-		end,
-	},
+		vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+		vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+		vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+	end,
+},
 	{
 		"chrisgrieser/nvim-rulebook",
 		lazy = false,
@@ -561,7 +561,7 @@ require("lazy").setup({
 			{ "ys", mode = "n", desc = "Add surrounding" },
 			{ "cs", mode = "n", desc = "Change surrounding" },
 			{ "ds", mode = "n", desc = "Delete surrounding" },
-			{ "S", mode = "v", desc = "Surround selection" },
+			{ "S",  mode = "v", desc = "Surround selection" },
 		},
 	},
 	{
