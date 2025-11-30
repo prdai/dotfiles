@@ -119,18 +119,18 @@ require("lazy").setup({
 			require("live-share").setup({})
 		end,
 	},
-	{
-		"supermaven-inc/supermaven-nvim",
-		config = function()
-			require("supermaven-nvim").setup({
-				keymaps = {
-					accept_suggestion = "<C-y>",
-					clear_suggestion = "<C-e>",
-					accept_word = "<C-l>",
-				},
-			})
-		end,
-	},
+	-- {
+	-- 	"supermaven-inc/supermaven-nvim",
+	-- 	config = function()
+	-- 		require("supermaven-nvim").setup({
+	-- 			keymaps = {
+	-- 				accept_suggestion = "<C-y>",
+	-- 				clear_suggestion = "<C-e>",
+	-- 				accept_word = "<C-l>",
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"alexghergh/nvim-tmux-navigation",
 		config = function()
