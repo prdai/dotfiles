@@ -33,6 +33,12 @@ nmap <C-j> :action MoveFocusDown<CR>
 nmap <C-k> :action MoveFocusUp<CR>
 nmap <C-l> :action MoveFocusRight<CR>
 
+" Alternative window navigation (with Shift modifier)
+nmap <C-S-h> :action MoveFocusLeft<CR>
+nmap <C-S-j> :action MoveFocusDown<CR>
+nmap <C-S-k> :action MoveFocusUp<CR>
+nmap <C-S-l> :action MoveFocusRight<CR>
+
 " Resize splits
 nmap <leader>+ :action StretchSplitToTop<CR>
 nmap <leader>- :action StretchSplitToBottom<CR>
@@ -59,6 +65,13 @@ vnoremap <leader>y "*y
 vnoremap <leader>Y "+y
 vnoremap <leader>p "*p
 vnoremap <leader>P "+p
+
+" Special paste mappings
+" Paste last yanked text (not deleted)
+nmap ,p "0p
+
+" Paste over selection without saving to register
+vnoremap p "_dP
 
 " ═══════════════════════════════════════════════════════════════════════════
 " File Explorer (Project Tool Window)
@@ -97,6 +110,9 @@ nmap [d :action GotoPreviousError<CR>
 nmap ]d :action GotoNextError<CR>
 nmap <space>q :action ActivateProblemsViewToolWindow<CR>
 
+" Open diagnostic float
+nmap <leader>of :action ShowErrorDescription<CR>
+
 " ═══════════════════════════════════════════════════════════════════════════
 " Refactoring & Code Actions
 " ═══════════════════════════════════════════════════════════════════════════
@@ -104,6 +120,9 @@ nmap <space>rn :action RenameElement<CR>
 nmap <space>ca :action ShowIntentionActions<CR>
 nmap <space>f :action ReformatCode<CR>
 nmap <space>D :action GotoTypeDeclaration<CR>
+
+" Format with <space>fo (matches Neovim)
+nmap <space>fo :action ReformatCode<CR>
 
 " ═══════════════════════════════════════════════════════════════════════════
 " Search & Find
@@ -147,6 +166,25 @@ nmap <leader>db :action ActivateDatabaseToolWindow<CR>
 nmap <leader>bp :action ToggleLineBreakpoint<CR>
 
 " ═══════════════════════════════════════════════════════════════════════════
+" Harpoon-style Quick File Navigation (using IdeaVim bookmarks)
+" ═══════════════════════════════════════════════════════════════════════════
+" Add file to bookmarks (closest to Harpoon add)
+nmap <leader>ha :action ToggleBookmark<CR>
+
+" Show bookmarks menu (closest to Harpoon menu)
+nmap <leader>hh :action ShowBookmarks<CR>
+
+" Navigate to specific bookmarks (using IdeaVim bookmark numbers)
+nmap <leader>h1 :action GotoBookmark1<CR>
+nmap <leader>h2 :action GotoBookmark2<CR>
+nmap <leader>h3 :action GotoBookmark3<CR>
+nmap <leader>h4 :action GotoBookmark4<CR>
+
+" Navigate between bookmarks
+nmap <leader>hp :action GotoPreviousBookmark<CR>
+nmap <leader>hn :action GotoNextBookmark<CR>
+
+" ═══════════════════════════════════════════════════════════════════════════
 " vim-eunuch style File Operations
 " ═══════════════════════════════════════════════════════════════════════════
 " File removal
@@ -157,3 +195,6 @@ nmap <leader>rn :action RenameFile<CR>
 
 " Create directory (closest equivalent)
 nmap <leader>md :action NewDir<CR>
+
+" Sudo write (IdeaVim doesn't have direct sudo support, using SaveAll)
+nmap <leader>ww :action SaveAll<CR>
