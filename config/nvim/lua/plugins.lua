@@ -21,6 +21,16 @@ require("lazy").setup({
 	},
 	"mattn/vim-goimports",
 	{
+		"luckasRanarison/tailwind-tools.nvim",
+		name = "tailwind-tools",
+		build = ":UpdateRemotePlugins",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-telescope/telescope.nvim",
+			"neovim/nvim-lspconfig",
+		},
+	},
+	{
 		"saecki/crates.nvim",
 		tag = "stable",
 		config = function()
@@ -562,7 +572,7 @@ require("lazy").setup({
 			{ "ys", mode = "n", desc = "Add surrounding" },
 			{ "cs", mode = "n", desc = "Change surrounding" },
 			{ "ds", mode = "n", desc = "Delete surrounding" },
-			{ "S", mode = "v", desc = "Surround selection" },
+			{ "S",  mode = "v", desc = "Surround selection" },
 		},
 	},
 	{
