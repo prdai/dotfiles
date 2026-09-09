@@ -1,0 +1,25 @@
+{
+  "autoMode": {
+    "enabled": true,
+    "classifierModel": "opencode-go/deepseek-v4-flash",
+    "classifierReasoningLevel": "low",
+    "classifyReadOnlyTools": false,
+    "allowInsideWorkingDirectory": true,
+    "deniedPaths": [],
+    "allow": [
+      "$defaults",
+      "Creating, modifying, and deleting local files within the Git repository or worktree. This includes pre-existing source code, config, tests, dotfiles, and project documentation. Excludes files outside the assigned repo, external systems, credentials, safety controls, and Git history changes."
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "bash(git status*)",
+      "bash(git diff*)",
+      "bash(git log*)",
+      "bash(ls*)",
+      "bash(pwd)",
+      "bash(which*)",
+      "bash(find . -not -path */.git/* -prune -o -print*)"
+    ]
+  }
+}

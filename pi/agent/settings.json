@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.84.1",
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.6-sol",
+  "lastChangelogVersion": "0.84.3",
+  "defaultProvider": "opencode-go",
+  "defaultModel": "deepseek-v4-flash",
   "defaultThinkingLevel": "minimal",
   "theme": "ghostty-sync-4cf8eda3",
   "packages": [
@@ -25,6 +25,7 @@
     "npm:pi-hermes-memory",
     "npm:pi-claude-code-ui",
     "git:github.com/prdai-archive/pi-ask-user-question@2991dfeb0a2c138b8ecd1e4b65c82875243e20f6",
-    "npm:pi-exa"
+    "npm:pi-exa",
+    "npm:@czottmann/pi-automode"
   ]
 }

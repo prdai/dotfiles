@@ -6,6 +6,7 @@
     "test:permission-approve": "bun test ./node_modules/@gotgenes/pi-permission-system/test/approve-mode.test.ts"
   },
   "dependencies": {
+    "@czottmann/pi-automode": "^1.16.0",
     "@gotgenes/pi-permission-system": "^24.0.0",
     "@juicesharp/rpiv-todo": "^2.4.0",
     "@mozilla/readability": "^0.6.0",
@@ -23,6 +24,7 @@
     "linkedom": "^0.16.0",
     "pi-agent-browser-native": "^0.3.0",
     "pi-claude-code-ui": "^1.0.76",
+    "pi-exa": "^0.6.1",
     "pi-hermes-memory": "^0.9.3",
     "pi-lens": "^3.8.74",
     "pi-mcp-adapter": "^2.21.0",
