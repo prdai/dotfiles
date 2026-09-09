@@ -7,7 +7,6 @@
   },
   "dependencies": {
     "@czottmann/pi-automode": "^1.16.0",
-    "@gotgenes/pi-permission-system": "^24.0.0",
     "@juicesharp/rpiv-todo": "^2.4.0",
     "@mozilla/readability": "^0.6.0",
     "@ogulcancelik/pi-ghostty-theme-sync": "^0.1.2",

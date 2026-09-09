@@ -20,7 +20,6 @@
     "npm:pi-mcp-adapter",
     "npm:pi-lens",
     "npm:@juicesharp/rpiv-todo",
-    "npm:@gotgenes/pi-permission-system",
     "npm:pi-agent-browser-native",
     "npm:pi-hermes-memory",
     "npm:pi-claude-code-ui",
