@@ -24,6 +24,7 @@
     "npm:pi-agent-browser-native",
     "npm:pi-hermes-memory",
     "npm:pi-claude-code-ui",
-    "npm:@shiina18/pi-ask-user-question"
+    "git:github.com/prdai-archive/pi-ask-user-question@2991dfeb0a2c138b8ecd1e4b65c82875243e20f6",
+    "npm:pi-exa"
   ]
 }
