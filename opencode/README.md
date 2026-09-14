@@ -23,6 +23,38 @@ git clone --depth 1 https://github.com/ayghri/i-have-adhd ~/.config/opencode/ven
 
 then restart opencode. config is loaded once at startup — no hot reload.
 
+## rtk (opencode command rewrite)
+
+[rtk](https://github.com/rtk-ai/rtk) adds command-output compaction and supports opencode via `rtk init -g --opencode`.
+
+install options:
+
+```bash
+# homebrew (recommended)
+brew install rtk
+
+# winget (windows)
+winget install rtk-ai.rtk
+
+# quick install (linux/macos)
+curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
+
+# cargo
+cargo install --git https://github.com/rtk-ai/rtk
+```
+
+quick install path note (linux/macos):
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc  # or ~/.zshrc
+```
+
+initialize opencode integration:
+
+```bash
+rtk init -g --opencode
+```
+
 ## plugins
 
 global plugins live in the `plugin` array in `opencode.json`. both the terminal
