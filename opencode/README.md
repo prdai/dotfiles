@@ -27,21 +27,18 @@ then restart opencode. config is loaded once at startup — no hot reload.
 
 [rtk](https://github.com/rtk-ai/rtk) adds command-output compaction and supports opencode via `rtk init -g --opencode`.
 
-install options:
+install (linux/macos):
 
 ```bash
 # homebrew (recommended)
 brew install rtk
 
-# winget (windows)
-winget install rtk-ai.rtk
-
 # quick install (linux/macos)
 curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
-
-# cargo
-cargo install --git https://github.com/rtk-ai/rtk
 ```
+
+for windows and other install methods, see the upstream installation docs:
+https://github.com/rtk-ai/rtk?tab=readme-ov-file#installation
 
 quick install path note (linux/macos):
 
