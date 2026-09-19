@@ -2,7 +2,6 @@
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
     "@prevalentware/opencode-goal-plugin",
-    "superpowers@git+https://github.com/obra/superpowers.git",
     "opencode-agent-memory",
     "opencode-background-agents",
     "opencode-token-tracker",
