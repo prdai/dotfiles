@@ -129,6 +129,7 @@ Works in both **normal** and **terminal** mode.
 | `<leader>rn` | Rename symbol |
 | `<leader>D` | Type definition |
 | `<leader>fo` | Format buffer — Ruff on Python, LSP elsewhere |
+| `<leader>ch` | Switch source/header (C/C++) |
 
 ### Language Servers
 
@@ -140,7 +141,7 @@ Works in both **normal** and **terminal** mode.
 | Rust | `rust_analyzer` |
 | Lua | `lua_ls` |
 | Terraform | `terraformls` |
-| C / C++ | `clangd` |
+| C / C++ | `clangd` (+ clangd_extensions) |
 | Bash | `bashls` |
 
 ---
@@ -239,4 +240,5 @@ Inline virtual-text blame is enabled by default on startup.
 
 - References (`gr`) open in quickfix — view with `<leader>xx` or `:copen`
 - Format on save is **off** — use `<leader>fo` manually
-- Formatters: stylua (Lua), prettier (JS/TS/HTML/CSS), gofumpt+goimports (Go), Ruff (Python)
+- Formatters: stylua (Lua), prettier (JS/TS/HTML/CSS), gofumpt+goimports (Go), clang-format (C/C++), Ruff (Python)
+- C/C++: generate `compile_commands.json` so clangd resolves includes — `cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON .` or `bear -- make`; clang-format reads project `.clang-format` and falls back to LLVM style

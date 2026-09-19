@@ -218,10 +218,33 @@ vim.lsp.config.terraformls = {
 vim.lsp.enable("terraformls")
 
 vim.lsp.config.clangd = {
-	cmd = { "clangd", "--background-index", "--clang-tidy", "--completion-style=detailed" },
+	cmd = {
+		"clangd",
+		"--background-index",
+		"--clang-tidy",
+		"--header-insertion=iwyu",
+		"--completion-style=detailed",
+		"--function-arg-placeholders",
+		"--fallback-style=llvm",
+	},
 	filetypes = { "c", "cpp", "objc", "objcpp" },
-	root_markers = { "compile_commands.json", "compile_flags.txt", "CMakeLists.txt", "Makefile", ".git" },
+	root_markers = {
+		"compile_commands.json",
+		"compile_flags.txt",
+		"CMakeLists.txt",
+		"Makefile",
+		".clangd",
+		".clang-tidy",
+		".clang-format",
+		".git",
+	},
 	capabilities = capabilities,
+	init_options = { usePlaceholders = true, completeUnimported = true, clangdFileStatus = true },
+	-- clang-format (none-ls) owns formatting; without this clangd formats too and both run
+	on_init = function(client)
+		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.documentRangeFormattingProvider = false
+	end,
 	on_attach = on_attach,
 }
 vim.lsp.enable("clangd")

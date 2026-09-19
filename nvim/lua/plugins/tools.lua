@@ -13,6 +13,7 @@ return {
 					null_ls.builtins.formatting.prettier,
 					null_ls.builtins.formatting.gofumpt,
 					null_ls.builtins.formatting.goimports,
+					null_ls.builtins.formatting.clang_format,
 				},
 				-- No on_attach/BufWritePre — formatting is manual via <leader>fo
 			})
@@ -39,6 +40,19 @@ return {
 				automatic_installation = true,
 			})
 		end,
+	},
+	{
+		"p00f/clangd_extensions.nvim",
+		ft = { "c", "cpp", "objc", "objcpp" },
+		opts = { inlay_hints = { inline = false } },
+		keys = {
+			{
+				"<leader>ch",
+				"<cmd>ClangdSwitchSourceHeader<cr>",
+				ft = { "c", "cpp", "objc", "objcpp" },
+				desc = "Switch source/header",
+			},
+		},
 	},
 	{
 		"folke/trouble.nvim",
