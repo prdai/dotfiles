@@ -62,7 +62,6 @@ startup into `~/.cache/opencode/`.
 | plugin | purpose |
 |---|---|
 | `@prevalentware/opencode-goal-plugin` | Codex-style `/goal` long-running goal mode: persistence, auto-continue, TUI status |
-| `superpowers@git+https://github.com/obra/superpowers.git` | skill/workflow suite (brainstorming, TDD, code review, worktrees) shared with pi + claude code |
 | `opencode-agent-memory` | persistent, self-editable memory blocks (Letta-style) |
 | `opencode-background-agents` | async background subagent delegation with context persistence |
 | `opencode-token-tracker` | real-time token/cost tracking, toasts, and the `opencode-tokens` CLI |
@@ -83,8 +82,8 @@ opencode plugin -g opencode-autotitle
 opencode plugin -g opencode-snip
 opencode plugin -g opencode-mystatus
 
-# superpowers (git) and i-have-adhd (local) are declared directly in opencode.json;
-# clone the local one as shown in setup above.
+# i-have-adhd (local) is declared directly in opencode.json;
+# clone it as shown in setup above.
 
 # optional: activate opencode-snip (the plugin no-ops without it)
 curl -fsSL https://raw.githubusercontent.com/edouard-claude/snip/master/install.sh | sh

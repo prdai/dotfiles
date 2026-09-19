@@ -16,7 +16,6 @@
     "npm:@tmustier/pi-agent-guidance",
     "npm:@tmustier/pi-usage-extension",
     "https://github.com/ayghri/i-have-adhd",
-    "git:github.com/obra/superpowers",
     "npm:pi-mcp-adapter",
     "npm:pi-lens",
     "npm:@juicesharp/rpiv-todo",
