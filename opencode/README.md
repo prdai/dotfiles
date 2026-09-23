@@ -10,6 +10,7 @@ config for the [opencode](https://opencode.ai) agentic CLI/TUI, symlinked into `
 | `tui.json` | terminal UI: theme, cursor, scroll, attention notifications |
 | `AGENTS.md` | global agentic engineering rules (applied to all opencode sessions) |
 | `themes/codex.json` | custom dark theme matching the Codex desktop app (`#181818` surfaces, light-blue accent, one-dark syntax) |
+| `skills/goal/SKILL.md` | goal-mode skill: reaches the goal plugin from frontends that list OpenCode skills (e.g. T3 Code) |
 | `vendor/i-have-adhd/` | local plugin checkout, gitignored (cloned by the setup step below) |
 
 ## setup
@@ -96,6 +97,7 @@ plugin notes:
 - `opencode-token-tracker` also installs an `opencode-tokens` CLI.
 - i-have-adhd always-on: `touch ~/.config/opencode/.i-have-adhd-always` (gitignored).
 - TUI-only plugins (sidebars/statuslines) do not render in the desktop app and are intentionally excluded.
+- `skills/goal/` exposes goal mode to frontends that surface OpenCode skills but not plugin slash commands (T3 Code v0.0.42 lists only `/compact`).
 
 ## notes
 
