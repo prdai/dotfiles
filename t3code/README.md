@@ -57,9 +57,10 @@ in T3 Code sessions.
 T3 Code v0.0.42 lists only `/compact` as an OpenCode provider command, so plugin
 commands like `/goal` do not appear in its slash menu yet (command-catalog support
 is on T3 Code `main`, unreleased). Until a release ships it, the `goal` skill in
-`../opencode/skills/goal/` exposes goal mode from T3 Code's slash menu: type
-`/goal` and pick the goal skill, or use `$goal`. After adding or changing skills,
-run **Settings > Providers > Refresh provider status**.
+`../agents/skills/goal/` exposes goal mode from T3 Code's slash menu: type
+`/goal` and pick the goal skill, or use `$goal`. All skills under
+`../agents/skills/` are surfaced by T3 Code's slash menu (`/` or `$`). After
+adding or changing skills, run **Settings > Providers > Refresh provider status**.
 
 ## files
 

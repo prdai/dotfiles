@@ -40,8 +40,10 @@ ln -sf ~/.dotfiles/aerospace ~/.config/
 ln -sf ~/.dotfiles/git/.gitconfig ~/.gitconfig
 ln -sf ~/.dotfiles/git/ignore ~/.config/git/ignore
 
-# agent rules + skills (opencode, pi)
-ln -sf ~/.dotfiles/agents/skills/coding-style ~/.agents/skills/coding-style
+# agent rules + skills (opencode, pi): global skills symlinked from agents/skills/
+for s in ~/.dotfiles/agents/skills/*/; do
+  ln -sfn "${s%/}" ~/.agents/skills/"$(basename "$s")"
+done
 
 # t3 code desktop config (app + launcher: see t3code/README.md)
 cp ~/.dotfiles/t3code/userdata/*.json ~/.t3/userdata/
@@ -55,7 +57,7 @@ source ~/.bashrc   # or: source ~/.zshrc
 | path | purpose |
 |------|---------|
 | `aerospace/` | aerospace tiling window manager config for macos |
-| `agents/` | shared agent rules (AGENTS.md) + skills (coding-style), referenced by opencode and pi |
+| `agents/` | shared agent rules (AGENTS.md) + vendored skills, referenced by opencode, pi, and T3 Code |
 | `bash/` | bash config, aliases, prompt, helper functions |
 | `btop/` | btop system monitor config |
 | `fish/` | fish environment setup snippets |
