@@ -43,6 +43,9 @@ ln -sf ~/.dotfiles/git/ignore ~/.config/git/ignore
 # agent rules + skills (opencode, pi)
 ln -sf ~/.dotfiles/agents/skills/coding-style ~/.agents/skills/coding-style
 
+# t3 code app + launcher
+~/.dotfiles/t3code/install.sh
+
 # reload shell
 source ~/.bashrc   # or: source ~/.zshrc
 ```
@@ -67,6 +70,7 @@ source ~/.bashrc   # or: source ~/.zshrc
 | `scripts/` | utility scripts (currently obsidian vault sync) |
 | `swaync/` | sway notification center config/theme/icons |
 | `systemd/` | user services (currently obsidian sync service) |
+| `t3code/` | T3 Code AppImage installer + desktop launcher |
 | `tmux/` | tmux config + plugin setup |
 | `vicinae/` | vicinae launcher config |
 | `wallpapers/` | wallpaper assets |

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=T3 Code
+Comment=Minimal GUI for AI coding agents
+Exec=env APPIMAGE_EXTRACT_AND_RUN=1 __T3_APPIMAGE__ %U
+Icon=__T3_ICON__
+Type=Application
+Categories=Development;
+Terminal=false
+StartupWMClass=T3 Code
+MimeType=x-scheme-handler/t3code;text/html;
