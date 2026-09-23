@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=T3 Code (Alpha)
+Exec=env APPIMAGE_EXTRACT_AND_RUN=1 __T3_APPIMAGE__ %U
+Terminal=false
+NoDisplay=true
+StartupNotify=false
+MimeType=x-scheme-handler/t3code;

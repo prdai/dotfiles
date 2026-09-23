@@ -1,0 +1,40 @@
+{
+  "defaultModelSelection": {
+    "instanceId": "opencode",
+    "model": "opencode-go/deepseek-v4.1-flash"
+  },
+  "projectSettingsFolded": true,
+  "textGenerationModelSelection": {
+    "instanceId": "opencode",
+    "model": "opencode-go/muse-spark-1.3-contributor",
+    "options": [
+      {
+        "id": "agent",
+        "value": "build"
+      }
+    ]
+  },
+  "providers": {
+    "cursor": {
+      "enabled": false
+    },
+    "grok": {
+      "enabled": false
+    },
+    "opencode": {
+      "enabled": true
+    }
+  },
+  "providerInstances": {
+    "claudeAgent": {
+      "driver": "claudeAgent",
+      "enabled": false,
+      "config": {
+        "binaryPath": "claude",
+        "homePath": "",
+        "customModels": [],
+        "launchArgs": ""
+      }
+    }
+  }
+}

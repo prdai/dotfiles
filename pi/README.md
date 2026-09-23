@@ -41,8 +41,6 @@ pi
 |---|---|
 | **omarchy** | Linux desktop / Hyprland / Waybar / system config management |
 | **orchestrator** | Multi-agent task orchestration |
-| **pdf-reader** | PDF extraction, search, and rendering |
-| **reddit** | Reddit browsing and interaction |
 | **stop-slop** | Anti-slop — cuts AI fluff and filler language |
 
 ### Theme
