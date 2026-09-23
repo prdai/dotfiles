@@ -14,6 +14,6 @@
 o.window("com.mitchellh.ghostty", { workspace = "1" })
 o.window("^zen$",                 { workspace = "2" })
 o.window("md.obsidian.Obsidian",  { workspace = "3" })
-o.window("ai.opencode.desktop",   { workspace = "4" })
+o.window("com.t3tools.T3Code",    { workspace = "4" })
 o.window("^Spotify$",             { workspace = "5" })
 o.window("^slack$",               { workspace = "6" })

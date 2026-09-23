@@ -26,6 +26,12 @@ done
 update-desktop-database "$HOME/.local/share/applications"
 ```
 
+## autostart
+
+`hypr/autostart.lua` opens T3 Code on workspace 4 at login by launching
+`~/.local/share/applications/t3code.desktop` through uwsm. Autostart checks the
+path exists, so a missing entry is skipped with a log line.
+
 ## desktop config
 
 T3 Code keeps desktop and server config under `~/.t3/userdata/`. The canonical
