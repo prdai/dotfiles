@@ -77,17 +77,16 @@ and `~/.claude/skills/`, so either path loads them for every session.
 | `better-ui` | jakubkrehel/skills (MIT) | values-first UI polish: concentric radii, optical alignment, surfaces, icons, hit areas |
 | `emil-design-eng` | emilkowalski/skills (MIT) | Emil Kowalski's design-engineering philosophy and taste |
 | `apple-design` | emilkowalski/skills (MIT) | Apple's fluid-interface motion and interaction principles for the web |
-| `workers-best-practices` | cloudflare/skills (Apache-2.0) | production Cloudflare Workers patterns and platform limits |
 | `wrangler` | cloudflare/skills (Apache-2.0) | wrangler CLI and Worker project configuration |
-| `webapp-testing` | anthropics/skills (Apache-2.0) | Playwright-driven local web app testing |
 | `codebase-design` | mattpocock/skills (MIT) | deep-module design vocabulary: interfaces, seams, testability |
 | `code-review` | mattpocock/skills (MIT) | two-axis standards + spec review; the spec axis needs `setup-matt-pocock-skills` run per repo |
-| `resolving-merge-conflicts` | mattpocock/skills (MIT) | resolve merge/rebase conflicts by intent, never `--abort` |
 | `omarchy` | basecamp/omarchy (MIT) | Linux desktop / Hyprland / Waybar / Omarchy system config |
 | `figma` | openai/skills curated (Figma Developer Terms) | Figma MCP design-to-code workflow; terms in the bundled `LICENSE.txt` |
 
-the remaining skills in `../agents/skills/` (`agents-md` through `web-design-guidelines`) are
-pi's skills, vendored here so opencode, pi, and T3 Code all read one copy.
+the remaining skills in `../agents/skills/` (`agents-md`, `audit-context-building`,
+`code-simplifier`, `differential-review`, `find-bugs`, `karpathy-guidelines`, `orchestrator`,
+`pdf-reader`, `stop-slop`, `vercel-react-best-practices`) are pi's skills, vendored here so
+opencode, pi, and T3 Code all read one copy.
 
 to add another: vendor the skill folder into `agents/skills/<name>/`, run the symlink loop
 from the root README, and commit a matching `opencode/skills/<name>` relative symlink.
