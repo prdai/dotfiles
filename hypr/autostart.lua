@@ -11,11 +11,16 @@
 -- Login app layout, one app per workspace. Native hl.exec_cmd: hyprctl dispatch
 -- exec stopped parsing on Hyprland 0.56, and hyprland.start fires when the
 -- compositor is ready, so no wait loop or shell wrapper is needed.
+
+-- T3 Code ships as an AppImage; its desktop entry wraps it with
+-- APPIMAGE_EXTRACT_AND_RUN=1 because this box has no libfuse.so.2.
+local t3code = (os.getenv("HOME") or "") .. "/.local/share/applications/t3code.desktop"
+
 local layout = {
   { ws = "1 silent", cmd = "ghostty" },
   { ws = "2 silent", cmd = "/opt/zen-browser-bin/zen-bin" },
   { ws = "3 silent", cmd = "obsidian" },
-  { ws = "4 silent", cmd = "/opt/OpenCode/ai.opencode.desktop" },
+  { ws = "4 silent", cmd = t3code },
   { ws = "5 silent", cmd = "spotify" },
   { ws = "6 silent", cmd = "slack" },
 }
