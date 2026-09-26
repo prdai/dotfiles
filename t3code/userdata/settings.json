@@ -1,4 +1,5 @@
 {
+  "defaultAutoPull": true,
   "defaultModelSelection": {
     "instanceId": "opencode",
     "model": "opencode-go/deepseek-v4.1-flash"
@@ -14,6 +15,7 @@
       }
     ]
   },
+  "pullRequestMergeMethod": "squash",
   "providers": {
     "cursor": {
       "enabled": false
@@ -44,6 +46,15 @@
         "homePath": "",
         "shadowHomePath": "",
         "launchArgs": "",
+        "customModels": []
+      }
+    },
+    "cursor": {
+      "driver": "cursor",
+      "enabled": true,
+      "config": {
+        "binaryPath": "cursor-agent",
+        "apiEndpoint": "",
         "customModels": []
       }
     }

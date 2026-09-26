@@ -4,3 +4,5 @@ package-lock.json
 bun.lock
 vendor
 .i-have-adhd-always
+logs
+memory
