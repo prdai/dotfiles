@@ -48,6 +48,15 @@
         "launchArgs": "",
         "customModels": []
       }
+    },
+    "cursor": {
+      "driver": "cursor",
+      "enabled": true,
+      "config": {
+        "binaryPath": "cursor-agent",
+        "apiEndpoint": "",
+        "customModels": []
+      }
     }
   }
 }
