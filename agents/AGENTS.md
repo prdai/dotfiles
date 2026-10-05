@@ -18,9 +18,7 @@ Project-specific context (domain, architecture, requirements) lives in the proje
 
 ## Code Style
 
-My personal coding patterns live in the `coding-style` skill (`agents/skills/coding-style/SKILL.md` in this repo, symlinked to `~/.agents/skills/`). REQUIRED: load and follow it when writing, editing, or reviewing any code, and when writing commits or PRs. Highlights: near-zero comments (why only, trim pass before handing back), flat control flow with early returns, one concern per file, SDKs over hand-rolled HTTP, fail-fast errors with context, generic over specific, reuse before duplication, research the ecosystem before hand-rolling.
-
-The agent PR-review loop (how to respond to feedback, verification bar, PR hygiene) lives in the `agent-workflow` skill (`agents/skills/agent-workflow/SKILL.md`). REQUIRED when putting up a PR or addressing review feedback under delegation.
+My personal coding patterns live in the `coding-style` skill (`agents/skills/coding-style/SKILL.md` in this repo, symlinked to `~/.agents/skills/`). REQUIRED: load and follow it when writing, editing, or reviewing any code, and when writing commits, PRs, or review replies. Highlights: near-zero comments (why only, trim pass before handing back), flat control flow with early returns, one concern per file, SDKs over hand-rolled HTTP, fail-fast errors with context, generic over specific, reuse before duplication, research the ecosystem before hand-rolling, plus the "Agent PR review loop" section for review handling.
 
 ## Branch and PR Workflow
 
@@ -31,8 +29,7 @@ Work happens through normal feature branches and pull requests.
 - Use small branches for coherent units of work.
 - Keep PRs small and reviewable. The PR describes the important behavior change, verification performed, and any known review or test gaps.
 - Never force-push a PR under review unless the user asks.
-- The agent never replies to reviewers or posts comments on the PR. All reviewer communication is the user's.
-- When the user delegates PR work or review handling to the agent, follow the `agent-workflow` skill (`agents/skills/agent-workflow/SKILL.md`): per-comment "Done in `<sha>` —" replies with evidence, investigate before answering, honest verification gaps, supersede-don't-duplicate PR/issue hygiene, rebase + logical squash before requesting review.
+- The agent never replies to reviewers or posts comments on the PR. All reviewer communication is the user's. When delegated, review-reply conventions (per-comment "Done in `<sha>` —" replies with evidence, honest verification gaps, supersede hygiene) live in the `coding-style` skill's "Agent PR review loop" section.
 - Address review feedback by pushing fixes as new commits.
 
 ## Commit Discipline

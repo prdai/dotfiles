@@ -1,6 +1,6 @@
 ---
 name: coding-style
-description: prdai's personal code style. REQUIRED when writing, editing, or reviewing any code, and when writing commits or PRs. Triggers include comments, nesting, decomposition, SDK usage, error handling, tests, commit messages, PR bodies, code review, reuse, naming, security.
+description: prdai's personal code style. REQUIRED when writing, editing, or reviewing any code, and when writing commits, PRs, or PR review replies. Triggers include comments, nesting, decomposition, SDK usage, error handling, tests, commit messages, PR bodies, code review, reuse, naming, security, review feedback.
 ---
 
 # Coding Style
@@ -63,6 +63,17 @@ Patterns distilled from prdai's authored PRs across repos (dotfiles, sfia-skill-
 - Style-trim passes, typo fixes, and renames get their own commits. One concern per commit; stacked PRs say "Stacked on #N".
 - PR bodies: `## what changed` / `## why` / `## verification` (exact commands, honest not-verified gaps). Skip sections that add nothing.
 - No emoji, anywhere.
+
+## Agent PR review loop (when putting up PRs or handling review under delegation)
+
+- Fix every review comment, including nitpicks. If disagreeing, say so with evidence and let the user decide.
+- Per-comment replies: **"Done in `<short-sha>` — <what changed and why>"**, then `Resolving.` when genuinely addressed. One reply per comment, not one giant summary.
+- Investigate before answering "why are we doing it this way?" questions — dig into code, DB, git history, docs and answer with facts, never assumption.
+- When proposing alternatives, give options with a recommendation ("(a) ... (b) ... I'd go (a) because ..."). The user picks.
+- Verification is non-negotiable: run tests/linters/build and report exact results; state honest gaps explicitly instead of hand-waving; "works" means consistent across the whole application, not just the touched file; attach screenshots for UI changes; distinguish pre-existing issues from regressions the diff introduced.
+- Self-review against this skill before requesting review: comment trim pass, no magic values, reuse check, types at edges, happy-path-first.
+- PR/issue hygiene: combine duplicate issues/PRs into one and close extras with "Superseded by #N — <reason>" cross-links; rebase and squash to one logical commit per concern before requesting review; "Partially done" status must name the merged PR and enumerate exactly what remains.
+- Voice when posting on the user's behalf: casual and brief ("thanks!", "pl", "js", "man", ":))" fine in comments; no emoji in code, commits, PR bodies, or docs). Direct directives over polite hedging; ask specific questions when blocked instead of stalling.
 
 ## Generalize, don't machine-code
 
