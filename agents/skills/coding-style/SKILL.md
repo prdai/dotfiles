@@ -1,6 +1,6 @@
 ---
 name: coding-style
-description: prdai's personal code style. REQUIRED when writing, editing, or reviewing any code, and when writing commits or PRs. Triggers include comments, nesting, decomposition, SDK usage, error handling, tests, commit messages, PR bodies.
+description: prdai's personal code style. REQUIRED when writing, editing, or reviewing any code, and when writing commits or PRs. Triggers include comments, nesting, decomposition, SDK usage, error handling, tests, commit messages, PR bodies, code review, reuse, naming, security.
 ---
 
 # Coding Style
@@ -68,3 +68,25 @@ Patterns distilled from prdai's authored PRs across repos (dotfiles, sfia-skill-
 
 - No hardcoded user paths, hostnames, or machine-specific values; resolve from PATH/env, provide portable fallbacks.
 - Prefer cross-platform parity and explicit portability notes over per-machine hacks.
+
+## Generic and reusable over specific (review standard)
+
+- Shared docs (coding standards, READMEs, workflows) stay generic and reusable; repo-specific details do not belong in them.
+- No magic values inline — `bruh`-tier hardcoded literals get a named constant or config. Convention for "all/unbounded": use `-1` as the sentinel for max, any positive number is an actual limit.
+- Reuse before duplication: extract shared helpers/components (`formatLoanDate` into `@/lib/utils`); one copy per concept. New files that parallel an existing one are suspect — refactor so the pair shares everything except the one point of difference.
+- When a concern grows (endpoint, query, route), generalize it once and file a follow-up issue to roll it out everywhere — one-off fixes that later need "do this for the other endpoints too" are a smell.
+
+## Ecosystem research before hand-rolling
+
+- Before writing custom code for a solved problem (camera handling, caching, retries, date math), web-search for a maintained SDK/package and evaluate it. Propose it; justify skipping it (e.g. "wrapper is thin, single maintainer, stale" or "sensitive code, not worth swapping in this PR").
+- Check what the platform offers at the service level (CDN caching headers, built-in bindings) before building app-level mechanisms.
+
+## Naming, placement, and consistency
+
+- Question placement: does this helper live where it conceptually belongs? Check naming conventions against sibling files before adding new ones.
+- Challenge redundancy: if a type/wrapper/column looks redundant, ask how it maintains compatibility rather than accepting it.
+
+## Security edges on review
+
+- Treat every externally-reachable route as an attack surface: SSRF (allowlist + DNS-rebinding + redirect re-validation), auth on upload/ingest paths, credentials never committed, secrets from env/Secrets.
+- Rate limits: weigh per-IP limits against shared-ISP/CGNAT collateral; prefer user-scoped zones where practical.
