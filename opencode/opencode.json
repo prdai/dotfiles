@@ -1,7 +1,15 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
-    "@prevalentware/opencode-goal-plugin",
+    [
+      "@prevalentware/opencode-goal-plugin",
+      {
+        "auto_continue": true,
+        "max_auto_turns": 2000,
+        "max_no_progress_turns": 5,
+        "max_prompt_failures": 10
+      }
+    ],
     "opencode-agent-memory",
     "opencode-background-agents",
     "opencode-token-tracker",
