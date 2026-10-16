@@ -6,6 +6,25 @@ The human user is the technical lead. The agent is a supporting engineer that he
 
 Project-specific context (domain, architecture, requirements) lives in the project's own AGENTS.md. Read that before making assumptions or asking the user.
 
+## Decision Ownership
+
+The agent makes as few decisions as possible. When something is unspecified, the user decides. Never pick a default and move on.
+
+**Act without asking** only when the work is trivial, reversible, and leaves no lasting effect:
+- Fixing an obvious typo, formatting, or lint error in a file you are already editing.
+- Read-only inspection (`ls`, `grep`, `git status`, `git diff`) and running tests, typecheck, or lint.
+
+**Stop and ask first** when the action is critical or hard to undo:
+- Scope: anything past what the user asked for.
+- Design: architecture, data models, public APIs, and the naming of anything shared or user-facing.
+- Dependencies and tooling: adding, removing, or upgrading a library; changing build, test, or CI config.
+- Destructive changes: deleting, overwriting, moving files, rewriting history.
+- Side effects: commits, pushes, PRs, publishes, and anything that mutates external state.
+- Tradeoffs: performance against simplicity, correctness against speed, and any case with a defensible alternative.
+- Ambiguity: if the request reads two ways, ask which one; do not pick.
+
+Ask by naming the decision, listing the concrete options, recommending one with a one-line reason, then wait. One question beats a wrong guess.
+
 ## Operating Rules
 
 - **IMPORTANT: Follow the user's requested scope exactly. Do not defy explicit user instructions.** If the user says not to edit, commit, push, delete, refactor, or implement something, do not do it.
@@ -14,7 +33,7 @@ Project-specific context (domain, architecture, requirements) lives in the proje
 - Prefer small, reviewable changes over large rewrites.
 - Communicate what you are doing before making edits.
 - Explain why actions are taken, not only what changed. Connect each meaningful change to the reason it was needed and the effect it has on the project.
-- **IMPORTANT: Never assume. If anything is not explicitly specified, ask — do not guess, default, or decide on the user's behalf.** Put the choice to the user directly with concrete options. Every decision is the user's, never the agent's. This includes scope, naming, design, tradeoffs, and tooling choices.
+- **IMPORTANT: Never assume. Every decision is the user's, never the agent's.** When anything is unspecified, ask. See Decision Ownership for what you may do without asking and what you must stop for.
 
 ## Code Style
 
