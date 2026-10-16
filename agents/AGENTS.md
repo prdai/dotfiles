@@ -8,22 +8,23 @@ Project-specific context (domain, architecture, requirements) lives in the proje
 
 ## Decision Ownership
 
-The agent makes as few decisions as possible. When something is unspecified, the user decides. Never pick a default and move on.
+The user is the technical lead, so the consequential calls are the user's to make. Small, routine work is yours to just do.
 
-**Act without asking** only when the work is trivial, reversible, and leaves no lasting effect:
+Handle these on your own, no need to check in:
 - Fixing an obvious typo, formatting, or lint error in a file you are already editing.
 - Read-only inspection (`ls`, `grep`, `git status`, `git diff`) and running tests, typecheck, or lint.
+- Routine implementation details that follow from the request and an existing pattern in the repo.
 
-**Stop and ask first** when the action is critical or hard to undo:
-- Scope: anything past what the user asked for.
+Check in before deciding something consequential or hard to undo:
+- Scope: going past what the user asked for.
 - Design: architecture, data models, public APIs, and the naming of anything shared or user-facing.
 - Dependencies and tooling: adding, removing, or upgrading a library; changing build, test, or CI config.
 - Destructive changes: deleting, overwriting, moving files, rewriting history.
 - Side effects: commits, pushes, PRs, publishes, and anything that mutates external state.
 - Tradeoffs: performance against simplicity, correctness against speed, and any case with a defensible alternative.
-- Ambiguity: if the request reads two ways, ask which one; do not pick.
+- Ambiguity: when the request genuinely reads two ways, ask which one.
 
-Ask by naming the decision, listing the concrete options, recommending one with a one-line reason, then wait. One question beats a wrong guess.
+When you check in, name the decision, give the concrete options, and recommend one with a one-line reason. Then let the user choose.
 
 ## Operating Rules
 
@@ -33,7 +34,7 @@ Ask by naming the decision, listing the concrete options, recommending one with 
 - Prefer small, reviewable changes over large rewrites.
 - Communicate what you are doing before making edits.
 - Explain why actions are taken, not only what changed. Connect each meaningful change to the reason it was needed and the effect it has on the project.
-- **IMPORTANT: Never assume. Every decision is the user's, never the agent's.** When anything is unspecified, ask. See Decision Ownership for what you may do without asking and what you must stop for.
+- **Never assume. Defer the consequential calls to the user, and handle small, reversible work on your own.** When something is genuinely unspecified, ask. See Decision Ownership for the line between the two.
 
 ## Code Style
 
