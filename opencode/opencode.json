@@ -10,7 +10,6 @@
         "max_prompt_failures": 10
       }
     ],
-    "./plugins/opencode-agent-memory",
     "opencode-background-agents",
     "opencode-token-tracker",
     "opencode-autotitle",

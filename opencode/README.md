@@ -12,16 +12,12 @@ config for the [opencode](https://opencode.ai) agentic CLI/TUI, symlinked into `
 | `themes/codex.json` | custom dark theme matching the Codex desktop app (`#181818` surfaces, light-blue accent, one-dark syntax) |
 | `skills/` | relative symlinks to the vendored skills in `../agents/skills/`, loaded globally by opencode |
 | `plugins/rtk.ts` | rtk command rewriting for bash/shell tool calls (needs `rtk` on PATH) |
-| `plugins/opencode-agent-memory/` | local fork of agent-memory with prompt-cache stability patches |
 | `vendor/i-have-adhd/` | local plugin checkout, gitignored (cloned by the setup step below) |
 
 ## setup
 
 ```bash
 ln -sf ~/.dotfiles/opencode ~/.config/opencode
-
-# deps for local plugins (config-level package.json is gitignored)
-cd ~/.config/opencode && npm install js-yaml@^4.1.0
 
 # local plugin: i-have-adhd (gitignored; the global config points at this path)
 git clone --depth 1 https://github.com/ayghri/i-have-adhd ~/.config/opencode/vendor/i-have-adhd
@@ -100,7 +96,6 @@ startup into `~/.cache/opencode/`.
 | plugin | purpose |
 |---|---|
 | `@prevalentware/opencode-goal-plugin` | Codex-style `/goal` long-running goal mode (auto-continue off; max 25 turns) |
-| `./plugins/opencode-agent-memory` | Letta-style memory blocks; local fork that keeps the system-prompt prefix cache-stable (see `PATCHES.md`) |
 | `opencode-background-agents` | async background subagent delegation with context persistence |
 | `opencode-token-tracker` | real-time token/cost tracking, toasts, and the `opencode-tokens` CLI |
 | `opencode-autotitle` | AI session titles on the cheapest available model |
@@ -119,8 +114,8 @@ opencode plugin -g opencode-autotitle
 opencode plugin -g opencode-snip
 opencode plugin -g opencode-mystatus
 
-# agent-memory and i-have-adhd are local paths in opencode.json;
-# agent-memory is committed under plugins/; clone i-have-adhd as in setup above.
+# i-have-adhd (local) is declared directly in opencode.json;
+# clone it as shown in setup above.
 
 # optional: activate opencode-snip (the plugin no-ops without it)
 curl -fsSL https://raw.githubusercontent.com/edouard-claude/snip/master/install.sh | sh
@@ -129,7 +124,6 @@ curl -fsSL https://raw.githubusercontent.com/edouard-claude/snip/master/install.
 plugin notes:
 
 - `opencode-snip` disables itself until the `snip` binary is on `PATH`.
-- `./plugins/opencode-agent-memory` still pulls `@huggingface/transformers` on first resolve; see `plugins/opencode-agent-memory/PATCHES.md` for the cache fixes vs upstream 0.2.0.
 - `opencode-token-tracker` also installs an `opencode-tokens` CLI.
 - i-have-adhd always-on: `touch ~/.config/opencode/.i-have-adhd-always` (gitignored).
 - Cloudflare MCP: only `cloudflare-docs` is enabled by default; the other Cloudflare servers stay in config but `enabled: false` until authenticated/needed (keeps the tool-schema prefix smaller).
