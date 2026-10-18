@@ -1,7 +1,8 @@
 node_modules
-package.json
-package-lock.json
-bun.lock
+# config-level install manifest only (local plugins keep their own package.json)
+/package.json
+/package-lock.json
+/bun.lock
 vendor
 .i-have-adhd-always
 logs

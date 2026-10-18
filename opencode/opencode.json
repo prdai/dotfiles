@@ -4,13 +4,12 @@
     [
       "@prevalentware/opencode-goal-plugin",
       {
-        "auto_continue": true,
-        "max_auto_turns": 2000,
+        "auto_continue": false,
+        "max_auto_turns": 25,
         "max_no_progress_turns": 5,
         "max_prompt_failures": 10
       }
     ],
-    "opencode-agent-memory",
     "opencode-background-agents",
     "opencode-token-tracker",
     "opencode-autotitle",
@@ -35,7 +34,7 @@
     "cloudflare": {
       "type": "remote",
       "url": "https://mcp.cloudflare.com/mcp",
-      "enabled": true,
+      "enabled": false,
       "oauth": {}
     },
     "cloudflare-docs": {
@@ -46,19 +45,19 @@
     "cloudflare-bindings": {
       "type": "remote",
       "url": "https://bindings.mcp.cloudflare.com/mcp",
-      "enabled": true,
+      "enabled": false,
       "oauth": {}
     },
     "cloudflare-builds": {
       "type": "remote",
       "url": "https://builds.mcp.cloudflare.com/mcp",
-      "enabled": true,
+      "enabled": false,
       "oauth": {}
     },
     "cloudflare-observability": {
       "type": "remote",
       "url": "https://observability.mcp.cloudflare.com/mcp",
-      "enabled": true,
+      "enabled": false,
       "oauth": {}
     }
   },

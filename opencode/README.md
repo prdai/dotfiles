@@ -95,8 +95,7 @@ startup into `~/.cache/opencode/`.
 
 | plugin | purpose |
 |---|---|
-| `@prevalentware/opencode-goal-plugin` | Codex-style `/goal` long-running goal mode: persistence, auto-continue, TUI status |
-| `opencode-agent-memory` | persistent, self-editable memory blocks (Letta-style) |
+| `@prevalentware/opencode-goal-plugin` | Codex-style `/goal` long-running goal mode (auto-continue off; max 25 turns) |
 | `opencode-background-agents` | async background subagent delegation with context persistence |
 | `opencode-token-tracker` | real-time token/cost tracking, toasts, and the `opencode-tokens` CLI |
 | `opencode-autotitle` | AI session titles on the cheapest available model |
@@ -109,7 +108,6 @@ install / reinstall:
 ```bash
 # npm plugins install at startup; to (re)install or update them explicitly:
 opencode plugin -g @prevalentware/opencode-goal-plugin
-opencode plugin -g opencode-agent-memory
 opencode plugin -g opencode-background-agents
 opencode plugin -g opencode-token-tracker
 opencode plugin -g opencode-autotitle
@@ -126,9 +124,9 @@ curl -fsSL https://raw.githubusercontent.com/edouard-claude/snip/master/install.
 plugin notes:
 
 - `opencode-snip` disables itself until the `snip` binary is on `PATH`.
-- `opencode-agent-memory` pulls `@huggingface/transformers`; the first run downloads models.
 - `opencode-token-tracker` also installs an `opencode-tokens` CLI.
 - i-have-adhd always-on: `touch ~/.config/opencode/.i-have-adhd-always` (gitignored).
+- Cloudflare MCP: only `cloudflare-docs` is enabled by default; the other Cloudflare servers stay in config but `enabled: false` until authenticated/needed (keeps the tool-schema prefix smaller).
 - TUI-only plugins (sidebars/statuslines) do not render in the desktop app and are intentionally excluded.
 - skills live in `../agents/skills/` and are shared by opencode, pi, and T3 Code; see the skills section above.
 
