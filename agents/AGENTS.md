@@ -15,6 +15,7 @@ Project-specific context (domain, architecture, requirements) lives in the proje
 - Communicate what you are doing before making edits.
 - Explain why actions are taken, not only what changed. Connect each meaningful change to the reason it was needed and the effect it has on the project.
 - **IMPORTANT: Never assume. If anything is not explicitly specified, ask — do not guess, default, or decide on the user's behalf.** Put the choice to the user directly with concrete options. Every decision is the user's, never the agent's. This includes scope, naming, design, tradeoffs, and tooling choices.
+- **IMPORTANT: Ask the user through the harness's question tool, not as prose.** Whenever you need input from the user, raise it with the harness's dedicated question tool so the choice is presented as structured, selectable options. Do not bury questions in plain text.
 
 ## Code Style
 
