@@ -135,11 +135,15 @@ if.app-id = 'md.obsidian'
 run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
+if.app-id = 'com.t3tools.t3code'
+run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
 if.app-id = 'com.spotify.client'
 run = 'move-node-to-workspace 7'
 
 [[on-window-detected]]
-if.app-id = 'com.cron.electron'
+if.app-id = 'com.tinyspeck.slackmacgap'
 run = 'move-node-to-workspace 8'
 
 [[on-window-detected]]
