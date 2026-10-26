@@ -21,6 +21,10 @@ Project-specific context (domain, architecture, requirements) lives in the proje
 
 My personal coding patterns live in the `coding-style` skill (`agents/skills/coding-style/SKILL.md` in this repo, symlinked to `~/.agents/skills/`). REQUIRED: load and follow it when writing, editing, or reviewing any code, and when writing commits, PRs, or review replies. Highlights: near-zero comments (why only, trim pass before handing back), flat control flow with early returns, one concern per file, SDKs over hand-rolled HTTP, fail-fast errors with context, generic over specific, reuse before duplication, research the ecosystem before hand-rolling, plus the "Agent PR review loop" section for review handling.
 
+## Writing Style
+
+My public voice lives in the `writing-style` skill (`agents/skills/writing-style/SKILL.md` in this repo, symlinked to `~/.agents/skills/`). REQUIRED: load and follow it whenever drafting text a person reads outside the chat: issues, PR titles and bodies, comments, review replies, docs, READMEs, release notes, and blog posts. Highlights: direct and first person, short sentences, evidence over adjectives, explicit asks, no emoji, no profanity, no chat tics, no AI throat-clearing. Chat with me stays casual; public text does not.
+
 ## Branch and PR Workflow
 
 Work happens through normal feature branches and pull requests.
@@ -60,7 +64,7 @@ This covers all natural-language output that lands in the project: commit messag
   - Skip any section that adds nothing. One-line changes usually need only the title + a short body.
 - **Commit messages are Conventional Commits too**, same title shape, single-line (no body) by default.
 - Keep it minimal and right-sized. State the details directly and stop.
-- Match the user's own voice and style. Generated prose should read as written by the user, not by an AI. Reference existing commits, PRs, and docs in the repo for tone, structure, and length, and mirror that.
+- **Follow the `writing-style` skill for all public prose.** It defines the voice, per-surface structure, and the hard bans (emoji, profanity, chat tics, AI phrasing). Generated text should read as written by the user, not by an AI.
 - The agent does not post review replies.
 
 ## Fact Checking
