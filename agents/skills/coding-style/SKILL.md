@@ -62,6 +62,7 @@ Patterns distilled from prdai's authored PRs across repos (dotfiles, sfia-skill-
 - Match each repo's convention: Conventional Commits (`feat(scope): ...`, single line, no body) in upstream/agent repos; plain imperative sentences in dotfiles and personal repos.
 - Style-trim passes, typo fixes, and renames get their own commits. One concern per commit; stacked PRs say "Stacked on #N".
 - PR bodies: `## what changed` / `## why` / `## verification` (exact commands, honest not-verified gaps). Skip sections that add nothing.
+- Commit trailers: follow the `agent-commit-provenance` skill for `Co-authored-by` identities, session and log URLs, and `Signed-off-by`.
 - No emoji, anywhere.
 
 ## Agent PR review loop (when putting up PRs or handling review under delegation)

@@ -47,10 +47,9 @@ Commits are part of the collaboration loop.
 - Do not squash or rewrite history unless the user explicitly asks.
 - Do not stage or commit unrelated files.
 - If the user says `do not commit`, do not commit.
-- If review was limited or the agent thinks the user has not reviewed enough, say so clearly before committing and note the review gap in the commit body.
+- If review was limited or the agent thinks the user has not reviewed enough, say so clearly before committing and let the user decide.
 - If the user has properly reviewed the change, record that in the commit body with a trailer such as `Signed-off-by: User`.
-- If review was incomplete, use a clear note such as `Review: Limited user review before commit`.
-- When an agent or tool contributes to a commit, include it in the commit trailers with `Co-authored-by`, using the correct tool identity for the agent used at that time.
+- When an agent or tool contributes to a commit, follow the `agent-commit-provenance` skill for the `Co-authored-by` identity, session trailers, and ordering.
 - Preserve user-requested trailers such as `Signed-off-by` when the user asks for them.
 
 ## Generated Text and Voice

@@ -75,7 +75,7 @@ Do not pad a short issue. A one-line task with a clear title does not need headi
 
 Title: match the repo. Conventional Commits (`feat(scope): ...`, lowercase after the colon, no period) where the repo uses them; a plain imperative sentence otherwise.
 
-Body: the minimum that lets a reviewer judge the change.
+Body: the minimum that lets a reviewer judge the change. Never leave it empty, including for one-line changes: one bullet under `## what changed` and one line under `## verification` is enough.
 
 ```markdown
 ## what changed

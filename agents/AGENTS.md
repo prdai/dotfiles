@@ -44,8 +44,8 @@ Work happens through normal feature branches and pull requests.
 - Do not commit unless the user asks.
 - Do not squash or rewrite history unless the user explicitly asks.
 - Do not stage or commit unrelated files.
-- If the user has reviewed the change, record that with a trailer such as `Signed-off-by: User`. If review was incomplete, use a clear note such as `Review: Limited user review before commit`.
-- **Agent-authored commits carry the trailer `Co-authored-by: Codex <codex@openai.com>`.**
+- If the user has reviewed the change, record it with `Signed-off-by: User`. If review was incomplete, say so before committing; do not add a coverage trailer.
+- **Agent attribution follows the `agent-commit-provenance` skill: which `Co-authored-by` each tool gets, plus session and log URL trailers.**
 
 ## Generated Text and Voice
 
