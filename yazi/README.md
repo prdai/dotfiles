@@ -1,6 +1,6 @@
 # yazi
 
-Config for [yazi](https://github.com/sxyazi/yazi), the terminal file manager. Four plugins are vendored here so the setup does not depend on network access, and the catppuccin-mocha flavor is pinned through `ya pkg`.
+Config for [yazi](https://github.com/sxyazi/yazi), the terminal file manager. Four plugins are vendored here so the setup does not depend on network access, and the flexoki-dark flavor is pinned through `ya pkg`.
 
 ## install
 
@@ -17,11 +17,11 @@ ln -sf ~/.dotfiles/yazi ~/.config/yazi
 |------|---------|
 | `yazi.toml` | sorting, hidden files, linemode, preview limits, git fetchers |
 | `keymap.toml` | `l` and `<Enter>` smart enter, `f` jump to char |
-| `theme.toml` | selects the catppuccin-mocha flavor |
+| `theme.toml` | selects the flexoki-dark flavor |
 | `init.lua` | enables full-border and git, defines the `size_and_mtime` linemode |
 | `package.toml` | tracks the flavor for `ya pkg` |
 | `plugins/` | vendored plugins, see below |
-| `flavors/catppuccin-mocha.yazi/` | flavor installed by `ya pkg` |
+| `flavors/flexoki-dark.yazi/` | flavor installed by `ya pkg` |
 
 ## keys
 
@@ -58,9 +58,9 @@ Vendored from [yazi-rs/plugins](https://github.com/yazi-rs/plugins) at `e0bbd20`
 
 ## flavor
 
-Installed with `ya pkg add yazi-rs/flavors:catppuccin-mocha` and pinned in `package.toml` at rev `1183892`. Refresh it with `ya pkg upgrade`.
+Installed with `ya pkg add gosxrgxx/flexoki-dark` and pinned in `package.toml` at rev `649e569`. Refresh it with `ya pkg upgrade`.
 
-`theme.toml` only sets the dark flavor, so add `light = "catppuccin-latte"` and install that flavor if automatic light mode is ever wanted.
+`theme.toml` only sets the dark flavor. Add a `light` flavor if automatic light mode is ever wanted.
 
 ## shell wrapper
 
