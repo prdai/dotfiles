@@ -11,6 +11,24 @@ return {
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 	{
+		"sindrets/diffview.nvim",
+		cmd = {
+			"DiffviewOpen",
+			"DiffviewClose",
+			"DiffviewFileHistory",
+			"DiffviewToggleFiles",
+			"DiffviewFocusFiles",
+			"DiffviewRefresh",
+		},
+		dependencies = { "nvim-lua/plenary.nvim" },
+		keys = {
+			{ "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Open diffview" },
+			{ "<leader>gD", "<cmd>DiffviewClose<cr>", desc = "Close diffview" },
+			{ "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", desc = "File history (current file)" },
+			{ "<leader>gH", "<cmd>DiffviewFileHistory<cr>", desc = "File history (repo)" },
+		},
+	},
+	{
 		"FabijanZulj/blame.nvim",
 		event = "VeryLazy",
 		config = function()
