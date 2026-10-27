@@ -74,6 +74,7 @@ and `~/.claude/skills/`, so either path loads them for every session.
 |---|---|---|
 | `coding-style` | this repo | prdai's personal code style, required for all code / commit / PR work |
 | `goal` | this repo | goal-mode entry point for frontends that list skills but not plugin slash commands (T3 Code v0.0.42 lists only `/compact`) |
+| `llm-council` | this repo (adapted from aiwithremy, gcpdev) | three-model critical review with blind peer review and a verified chair verdict |
 | `better-ui` | jakubkrehel/skills (MIT) | values-first UI polish: concentric radii, optical alignment, surfaces, icons, hit areas |
 | `emil-design-eng` | emilkowalski/skills (MIT) | Emil Kowalski's design-engineering philosophy and taste |
 | `apple-design` | emilkowalski/skills (MIT) | Apple's fluid-interface motion and interaction principles for the web |
