@@ -32,6 +32,7 @@ ln -sf ~/.dotfiles/waybar ~/.config/
 ln -sf ~/.dotfiles/swaync ~/.config/
 ln -sf ~/.dotfiles/vicinae ~/.config/
 ln -sf ~/.dotfiles/btop ~/.config/
+ln -sf ~/.dotfiles/yazi ~/.config/
 
 # macos window manager
 ln -sf ~/.dotfiles/aerospace ~/.config/
@@ -77,6 +78,7 @@ source ~/.bashrc   # or: source ~/.zshrc
 | `vicinae/` | vicinae launcher config |
 | `wallpapers/` | wallpaper assets |
 | `waybar/` | waybar modules + styling |
+| `yazi/` | terminal file manager config + vendored plugins/flavor |
 | `wezterm/` | archived terminal config (kept for reference) |
 | `zshrc/` | zsh config, aliases, prompt, helper functions |
 | `.idea/` | ideavim/editorconfig for jetbrains |

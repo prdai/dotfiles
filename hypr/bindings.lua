@@ -34,3 +34,8 @@ o.bind("SUPER + PERIOD", "Emoji picker", "omarchy-shell shell toggle omarchy.emo
 -- Typora instead of Omarchy's Omawrite.
 hl.unbind("SUPER + SHIFT + W")
 o.bind("SUPER + SHIFT + W", "Typora", { launch = "typora --enable-wayland-ime" })
+
+-- Yazi instead of Nautilus for the file manager. Re-pressing the key focuses
+-- the existing window.
+hl.unbind("SUPER + SHIFT + F")
+o.bind("SUPER + SHIFT + F", "File manager", { tui = "yazi", focus = true })

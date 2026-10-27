@@ -62,6 +62,16 @@ function show_system_info() {
     fi
 }
 
+# ────────────────────────── Yazi ────────────────────────────
+y() {
+    local tmp cwd
+    tmp="$(mktemp -t yazi-cwd.XXXXXX)"
+    yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd <"$tmp"
+    [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+    rm -f -- "$tmp"
+}
+
 # ────────────────────────── Load Environment Variables ────────────────────────────
 # Add this in the Special Functions section
 load_env() {
