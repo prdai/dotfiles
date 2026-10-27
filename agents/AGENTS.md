@@ -23,7 +23,7 @@ My personal coding patterns live in the `coding-style` skill (`agents/skills/cod
 
 ## Writing Style
 
-My public voice lives in the `writing-style` skill (`agents/skills/writing-style/SKILL.md` in this repo, symlinked to `~/.agents/skills/`). REQUIRED: load and follow it whenever drafting text a person reads outside the chat: issues, PR titles and bodies, comments, review replies, docs, READMEs, release notes, and blog posts. Highlights: direct and first person, short sentences, evidence over adjectives, explicit asks, no emoji, no profanity, no chat tics, no AI throat-clearing. Chat with me stays casual; public text does not.
+My public voice lives in the `writing-style` skill (`agents/skills/writing-style/SKILL.md` in this repo, symlinked to `~/.agents/skills/`). REQUIRED: load and follow it whenever drafting text a person reads outside the chat: issues, PR titles and bodies, comments, review replies, docs, READMEs, release notes, and blog posts. Highlights: direct and task-focused, no first-person phrasing unless requested, short sentences, evidence over adjectives, explicit asks, no emoji, no profanity, no chat tics, no AI throat-clearing. Chat with me stays casual; public text does not.
 
 ## Branch and PR Workflow
 
