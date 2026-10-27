@@ -174,10 +174,16 @@ Works in both **normal** and **terminal** mode.
 | Key | Action |
 |-----|--------|
 | `<leader>lg` | Open LazyGit |
+| `<leader>gd` | Open diffview against the index (`DiffviewOpen`) |
+| `<leader>gD` | Close diffview |
+| `<leader>gh` | File history for the current file |
+| `<leader>gH` | File history for the repo |
 | `<leader>gb` | Toggle git blame window (blame.nvim) |
 | `<leader>gB` | Toggle inline virtual-text blame |
 
 Inline virtual-text blame is enabled by default on startup.
+
+Diffview is lazy-loaded on command. Inside a diffview, `<tab>` and `<s-tab>` open the next and previous file, `<leader>b` toggles the file panel, `<leader>e` focuses it, and `g?` opens the help panel.
 
 ---
 
