@@ -73,7 +73,7 @@ Patterns distilled from prdai's authored PRs across repos (dotfiles, sfia-skill-
 - Verification is non-negotiable: run tests/linters/build and report exact results; state honest gaps explicitly instead of hand-waving; "works" means consistent across the whole application, not just the touched file; attach screenshots for UI changes; distinguish pre-existing issues from regressions the diff introduced.
 - Self-review against this skill before requesting review: comment trim pass, no magic values, reuse check, types at edges, happy-path-first.
 - PR/issue hygiene: combine duplicate issues/PRs into one and close extras with "Superseded by #N — <reason>" cross-links; rebase and squash to one logical commit per concern before requesting review; "Partially done" status must name the merged PR and enumerate exactly what remains.
-- Voice when posting on the user's behalf follows the `writing-style` skill: direct, short, first person; no emoji, profanity, chat tics, or AI phrasing.
+- Voice when posting on the user's behalf follows the `writing-style` skill: direct, short, task-focused; avoid first-person phrasing unless requested; no emoji, profanity, chat tics, or AI phrasing.
 
 ## Generalize, don't machine-code
 

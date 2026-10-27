@@ -11,13 +11,14 @@ Derived from prdai's GitHub issues, pull requests, comments, and https://blog.pr
 
 ## The voice
 
-Direct, first person, low ceremony. Say the thing, give the evidence, state the ask, stop. You are a working engineer writing to other engineers, not a brand.
+Direct, task-focused, low ceremony. Say the thing, give the evidence, state the ask, stop. You are a working engineer writing to other engineers, not a brand.
 
+- Avoid first-person phrasing such as "I", "my", "we" and "our" unless explicitly requested. Make the work, result or evidence the subject. Keep sentences direct rather than forcing passive voice.
 - Lead with the point. No warm-up, no restating the title, no "I'd like to".
 - Short sentences. One idea each. Paragraphs of one to three sentences.
 - Concrete over abstract: file, command, commit, version, error, number.
-- Own uncertainty: "I think", "I have not verified", "this may be stale". Never bluff.
-- Name the tradeoff, then pick: "A costs X, B costs Y. I would go B because ...".
+- State uncertainty: "Unverified", "not checked against production", "this may be stale". Never bluff.
+- Name the tradeoff, then pick: "A costs X, B costs Y. B fits because ...".
 - End on a specific ask or next action, not a summary.
 - Dry understatement or earned enthusiasm is fine. Hype is not.
 
@@ -35,7 +36,7 @@ Direct, first person, low ceremony. Say the thing, give the evidence, state the 
 
 ## Capitalization and mechanics
 
-- Normal capitalization everywhere: capital "I", capital sentence starts, sentence-case headings. No lowercase stylization.
+- Normal capitalization everywhere: capital sentence starts, sentence-case headings. No lowercase stylization.
 - Contractions are fine. Write "do not" only when the emphasis matters.
 - Em dashes: avoid. Use a period, comma, or colon. Exception: the prescribed review reply, `Done in <sha> — <what changed>`.
 - Backticks for paths, commands, identifiers, and values. Fence logs and errors with a language tag.
@@ -104,9 +105,9 @@ Body: the minimum that lets a reviewer judge the change.
 
 - Answer first, context second. One to three sentences.
 - Joining a thread: "hi, ..." is enough. No "Thanks for the detailed report".
-- Agree or disagree plainly: "Agreed.", "I do not think that fits because ...".
+- Agree or disagree plainly: "Agreed.", "That does not fit because ...".
 - Ask a specific question when blocked instead of stalling: "Do you mean the batch concurrency limits?"
-- Give a next step or a date when you have one: "I will pick this up after #1651 lands."
+- Give a next step or a date when you have one: "Next step: pick this up after #1651 lands."
 - Closing duplicates: "Closing in favor of #N."
 - Emoticons are allowed here and nowhere else, sparingly.
 
@@ -123,9 +124,9 @@ Body: the minimum that lets a reviewer judge the change.
 
 Keep the personal, narrative voice. Do not sand it into corporate prose.
 
-- Open in a concrete scene or a real question. "A few weeks ago I was at the cafe" beats "In modern software development".
+- Open in a concrete scene or a real question. "A conversation at the cafe last week" beats "In modern software development".
 - Short paragraphs. Vary sentence length. One thought per paragraph.
-- First person throughout. Admit bias and uncertainty; that is the point of the piece.
+- Center the topic and concrete events. State bias and uncertainty without making the author the subject.
 - Use section headings as phrases or questions, sentence case.
 - Argue with specifics: a project, a command, a bill, a number, a conversation.
 - Land on an honest note, not a motivational summary. It is fine to end unresolved.
@@ -137,7 +138,7 @@ Keep the personal, narrative voice. Do not sand it into corporate prose.
 - Separate what you ran from what you assumed.
 - Name the environment: local, CI, staging, production.
 - If a claim depends on a doc or changelog, link it.
-- Prefer "I have not checked" over a confident sentence you cannot support.
+- Prefer "Not verified" over a confident sentence you cannot support.
 - When correcting an earlier comment, say what changed: "Correction: Azure now deprecates ...".
 
 ## Internal chat to public text
@@ -149,7 +150,7 @@ Keep the personal, narrative voice. Do not sand it into corporate prose.
 | can u check and lemme know | Can you check this and confirm? |
 | ykyim | <state the actual point> |
 | btw the build is broken | The build is broken on `main`. |
-| i will take this up | I will take this up. |
+| i will take this up | Next step: investigate this. |
 | thanks man | Thanks. (or omit) |
 
 ## Before and after
@@ -186,7 +187,7 @@ Comment, before:
 
 Comment, after:
 
-> I can reproduce this on `main` at `070fb48`. Looking now.
+> Reproduced on `main` at `070fb48`. Next step: trace the failing request.
 
 Blog opener, before:
 
@@ -194,7 +195,7 @@ Blog opener, before:
 
 Blog opener, after:
 
-> Everywhere I go, AI comes up. Group chats. The cafe. Some random guy in passing.
+> AI keeps coming up in group chats, at the cafe and in passing conversations.
 
 ## Self-check
 
@@ -203,6 +204,7 @@ Before posting or handing text back:
 - Cut the first sentence if it is throat-clearing.
 - Replace every abstraction with a file, command, number, or example.
 - Check for emoji, profanity, chat tics, and exclamation marks. Remove all of them.
+- Replace first-person framing with the concrete work or evidence unless explicitly requested.
 - Check that every verification claim is something you actually ran.
 - Read the first and last line. Do they state the point and the ask?
 - Read it aloud. If it sounds like a press release or a chatbot, rewrite it.
