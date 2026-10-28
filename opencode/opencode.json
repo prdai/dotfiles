@@ -59,6 +59,16 @@
       "url": "https://observability.mcp.cloudflare.com/mcp",
       "enabled": false,
       "oauth": {}
+    },
+    "excalidash": {
+      "type": "local",
+      "command": ["npx", "-y", "excalidash-mcp@1"],
+      "enabled": true,
+      "environment": {
+        "EXCALIDASH_BACKEND_URL": "https://draw.prdai.dev/api",
+        "EXCALIDASH_URL": "https://draw.prdai.dev",
+        "EXCALIDASH_API_KEY": "{env:EXCALIDASH_API_KEY}"
+      }
     }
   },
   "permission": "allow"
