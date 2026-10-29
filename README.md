@@ -41,9 +41,12 @@ ln -sf ~/.dotfiles/aerospace ~/.config/
 ln -sf ~/.dotfiles/git/.gitconfig ~/.gitconfig
 ln -sf ~/.dotfiles/git/ignore ~/.config/git/ignore
 
-# agent rules + skills (opencode, pi): global skills symlinked from agents/skills/
-for s in ~/.dotfiles/agents/skills/*/; do
-  ln -sfn "${s%/}" ~/.agents/skills/"$(basename "$s")"
+# agent rules + skills: agents/skills is the single source, every harness points at ~/.agents/skills
+ln -sfn ~/.dotfiles/agents/skills ~/.agents/skills
+ln -sfn ~/.agents/skills ~/.claude/skills
+# codex keeps its managed .system dir, so link skills individually
+for s in ~/.agents/skills/*/; do
+  ln -sfn "${s%/}" ~/.codex/skills/"$(basename "$s")"
 done
 
 # t3 code desktop config (app + launcher: see t3code/README.md)
