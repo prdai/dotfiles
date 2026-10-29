@@ -60,32 +60,29 @@ this writes `plugins/rtk.ts` (committed here); the plugin is a thin delegating w
 ## skills
 
 agent skills follow the [opencode skills spec](https://opencode.ai/docs/skills/): one folder
-per skill with a `SKILL.md` carrying `name` + `description` frontmatter. skill sources are
-vendored in this repo at `../agents/skills/<name>/`, which is the single source of truth.
-every harness points at it through `~/.agents/skills`:
+per skill with a `SKILL.md` carrying `name` + `description` frontmatter. repo skills are
+vendored at `../agents/skills/<name>/`, which is the source of truth. `~/.agents/skills` is a
+local view: repo skills link into this repo, while `omarchy` and `diagnose-crash` link to
+`/usr/share/omarchy` and stay uncommitted. every harness points at that view:
 
-- `~/.agents/skills` → `~/.dotfiles/agents/skills` (created by the root README setup)
+- `~/.agents/skills/<name>` → `~/.dotfiles/agents/skills/<name>`, or `/usr/share/omarchy/default/agents/skills/<name>` for system skills
 - `opencode/skills` → `../../.agents/skills` (committed relative symlink; resolves through the `~/.config/opencode` symlink)
 - `~/.claude/skills` → `~/.agents/skills`
 - `~/.codex/skills/<name>` → `~/.agents/skills/<name>` (per-skill so codex keeps its managed `.system` dir)
 
-no skill files are duplicated outside `agents/skills/`.
+repo skills are not duplicated outside `agents/skills/`.
 
 | skill | source (license) | purpose |
 |---|---|---|
 | `coding-style` | this repo | prdai's personal code style, required for all code / commit / PR work |
 | `goal` | this repo | goal-mode entry point for frontends that list skills but not plugin slash commands (T3 Code v0.0.42 lists only `/compact`) |
 | `council` | this repo (adapted from aiwithremy, gcpdev, t3dotgg/tstack) | three-model critical review with blind peer review, a verified chair verdict, and a round loop |
-| `file-pr` | t3dotgg/tstack | concise problem-first PR with a model and harness footer |
-| `babysit-pr` | t3dotgg/tstack | watch a PR through CI and review bots, fix real findings, report ready |
-| `modernize` | t3dotgg/tstack | rebase an old PR and decide MODERNIZE, REWORK, or CLOSE |
-| `takeover` | t3dotgg/tstack | finish someone else's PR, branch, or thread and preserve credit |
 | `leaving-pr-comments` | t3dotgg/tstack | attribution format for authorized agent comments |
 | `better-ui` | jakubkrehel/skills (MIT) | values-first UI polish: concentric radii, optical alignment, surfaces, icons, hit areas |
 | `emil-design-eng` | emilkowalski/skills (MIT) | Emil Kowalski's design-engineering philosophy and taste |
 | `apple-design` | emilkowalski/skills (MIT) | Apple's fluid-interface motion and interaction principles for the web |
-| `omarchy` | basecamp/omarchy (MIT) | Linux desktop / Hyprland / Waybar / Omarchy system config |
-| `diagnose-crash` | basecamp/omarchy (MIT) | diagnose a segfault or abort from a systemd-coredump core dump |
+| `omarchy` | basecamp/omarchy (MIT, system) | Linux desktop / Hyprland / Waybar / Omarchy system config |
+| `diagnose-crash` | basecamp/omarchy (MIT, system) | diagnose a segfault or abort from a systemd-coredump core dump |
 | `figma` | openai/skills curated (Figma Developer Terms) | Figma MCP design-to-code workflow; terms in the bundled `LICENSE.txt` |
 
 the remaining skills in `../agents/skills/` (`agent-commit-provenance`, `agents-md`,
