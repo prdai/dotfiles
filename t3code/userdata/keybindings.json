@@ -1,5 +1,65 @@
 [
   {
+    "key": "f6",
+    "command": "workspace.focusNext"
+  },
+  {
+    "key": "shift+f6",
+    "command": "workspace.focusPrevious"
+  },
+  {
+    "key": "mod+f6",
+    "command": "workspace.focusNext"
+  },
+  {
+    "key": "mod+shift+f6",
+    "command": "workspace.focusPrevious"
+  },
+  {
+    "key": "mod+shift+b",
+    "command": "threadPanel.toggle",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "mod+t",
+    "command": "rightPanel.new",
+    "when": "rightPanelOpen && !terminalFocus"
+  },
+  {
+    "key": "mod+shift+t",
+    "command": "view.reopenClosed"
+  },
+  {
+    "key": "alt+arrowup",
+    "command": "thread.editQueuedMessage",
+    "when": "composerFocus"
+  },
+  {
+    "key": "mod+enter",
+    "command": "composer.sendAlternate",
+    "when": "composerFocus && turnRunning"
+  },
+  {
+    "key": "mod+enter",
+    "command": "composer.sendBackground",
+    "when": "composerFocus && draftThreadRoute"
+  },
+  {
+    "key": "mod+alt+enter",
+    "command": "composer.sendBackground",
+    "when": "composerFocus && draftThreadRoute"
+  },
+  {
+    "key": "mod+alt+enter",
+    "command": "composer.sendAndNewThread",
+    "when": "composerFocus && !draftThreadRoute"
+  },
+  {
+    "key": "mod+f",
+    "command": "chat.find",
+    "when": "!terminalFocus && !previewFocus"
+  },
+  {
     "key": "mod+b",
     "command": "sidebar.toggle"
   },
@@ -276,5 +336,75 @@
     "key": "mod+shift+p",
     "command": "thread.pin",
     "when": "!terminalFocus"
+  },
+  {
+    "key": "mod+[",
+    "command": "navigation.back",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "mod+]",
+    "command": "navigation.forward",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "mod+u",
+    "command": "usage.open",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "mod+alt+a",
+    "command": "theme.select",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "mod+alt+shift+a",
+    "command": "appearance.cycle",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "mod+z",
+    "command": "thread.undo",
+    "when": "!terminalFocus && !editableFocus"
+  },
+  {
+    "key": "mod+alt+n",
+    "command": "chat.newWithoutProject",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "c",
+    "command": "usage.cost",
+    "when": "usagePageOpen"
+  },
+  {
+    "key": "t",
+    "command": "usage.tokens",
+    "when": "usagePageOpen"
+  },
+  {
+    "key": "l",
+    "command": "usage.limits",
+    "when": "usagePageOpen"
+  },
+  {
+    "key": "mod+shift+1",
+    "command": "usage.period.day",
+    "when": "usagePageOpen"
+  },
+  {
+    "key": "mod+shift+2",
+    "command": "usage.period.week",
+    "when": "usagePageOpen"
+  },
+  {
+    "key": "mod+shift+3",
+    "command": "usage.period.month",
+    "when": "usagePageOpen"
+  },
+  {
+    "key": "mod+shift+4",
+    "command": "usage.period.quarter",
+    "when": "usagePageOpen"
   }
 ]
