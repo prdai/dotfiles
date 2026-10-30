@@ -93,6 +93,51 @@ to add another: vendor the skill folder into `agents/skills/<name>/` and run the
 setup from the root README. no per-harness copy is needed. if the skill ships supporting
 files, keep them inside the skill folder.
 
+## codex connectors
+
+the apps connected to the Codex desktop app (Google Drive, Gmail, Google
+Calendar, Figma, Notion, Linear, GitHub, Slack, Vercel, ...) are exposed to
+opencode and T3 Code through
+[`@wileai/codex-connectors-mcp`](https://github.com/wileai/codex-connectors-mcp),
+a third-party MIT MCP bridge. it talks to the local `codex app-server` and
+reuses the existing `~/.codex` login, so no per-vendor OAuth setup is needed.
+
+registered in `opencode.json`:
+
+```json
+"codex-connectors": {
+  "type": "local",
+  "command": ["npx", "-y", "@wileai/codex-connectors-mcp@0.2.0"],
+  "enabled": true,
+  "environment": {
+    "CODEX_CONNECTORS_MODE": "compact",
+    "CODEX_CONNECTORS_WRITES": "allow"
+  }
+}
+```
+
+`compact` mode exposes five tools: list apps and tools, read one tool schema,
+call a tool, web search, and Computer Use status. all connected app tools stay
+callable through the dispatcher, which keeps the tool catalog out of context.
+set `CODEX_CONNECTORS_MODE=direct` to expose every connector tool individually.
+
+`CODEX_CONNECTORS_WRITES=allow` lets opencode's own permission system handle
+writes. the package default (`ask`) needs MCP form elicitation, which opencode
+does not provide.
+
+verify the bridge without starting opencode:
+
+```bash
+npx -y @wileai/codex-connectors-mcp@0.2.0 --help
+```
+
+notes:
+
+- connector tools that act on an account require `link_id`. call
+  `codex_connector_schema` first when a connector has more than one account.
+- `CODEX_CONNECTORS_ALLOW` narrows access to a comma list of connector names.
+- restart opencode/T3 after changing the bridge or its environment.
+
 ## plugins
 
 global plugins live in the `plugin` array in `opencode.json`. both the terminal

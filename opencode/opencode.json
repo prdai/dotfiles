@@ -69,6 +69,15 @@
         "EXCALIDASH_URL": "https://draw.prdai.dev",
         "EXCALIDASH_API_KEY": "{env:EXCALIDASH_API_KEY}"
       }
+    },
+    "codex-connectors": {
+      "type": "local",
+      "command": ["npx", "-y", "@wileai/codex-connectors-mcp@0.2.0"],
+      "enabled": true,
+      "environment": {
+        "CODEX_CONNECTORS_MODE": "compact",
+        "CODEX_CONNECTORS_WRITES": "allow"
+      }
     }
   },
   "permission": "allow"
