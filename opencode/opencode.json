@@ -69,6 +69,14 @@
         "EXCALIDASH_URL": "https://draw.prdai.dev",
         "EXCALIDASH_API_KEY": "{env:EXCALIDASH_API_KEY}"
       }
+    },
+    "codex-apps": {
+      "type": "local",
+      "command": ["node", "{env:HOME}/.config/opencode/mcp/codex-apps/server.mjs"],
+      "enabled": true,
+      "environment": {
+        "CODEX_APPS_CONNECTORS": "all"
+      }
     }
   },
   "permission": "allow"
