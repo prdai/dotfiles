@@ -96,19 +96,20 @@ files, keep them inside the skill folder.
 
 ## codex app connectors
 
-`mcp/codex-apps/server.mjs` bridges the apps connected to the Codex desktop app
+`mcp/codex-apps/server.ts` bridges the apps connected to the Codex desktop app
 (Google Drive, Gmail, Google Calendar, Figma, Notion, Linear, GitHub, Slack,
 Vercel, ...) into opencode and T3 Code as a standard MCP server.
 
 It talks to the local `codex app-server`, reuses the existing `~/.codex` login,
-and calls the `codex_apps` runtime. No per-vendor OAuth setup is needed.
+and calls the `codex_apps` runtime. No per-vendor OAuth setup is needed. It runs
+on Bun and needs `bun` plus `codex` on `PATH`.
 
 registered in `opencode.json`:
 
 ```json
 "codex-apps": {
   "type": "local",
-  "command": ["node", "{env:HOME}/.config/opencode/mcp/codex-apps/server.mjs"],
+  "command": ["bun", "{env:HOME}/.config/opencode/mcp/codex-apps/server.ts"],
   "enabled": true,
   "environment": {
     "CODEX_APPS_CONNECTORS": "all"
@@ -119,7 +120,7 @@ registered in `opencode.json`:
 verify the bridge without starting opencode:
 
 ```bash
-node ~/.config/opencode/mcp/codex-apps/server.mjs --list
+bun ~/.config/opencode/mcp/codex-apps/server.ts --list
 ```
 
 environment:

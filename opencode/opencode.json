@@ -72,7 +72,7 @@
     },
     "codex-apps": {
       "type": "local",
-      "command": ["node", "{env:HOME}/.config/opencode/mcp/codex-apps/server.mjs"],
+      "command": ["bun", "{env:HOME}/.config/opencode/mcp/codex-apps/server.ts"],
       "enabled": true,
       "environment": {
         "CODEX_APPS_CONNECTORS": "all"
