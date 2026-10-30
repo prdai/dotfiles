@@ -1,0 +1,11 @@
+[Unit]
+Description=Headless opencode server on the tailnet
+
+[Service]
+EnvironmentFile=%h/.config/opencode-serve.env
+ExecStart=%h/.local/share/mise/shims/opencode serve --hostname 100.108.166.96 --port 4096
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
