@@ -70,12 +70,13 @@
         "EXCALIDASH_API_KEY": "{env:EXCALIDASH_API_KEY}"
       }
     },
-    "codex-apps": {
+    "codex-connectors": {
       "type": "local",
-      "command": ["bun", "{env:HOME}/.config/opencode/mcp/codex-apps/server.ts"],
+      "command": ["npx", "-y", "@wileai/codex-connectors-mcp@0.2.0"],
       "enabled": true,
       "environment": {
-        "CODEX_APPS_CONNECTORS": "all"
+        "CODEX_CONNECTORS_MODE": "compact",
+        "CODEX_CONNECTORS_WRITES": "allow"
       }
     }
   },

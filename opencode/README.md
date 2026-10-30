@@ -12,7 +12,6 @@ config for the [opencode](https://opencode.ai) agentic CLI/TUI, symlinked into `
 | `themes/codex.json` | custom dark theme matching the Codex desktop app (`#181818` surfaces, light-blue accent, one-dark syntax) |
 | `skills/` | relative symlinks to the vendored skills in `../agents/skills/`, loaded globally by opencode |
 | `plugins/rtk.ts` | rtk command rewriting for bash/shell tool calls (needs `rtk` on PATH) |
-| `mcp/codex-apps/` | local MCP shim bridging Codex app connectors (Drive, Gmail, Figma, ...) into opencode/T3 |
 | `vendor/i-have-adhd/` | local plugin checkout, gitignored (cloned by the setup step below) |
 
 ## setup
@@ -94,57 +93,50 @@ to add another: vendor the skill folder into `agents/skills/<name>/` and run the
 setup from the root README. no per-harness copy is needed. if the skill ships supporting
 files, keep them inside the skill folder.
 
-## codex app connectors
+## codex connectors
 
-`mcp/codex-apps/server.ts` bridges the apps connected to the Codex desktop app
-(Google Drive, Gmail, Google Calendar, Figma, Notion, Linear, GitHub, Slack,
-Vercel, ...) into opencode and T3 Code as a standard MCP server.
-
-It talks to the local `codex app-server`, reuses the existing `~/.codex` login,
-and calls the `codex_apps` runtime. No per-vendor OAuth setup is needed. It runs
-on Bun and needs `bun` plus `codex` on `PATH`.
+the apps connected to the Codex desktop app (Google Drive, Gmail, Google
+Calendar, Figma, Notion, Linear, GitHub, Slack, Vercel, ...) are exposed to
+opencode and T3 Code through
+[`@wileai/codex-connectors-mcp`](https://github.com/wileai/codex-connectors-mcp),
+a third-party MIT MCP bridge. it talks to the local `codex app-server` and
+reuses the existing `~/.codex` login, so no per-vendor OAuth setup is needed.
 
 registered in `opencode.json`:
 
 ```json
-"codex-apps": {
+"codex-connectors": {
   "type": "local",
-  "command": ["bun", "{env:HOME}/.config/opencode/mcp/codex-apps/server.ts"],
+  "command": ["npx", "-y", "@wileai/codex-connectors-mcp@0.2.0"],
   "enabled": true,
   "environment": {
-    "CODEX_APPS_CONNECTORS": "all"
+    "CODEX_CONNECTORS_MODE": "compact",
+    "CODEX_CONNECTORS_WRITES": "allow"
   }
 }
 ```
 
+`compact` mode exposes five tools: list apps and tools, read one tool schema,
+call a tool, web search, and Computer Use status. all connected app tools stay
+callable through the dispatcher, which keeps the tool catalog out of context.
+set `CODEX_CONNECTORS_MODE=direct` to expose every connector tool individually.
+
+`CODEX_CONNECTORS_WRITES=allow` lets opencode's own permission system handle
+writes. the package default (`ask`) needs MCP form elicitation, which opencode
+does not provide.
+
 verify the bridge without starting opencode:
 
 ```bash
-bun ~/.config/opencode/mcp/codex-apps/server.ts --list
+npx -y @wileai/codex-connectors-mcp@0.2.0 --help
 ```
-
-environment:
-
-| variable | default | purpose |
-|---|---|---|
-| `CODEX_APPS_CONNECTORS` | `all` | comma list of connector slugs, e.g. `google_drive,gmail,google_calendar,figma` |
-| `CODEX_APPS_EXCLUDE` | none | comma list of connectors to hide; `*` hides all |
-| `CODEX_APPS_READ_ONLY` | `0` | set to `1` to expose only tools marked read-only |
-| `CODEX_APPS_LINKS` | none | JSON map of connector slug to `link_id`, for accounts other than the Codex default |
-| `CODEX_APPS_CWD` | process cwd | workspace passed to the Codex thread |
-| `CODEX_APPS_TIMEOUT_MS` | `120000` | per tool-call timeout |
-| `CODEX_BIN` | `codex` | Codex CLI used to start the app-server |
 
 notes:
 
-- Codex exposes the full connector catalog, which is over 800 tools. opencode
-  Code Mode (default on) keeps that out of the model context. Narrow the list
-  with `CODEX_APPS_CONNECTORS` if a harness loads every tool directly.
-- Tool calls use the Codex-side default account for each connector. Set
-  `CODEX_APPS_LINKS` when an account other than the default should be used.
-- The shim starts an ephemeral Codex thread per opencode session. Nothing is
-  written to Codex history.
-- Restart opencode/T3 after changing the shim or its environment.
+- connector tools that act on an account require `link_id`. call
+  `codex_connector_schema` first when a connector has more than one account.
+- `CODEX_CONNECTORS_ALLOW` narrows access to a comma list of connector names.
+- restart opencode/T3 after changing the bridge or its environment.
 
 ## plugins
 
