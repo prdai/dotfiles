@@ -1,9 +1,15 @@
 {
-  "notificationMode": "off",
-  "inAppNotificationsEnabled": false,
+  "notificationMode": "notifications-and-sound",
+  "inAppNotificationsEnabled": true,
   "diffColorScheme": "red-green",
-  "loadBalancingEnabled": false,
-  "loadBalancingWeights": {},
+  "chatWidth": "comfortable",
+  "effortDisplay": "label",
+  "loadBalancingEnabled": true,
+  "loadBalancingWeights": {
+    "0a8d9f3f-24f1-40f2-b71a-597b5db8b7c3": 100,
+    "9743277b-53e9-4315-b149-95cd4dc39161": 100,
+    "7b98be78-2551-488f-9b94-f8bd8db6a5ee": 25
+  },
   "appearanceContrast": 100,
   "panelAnimationDurationMs": 0,
   "browserDefaultViewport": {
@@ -11,8 +17,12 @@
   },
   "browserDefaultZoomFactor": 1,
   "browserDefaultAppearance": "system",
-  "browserRecordingFrameRate": 30,
+  "browserRecordingFrameRate": 60,
+  "browserRecordingShowKeyPresses": true,
+  "browserRecordingShowMousePresses": true,
   "browserLinkTarget": "system",
+  "browserSearchEngine": "google",
+  "browserCustomSearchUrl": "",
   "browserAutoShowFloatingPreview": true,
   "browserProfiles": [],
   "browserDefaultProfileId": "default",
@@ -20,7 +30,6 @@
   "confirmThreadArchive": false,
   "confirmThreadDelete": true,
   "confirmThreadUnpin": false,
-  "dismissedProviderUpdateNotificationKeys": [],
   "diffFilesCollapsed": false,
   "diffIgnoreWhitespace": true,
   "diffLayout": "stacked",
@@ -36,6 +45,7 @@
   "fontFamilyTerminal": "",
   "fontSmoothing": true,
   "onboardingCompletedAt": "2026-09-23T04:51:36.592Z",
+  "persistComposerContextStrip": false,
   "favorites": [
     {
       "provider": "opencode",
@@ -58,75 +68,27 @@
       "model": "opencode-go/muse-spark-1.3-contributor"
     },
     {
-      "provider": "codex",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "provider": "codex",
-      "model": "gpt-5.6-sol"
-    },
-    {
-      "provider": "codex",
-      "model": "gpt-5.6-terra"
-    },
-    {
-      "provider": "codex",
-      "model": "gpt-6-sol"
+      "provider": "cursor",
+      "model": "default"
     },
     {
       "provider": "codex",
       "model": "gpt-6-luna"
     },
     {
-      "provider": "cursor",
-      "model": "default"
+      "provider": "codex",
+      "model": "gpt-6.1-sol"
+    },
+    {
+      "provider": "codex",
+      "model": "gpt-6-astra"
     }
   ],
   "providerModelPreferences": {
     "codex": {
       "hiddenModels": [
-        "gpt-5.6-sol",
-        "gpt-5.6-terra",
-        "gpt-5.6-luna"
-      ],
-      "modelOrder": []
-    },
-    "cursor": {
-      "hiddenModels": [
-        "glm-5.2",
-        "kimi-k2.7-code",
-        "kimi-k3",
-        "gemini-2.5-flash",
-        "gpt-5-mini",
-        "claude-sonnet-4",
-        "gemini-3.5-flash",
-        "gemini-3-flash",
-        "gpt-5.1",
-        "claude-sonnet-4-5",
-        "claude-haiku-4-5",
-        "gpt-5.4-nano",
-        "gpt-5.4-mini",
-        "gemini-3.1-pro",
-        "gemini-3.6-flash",
-        "gpt-5.2",
-        "gpt-5.6-luna",
-        "claude-opus-4-5",
-        "claude-opus-4-6",
-        "gpt-5.3-codex",
-        "claude-opus-4-7",
-        "gpt-5.4",
-        "muse-spark-1.3",
-        "gemini-3.7-flash",
-        "gemini-3.8-flash",
-        "grok-4.6",
-        "claude-opus-5",
-        "gpt-5.6-sol",
         "gpt-5.5",
-        "claude-fable-5",
-        "grok-4.5",
-        "gpt-5.6-terra",
-        "claude-sonnet-5",
-        "claude-sonnet-4-6"
+        "gpt-5.2"
       ],
       "modelOrder": []
     },
@@ -240,25 +202,102 @@
         "opencode/grok-4.7",
         "opencode/kimi-k3",
         "opencode/minimax-m3",
-        "opencode/qwen3.8-flash"
+        "opencode/qwen3.8-flash",
+        "openai/gpt-6-astra-ultrafast",
+        "openai/gpt-6.1-sol",
+        "openai/gpt-6.1-sol-fast",
+        "openai/gpt-6.1-sol-ultrafast"
       ],
-      "modelOrder": []
+      "modelOrder": [
+        "opencode-go/deepseek-v4.1-flash",
+        "opencode-go/deepseek-v4-pro",
+        "opencode-go/glm-5.3-flash",
+        "opencode-go/grok-4.7",
+        "opencode-go/muse-spark-1.3-contributor",
+        "opencode-go/claude-haiku-5-5",
+        "opencode/exo-free",
+        "opencode/fledge-alpha-free",
+        "opencode-go/glm-5.2",
+        "opencode-go/glm-5.3",
+        "openai/gpt-5.4-mini-flex",
+        "opencode-go/gpt-5.6-luna",
+        "openai/gpt-6-astra-ultrafast",
+        "opencode-go/gpt-6-luna",
+        "openai/gpt-6.1-sol",
+        "openai/gpt-6.1-sol-fast",
+        "opencode-go/grok-4.6",
+        "opencode-go/hy4-preview",
+        "opencode-go/kimi-k3",
+        "opencode/ling-3.1-flash-free",
+        "opencode-go/longcat-2.5-preview-free",
+        "opencode/longcat-2.5-preview-free",
+        "opencode-go/mimo-v2.6-flash",
+        "opencode-go/minimax-m3",
+        "opencode-go/qwen3.8-flash",
+        "opencode-go/qwen3.8-max",
+        "opencode-go/space-bunny",
+        "opencode/space-bunny-free",
+        "opencode-go/step-5-preview-free",
+        "opencode/step-5-preview-free",
+        "opencode/big-pickle",
+        "opencode-go/deepseek-v4-flash",
+        "opencode-go/deepseek-v4-flash-vision-exp",
+        "openai/gpt-5.3-codex-spark",
+        "openai/gpt-5.4",
+        "openai/gpt-5.4-fast",
+        "openai/gpt-5.4-mini",
+        "openai/gpt-5.4-mini-fast",
+        "openai/gpt-5.5",
+        "openai/gpt-5.5-fast",
+        "openai/gpt-5.6-luna",
+        "openai/gpt-5.6-luna-fast",
+        "openai/gpt-5.6-sol",
+        "openai/gpt-5.6-sol-fast",
+        "openai/gpt-5.6-terra",
+        "openai/gpt-5.6-terra-fast",
+        "openai/gpt-6-astra",
+        "openai/gpt-6-astra-fast",
+        "openai/gpt-6-luna",
+        "openai/gpt-6-luna-fast",
+        "openai/gpt-6-sol",
+        "openai/gpt-6-sol-fast",
+        "opencode-go/hy3",
+        "opencode-go/kimi-k2.7-code",
+        "opencode/ling-3.0-flash-fin-free",
+        "opencode-go/longcat-2.0",
+        "opencode-go/mimo-v2.5",
+        "opencode-go/mimo-v2.5-pro",
+        "opencode/mimo-v2.6-flash-free",
+        "opencode-go/mimo-v2.6-pro",
+        "opencode-go/minimax-m2.7",
+        "opencode-go/muse-spark-1.2-contributor",
+        "opencode/muse-spark-1.3-contributor-free",
+        "opencode/nemotron-3-ultra-free",
+        "opencode/nemotron-3.5-lightning-free",
+        "opencode-go/qwen3.7-plus"
+      ]
     }
   },
   "pullRequestMergeMethodOverrides": {},
+  "pullRequestLinksOpenInApp": true,
   "planModeEnabled": false,
   "contextWindowMeterEnabled": false,
-  "composerCollapseOnScroll": true,
-  "followUpBehavior": "queue",
+  "composerRichTextEnabled": true,
+  "sendShortcut": "enter",
+  "followUpBehavior": "steer",
   "proactivePanelsEnabled": false,
   "showSkillsInSlashMenu": true,
+  "boringSidebarEnabled": false,
+  "boringSidebarMultilineRows": false,
+  "threadDetailsUsageEnabled": false,
+  "threadDetailsItems": {},
   "legacySidebarEnabled": false,
+  "sidebarWorkingShelfEnabled": false,
   "sidebarProjectGroupingMode": "repository",
   "sidebarProjectGroupingOverrides": {},
   "sidebarProjectSortOrder": "updated_at",
   "sidebarThreadSortOrder": "updated_at",
-  "sidebarThreadPreviewCount": 6,
-  "timestampFormat": "locale",
+  "timestampFormat": "12-hour",
   "snapShotEnabled": false,
   "snapShotIncludeAccessibility": true,
   "snapShotShortcut": {
@@ -268,5 +307,6 @@
   "snapShotSound": "soft-pop",
   "snapShotFlash": true,
   "snapShotAnimations": true,
-  "wordWrap": true
+  "wordWrap": true,
+  "mathRenderingEnabled": false
 }
