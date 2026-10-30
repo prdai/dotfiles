@@ -12,9 +12,10 @@
 -- exec stopped parsing on Hyprland 0.56, and hyprland.start fires when the
 -- compositor is ready, so no wait loop or shell wrapper is needed.
 
--- T3 Code ships as an AppImage; its desktop entry wraps it with
--- APPIMAGE_EXTRACT_AND_RUN=1 because this box has no libfuse.so.2.
-local t3code = (os.getenv("HOME") or "") .. "/.local/share/applications/t3code.desktop"
+-- T3 Code ships as an AppImage; the launcher wraps it with
+-- APPIMAGE_EXTRACT_AND_RUN=1 because this box has no libfuse.so.2. The
+-- launcher lives in t3code/t3code and is symlinked to ~/.local/bin/t3code.
+local t3code = (os.getenv("HOME") or "") .. "/.local/bin/t3code"
 
 local layout = {
   { ws = "1 silent", cmd = "ghostty" },

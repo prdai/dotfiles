@@ -6,8 +6,21 @@ config for [T3 Code](https://github.com/pingdotgg/t3code), the desktop GUI for A
 
 T3 Code ships as an AppImage, which needs `libfuse.so.2`. Ubuntu 24.04 ships
 fuse3 only, so launching the AppImage directly fails with
-`dlopen(): error loading libfuse.so.2`. The desktop entries here run it with
-`APPIMAGE_EXTRACT_AND_RUN=1`, which extracts to a temp dir and runs without FUSE.
+`dlopen(): error loading libfuse.so.2`. The launcher script and desktop entries
+here run it with `APPIMAGE_EXTRACT_AND_RUN=1`, which extracts to a temp dir and
+runs without FUSE.
+
+## launcher
+
+`t3code` is the launcher script, symlinked to `~/.local/bin/t3code`. It runs the
+AppImage extracted, and if an instance is already running it focuses the
+existing window instead of starting a second copy. The running-instance check
+skips zombie (`Z`) processes, so a leftover `t3code` corpse from a crash does not
+block later launches.
+
+```bash
+ln -sfn ~/.dotfiles/t3code/t3code ~/.local/bin/t3code
+```
 
 ## app install
 
@@ -29,8 +42,10 @@ update-desktop-database "$HOME/.local/share/applications"
 ## autostart
 
 `hypr/autostart.lua` opens T3 Code on workspace 4 at login by launching
-`~/.local/share/applications/t3code.desktop` through uwsm. Autostart checks the
-path exists, so a missing entry is skipped with a log line.
+`~/.local/bin/t3code` through uwsm. Autostart checks the path exists, so a
+missing launcher is skipped with a log line. A window rule in
+`hypr/windows.lua` pins windows with class `com.t3tools.T3Code` to workspace 4
+however they are opened.
 
 ## desktop config
 
@@ -70,6 +85,7 @@ adding or changing skills, run **Settings > Providers > Refresh provider status*
 
 ## files
 
+- `t3code` -> launcher script, symlinked to `~/.local/bin/t3code`
 - `userdata/` -> canonical T3 Code desktop config
 - `t3code.desktop` -> main launcher template
 - `t3code-url-handler.desktop` -> `t3code://` scheme handler template

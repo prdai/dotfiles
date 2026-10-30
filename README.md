@@ -54,7 +54,8 @@ for s in ~/.agents/skills/*/; do
   ln -sfn "${s%/}" ~/.codex/skills/"$(basename "$s")"
 done
 
-# t3 code desktop config (app + launcher: see t3code/README.md)
+# t3 code desktop config + launcher (see t3code/README.md)
+ln -sfn ~/.dotfiles/t3code/t3code ~/.local/bin/t3code
 cp ~/.dotfiles/t3code/userdata/*.json ~/.t3/userdata/
 
 # reload shell
