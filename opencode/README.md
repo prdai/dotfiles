@@ -84,6 +84,10 @@ repo skills are not duplicated outside `agents/skills/`.
 | `omarchy` | basecamp/omarchy (MIT, system) | Linux desktop / Hyprland / Waybar / Omarchy system config |
 | `diagnose-crash` | basecamp/omarchy (MIT, system) | diagnose a segfault or abort from a systemd-coredump core dump |
 | `figma` | openai/skills curated (Figma Developer Terms) | Figma MCP design-to-code workflow; terms in the bundled `LICENSE.txt` |
+| `figma-use` | figma/mcp-server-guide (Figma Developer Terms) | mandatory Plugin API rules before any `use_figma` write |
+| `figma-generate-design` | figma/mcp-server-guide (Figma Developer Terms), patched locally | build/update screens and views in Figma; local apple-design visual quality bar |
+| `figma-generate-library` | figma/mcp-server-guide (Figma Developer Terms) | tokens, components, variants, and theming in Figma |
+| `figma-create-new-file` | figma/mcp-server-guide (Figma Developer Terms) | create Figma Design, FigJam, or Slides files |
 
 the remaining skills in `../agents/skills/` (`agent-commit-provenance`, `agents-md`,
 `karpathy-guidelines`, `orchestrator`, `stop-slop`, `writing-style`) are shared agent skills,
