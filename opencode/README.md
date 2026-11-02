@@ -88,6 +88,9 @@ repo skills are not duplicated outside `agents/skills/`.
 | `figma-generate-design` | figma/mcp-server-guide (Figma Developer Terms), patched locally | build/update screens and views in Figma; local apple-design visual quality bar |
 | `figma-generate-library` | figma/mcp-server-guide (Figma Developer Terms) | tokens, components, variants, and theming in Figma |
 | `figma-create-new-file` | figma/mcp-server-guide (Figma Developer Terms) | create Figma Design, FigJam, or Slides files |
+| `figma-generate-diagram` | figma/mcp-server-guide (Figma Developer Terms), patched locally | architecture and flow diagrams in FigJam; local visual quality bar |
+| `figma-use-figjam` | figma/mcp-server-guide (Figma Developer Terms) | FigJam Plugin API context for hybrid diagram edits |
+| `figma-spec` | figma/mcp-server-guide (Figma Developer Terms), patched locally | create, edit, and review Figma specs and technical documents; local quality bar |
 
 the remaining skills in `../agents/skills/` (`agent-commit-provenance`, `agents-md`,
 `karpathy-guidelines`, `orchestrator`, `stop-slop`, `writing-style`) are shared agent skills,
