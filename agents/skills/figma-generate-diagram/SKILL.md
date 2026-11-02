@@ -44,6 +44,10 @@ When composing with `use_figma` and `figma.createConnector()`:
 - `ELBOWED` connectors put the vertical leg at the midpoint. Row-align source and target nodes so the leg runs through a gap, or route with `BOTTOM` magnets or `CURVED` when a lane must be bypassed.
 - Never fake a connection with a line. Users expect attachments to survive node moves.
 - Never drop a real dependency to simplify the layout. Route it below the lanes or annotate it, and say so.
+- Align a node with its primary edge partner. A straight horizontal edge beats an elbow every time.
+- Route cross-cutting dependencies on the perimeter with a curved connector. A long clean route beats a short edge that cuts through a node.
+- If a connector label collides, remove the label or reroute the edge. Do not move the node into the corridor; that usually creates a new collision.
+- Use lane tints only to encode category, and keep them subtle. Color should explain the diagram, not decorate it.
 
 ## Council review
 
