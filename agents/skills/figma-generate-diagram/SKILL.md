@@ -20,6 +20,41 @@ Local addition, derived from the `apple-design` skill. Applies to every diagram,
 - **Legibility at fit-to-screen.** Check the diagram zoomed out. Node labels, edge labels, and lane titles must stay readable in both light and dark FigJam themes.
 - **Craft pass.** No overlapping connectors, clipped text, uneven gaps, or mismatched node sizes. Re-read the diagram after generation and fix the source rather than nudging nodes.
 
+## Self-review loop
+
+Do not deliver the first render. Generate, capture, inspect, fix, regenerate.
+
+1. Call `generate_diagram`.
+2. Capture the result and inspect it at fit-to-screen, not just at 100%.
+3. Check every item:
+   - every connector terminates on a node edge; no floating or detached arrowheads
+   - no connector passes through a node or its label
+   - no two connectors share the same endpoint and magnet
+   - labels do not overlap nodes, lanes, or other labels
+   - lane order matches the real deployment or trust boundaries
+   - the diagram answers one question; no decorative edges
+4. Fix the Mermaid source or the lane ordering and regenerate. Do not try to nudge individual nodes after generation; the tool cannot edit node by node.
+5. Stop after two attempts at the same diagram. Ask what specifically is wrong, or switch to the hybrid FigJam workflow.
+
+### Hybrid FigJam corrections
+
+When composing with `use_figma` and `figma.createConnector()`:
+
+- Use explicit magnets (`RIGHT` to `LEFT`, `BOTTOM` to `BOTTOM`), not `AUTO`.
+- `ELBOWED` connectors put the vertical leg at the midpoint. Row-align source and target nodes so the leg runs through a gap, or route with `BOTTOM` magnets or `CURVED` when a lane must be bypassed.
+- Never fake a connection with a line. Users expect attachments to survive node moves.
+- Never drop a real dependency to simplify the layout. Route it below the lanes or annotate it, and say so.
+
+## Council review
+
+For a shared or decision-bearing architecture diagram, run the `council` skill on the rendered image after the self-review.
+
+- Use three vision-capable models from different providers. If a model cannot read images, give it a text/vector dump (node IDs, positions, connector endpoints, magnets) and mark its visual-craft feedback as unverified.
+- Brief the council with the image, the system facts, the audience, and the failure list above. Ask for a score, concrete fixes, and the strongest objection.
+- Apply only fixes that improve clarity without inventing architecture. Re-render, then run one fresh round.
+- Stop after two rounds or when the remaining item is disputed. Record the round scores in the PR or final reply.
+- Do not run the council for a routine sketch.
+
 ## Step 1: Is `generate_diagram` the right tool?
 
 ### Supported diagram types

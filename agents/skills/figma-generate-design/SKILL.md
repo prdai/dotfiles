@@ -45,6 +45,18 @@ Local addition, derived from the `apple-design` skill. Applies to every screen o
 - **Craft pass.** Inspect at 100% before completion: no stray 1px offsets, broken auto-layout, clipped text, inconsistent radii, or mismatched icon sizes. Check hover, focus, disabled, empty, and error states where the source provides them.
 - **Document motion intent.** For interactive surfaces, record the intended spring or transition (Apple defaults: critically damped, response `0.3-0.4`) so implementation does not invent motion later.
 
+## Self-review loop
+
+Do not deliver the first render. Compose, screenshot, inspect, fix, repeat.
+
+1. Build the view in retry-safe sections.
+2. Take one full-view screenshot and inspect it at 100% and at fit-to-screen.
+3. Check hierarchy, spacing rhythm, type styles, material weight, alignment, clipping, and whether every connector or component instance is attached to the right parent.
+4. Fix the source and re-render. Do not patch individual visual symptoms that the source can prevent.
+5. Stop after two attempts at the same screenshot. If the issue is still unclear, state what is wrong and ask before spending more calls.
+
+For a high-stakes screen, run the `council` skill on the screenshot with vision-capable models, apply the actionable fixes, then run one fresh round. Do not use the council for routine screens.
+
 ## Prerequisites
 
 - Figma MCP server must be connected
