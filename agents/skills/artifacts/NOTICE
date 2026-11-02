@@ -1,0 +1,11 @@
+This skill adapts web-artifacts-builder from anthropics/skills:
+
+  https://github.com/anthropics/skills/tree/main/skills/web-artifacts-builder
+
+Copyright Anthropic. Licensed under the Apache License, Version 2.0.
+See LICENSE.txt in this directory.
+
+Changes: scripts use npm instead of pnpm, no global install; the theme is
+locked to dark; Vite single-file replaces Parcel for bundling; the final step
+publishes the bundle to Postplan instead of sharing it in a conversation;
+design-system reference and starter App.tsx added.
