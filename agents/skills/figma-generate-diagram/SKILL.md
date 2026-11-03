@@ -15,7 +15,7 @@ Local addition, derived from the `apple-design` skill. Applies to every diagram,
 
 - **One message per diagram.** Define the question and scope before layout. Keep every verified dependency inside that scope; if you omit one, disclose it. A partial diagram of the real system beats a complete diagram of an invented one.
 - **Lanes reflect real boundaries.** Group by ownership, deployment, or trust boundary, not by convenience. Keep one dominant left-to-right flow and align nodes to a consistent grid.
-- **Labels are specific.** Prefer a concrete verb and object ("Writes runs", "Consumes events") over generic words ("Data", "Process"). No duplicate edges and no ambiguous crossings.
+- **Labels are specific.** Prefer a concrete verb and object ("Writes runs", "Consumes events") over generic words ("Data", "Process"). Give every label breathing room; if the edge is too short, omit the label instead of crowding the nodes. No duplicate edges and no ambiguous crossings.
 - **Restraint in color.** Color encodes category, not decoration. Use at most one accent per category, keep tints subtle, and keep them consistent across lanes.
 - **Legibility at fit-to-screen.** Check the diagram zoomed out. Node labels, edge labels, and lane titles must stay readable in both light and dark FigJam themes.
 - **Craft pass.** No overlapping connectors, clipped text, uneven gaps, or mismatched node sizes. Re-read the diagram after generation and fix the source or layout rather than accepting visual symptoms.
@@ -25,10 +25,12 @@ Local addition, derived from the `apple-design` skill. Applies to every diagram,
 Do not deliver an uninspected render. Generate, capture, inspect, fix, repeat.
 
 1. Call `generate_diagram`, or build the hybrid FigJam version when Mermaid cannot express the diagram.
-2. Capture the result and inspect it at fit-to-screen and at 100%.
+2. Capture the result and inspect it at fit-to-screen and at 100%. Zoom into every label cluster.
 3. Run the checks that apply to the diagram type:
    - every connector terminates on the intended node edge; no floating or detached arrowheads
    - no connector passes through a node or its label
+   - no connector or lane line passes through label text; every label has padding from nodes and lines
+   - labels on short edges are omitted or moved off the edge
    - shared endpoints are separated when they obscure direction, labels, or distinct dependencies
    - labels do not overlap nodes, lanes, or other labels
    - lane order matches the real deployment or trust boundaries
@@ -48,6 +50,7 @@ When composing with `use_figma` and `figma.createConnector()`:
 - Align a node with its primary edge partner. Prefer a straight horizontal edge when it does not sacrifice correctness or clearance.
 - Route cross-cutting dependencies on the perimeter with a curved connector. A long clean route beats a short edge that cuts through a node.
 - If a connector label collides, reroute or reposition first. Omit the label only when the edge meaning stays explicit elsewhere. Do not move the node into the corridor; that usually creates a new collision.
+- Auto-placed connector labels can be crossed by another connector even when they look fine at fit-to-screen. If that happens, remove the connector text and place a manual label with a background in clear space, or reroute the edge.
 - Use lane tints only to encode category, and keep them subtle. Color should explain the diagram, not decorate it.
 
 ## Council review
@@ -155,7 +158,7 @@ Do **not** call `create_new_file` before `generate_diagram` — the tool creates
 
 - The final candidate was inspected and passes the checks in the self-review loop.
 - Every verified dependency is present, or its omission is disclosed.
-- Labels are readable and do not collide with nodes, lanes, or other labels.
+- Labels are readable, keep padding, and are not crossed by connectors, nodes, lanes, or other labels.
 - The FigJam link is returned to the user.
 - Remaining defects are stated. If capture was unavailable, say that visual verification was not completed.
 
