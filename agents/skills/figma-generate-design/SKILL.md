@@ -55,7 +55,9 @@ Do not deliver an uninspected render. Compose, screenshot, inspect, fix, repeat.
 4. Fix the source and re-render. Do not patch individual visual symptoms that the source can prevent.
 5. Inspect every candidate and revise when a check fails. Use at most two attempts for the same screenshot, then switch approach or report the unresolved defect. A user request for a new direction starts a new budget.
 
-For a high-stakes screen, run the `council` skill on the screenshot with vision-capable models, apply the actionable fixes, then run one fresh round. Do not use the council for routine screens.
+Run the pixel-level alignment audit in `references/alignment-audit.md` after the visual pass and before the council. Fix every deviation before asking for review.
+
+For a high-stakes screen, run the `council` skill on the screenshot with vision-capable models, apply the actionable fixes, then run one fresh round. Export `alignment-export.json` with `references/alignment-audit.md`, include its path in the brief, and use the OCD prompt. The council must measure from the export's absolute bounds, not the image. Do not use the council for routine screens.
 
 ## Reference-driven boards
 
@@ -88,7 +90,7 @@ Alignment pass before delivery:
 - Put all left-side arrow labels on one x column and all right-side labels on one; keep the same offset above the arrow.
 - Align actor cards to the band rows they feed. Do not center each actor group independently.
 - Share one left and right edge across right-column boxes; keep their vertical gaps equal or within a few pixels.
-- After the visual pass, dump node coordinates and audit the numbers. Screenshots hide 2-10px offsets.
+- After the visual pass, dump node coordinates and audit the numbers. Screenshots hide 2-10px offsets. Use the pixel-level audit in `references/alignment-audit.md`.
 - Use one gutter scale per row and even card widths. Odd gutters such as 17px are a tell; 20px gutters on three-card rows and 12px on four-card rows both preserve 20px side margins.
 - Keep right-column stack gaps equal to the band gap. If a box is short, add a useful legend note instead of leaving dead space.
 - Audit icon badge insets; they must be identical from the card edge on every row.

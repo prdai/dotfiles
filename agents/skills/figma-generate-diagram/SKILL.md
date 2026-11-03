@@ -75,6 +75,8 @@ When composing with `use_figma` and `figma.createConnector()`:
 For a shared or decision-bearing architecture diagram, run the `council` skill on the rendered image after the self-review. Propose it and get the user's confirmation before spending the model calls.
 
 - Resolve the `council` skill and available providers before this stage. If either is unavailable, report the limitation and finish with local review.
+- Run the pixel-level alignment audit in [alignment-audit.md](../figma-generate-design/references/alignment-audit.md) first, export `alignment-export.json`, and give the council the image, the export path, and the derived report.
+- Use the OCD alignment prompt from that reference. The council must measure from the export's absolute bounds; never let it estimate pixels from the image or cite elements that are not in the export.
 - Use three vision-capable models from different providers. If no model can read images, give them a text/vector dump (node IDs, positions, connector endpoints, magnets) and mark visual-craft feedback as unverified. A text-only verdict is not a visual pass.
 - Brief the council with the image, the system facts, the audience, and the checks above. Ask for a score, concrete fixes, and the strongest objection.
 - Apply only fixes that improve clarity without inventing architecture. Re-render, then run at most one fresh verification round.
