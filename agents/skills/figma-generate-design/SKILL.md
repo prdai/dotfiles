@@ -92,6 +92,7 @@ Alignment pass before delivery:
 - Use one gutter scale per row and even card widths. Odd gutters such as 17px are a tell; 20px gutters on three-card rows and 12px on four-card rows both preserve 20px side margins.
 - Keep right-column stack gaps equal to the band gap. If a box is short, add a useful legend note instead of leaving dead space.
 - Audit icon badge insets; they must be identical from the card edge on every row.
+- Route actor-to-band arrows as elbows in the outer gutter when a diagonal would cross an intermediate band.
 
 ## Prerequisites
 
