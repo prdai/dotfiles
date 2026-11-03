@@ -77,6 +77,8 @@ Route each group arrow to the band it actually targets. Inspect the endpoint; a 
 
 For reference-grade boards, add short service badges (API, lambda, DB, S3, KMS) when official icons are unavailable, and a numbered workflow key. Reserve the top-right column for the legend and workflow key; do not let it overlap actor groups. Group a section before moving it so the background, cards, text, and badges move together.
 
+Use real brand SVGs when they exist. Simple Icons covers AWS services such as API Gateway, Lambda, DynamoDB, Cognito, S3, SQS, and EC2; Lucide covers generic concepts such as keys, containers, shields, and documents. Upload them with `upload_assets` as `image/svg+xml` so they import as editable vectors, then recolor them to the brand color. Put each icon in a 24px neutral tile at the card's top-left and left-align the title and subtitle beside it. Keep the platform owner's mark in the header. If an official icon is unavailable, use a short text badge instead of inventing a logo. Check icon legibility at fit-to-screen.
+
 ## Prerequisites
 
 - Figma MCP server must be connected
