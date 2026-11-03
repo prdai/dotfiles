@@ -67,6 +67,8 @@ When composing with `use_figma` and `figma.createConnector()`:
 - If a connector label collides, reroute or reposition first. Omit the label only when the edge meaning stays explicit elsewhere. Do not move the node into the corridor; that usually creates a new collision.
 - Auto-placed connector labels can be crossed by another connector even when they look fine at fit-to-screen. If that happens, remove the connector text and place a manual label with a background in clear space, or reroute the edge.
 - Use lane tints only to encode category, and keep them subtle. Color should explain the diagram, not decorate it.
+- A data store directly below a service can force a vertical edge through another service in that column. Move the store to a clear column or use the layered layout. Trace every vertical edge before shipping.
+- A horizontal spine with a data shelf is compact but fragile: labels do not fit in short gaps, and long back-edges can slice nodes. If it fails the checks, use the layered layout or the hub-and-spoke layout instead of forcing it.
 
 ## Council review
 
