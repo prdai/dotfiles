@@ -93,6 +93,8 @@ Alignment pass before delivery:
 - Keep right-column stack gaps equal to the band gap. If a box is short, add a useful legend note instead of leaving dead space.
 - Audit icon badge insets; they must be identical from the card edge on every row.
 - Route actor-to-band arrows as elbows in the outer gutter when a diagonal would cross an intermediate band.
+- Arrow labels in tight gutters need a background pill or must sit fully above the shaft. A line through the glyphs is a failure, not a style.
+- Never leave a brand mark floating in dead space. Integrate it into a title block or brand corner, or remove it.
 
 ## Prerequisites
 
