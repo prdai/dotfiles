@@ -57,6 +57,22 @@ Do not deliver an uninspected render. Compose, screenshot, inspect, fix, repeat.
 
 For a high-stakes screen, run the `council` skill on the screenshot with vision-capable models, apply the actionable fixes, then run one fresh round. Do not use the council for routine screens.
 
+## Reference-driven boards
+
+When the user provides reference diagrams (Figma files, PNGs, PDFs), inspect them before designing and extract:
+
+- palette and semantic color roles
+- band structure and nested grouping
+- card anatomy (title, subtitle, status)
+- actor groups and trust boundaries
+- legend coverage
+- arrow granularity (group-to-group versus node-to-node)
+- typography scale and spacing rhythm
+
+For a platform capability map, prefer nested bands, actor groups, and group-level arrows over a node-link graph. Build it in Figma Design with text and shapes so typography and spacing are exact. Use FigJam connectors for flow diagrams.
+
+Check before delivery: every card subtitle fits inside its border, every color in use appears in the legend, actor groups sit tight around their cards, group arrows are labelled, and the board answers one question.
+
 ## Prerequisites
 
 - Figma MCP server must be connected
