@@ -79,6 +79,14 @@ For reference-grade boards, add short service badges (API, lambda, DB, S3, KMS) 
 
 Use real brand SVGs when they exist. Simple Icons covers AWS services such as API Gateway, Lambda, DynamoDB, Cognito, S3, SQS, and EC2; Lucide covers generic concepts such as keys, containers, shields, and documents. Upload them with `upload_assets` as `image/svg+xml` so they import as editable vectors, then recolor them to the brand color. Put each icon in a 24px neutral tile at the card's top-left and left-align the title and subtitle beside it. Keep the platform owner's mark in the header. If an official icon is unavailable, use a short text badge instead of inventing a logo. Check icon legibility at fit-to-screen.
 
+Alignment pass before delivery:
+
+- Compute card widths and gutters from the available inner width; do not eyeball them. Keep equal inner margins on both sides of every band.
+- Reserve the icon slot on every card in a row, even when a card has no icon, so all text starts on one column.
+- Align the title block to the outermost group margin.
+- Keep the outer boundary padding symmetric, including any section label inside it.
+- Put all left-side arrow labels on one x column and all right-side labels on one; keep the same offset above the arrow.
+
 ## Prerequisites
 
 - Figma MCP server must be connected
