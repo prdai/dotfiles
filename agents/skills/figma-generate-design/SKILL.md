@@ -89,6 +89,9 @@ Alignment pass before delivery:
 - Align actor cards to the band rows they feed. Do not center each actor group independently.
 - Share one left and right edge across right-column boxes; keep their vertical gaps equal or within a few pixels.
 - After the visual pass, dump node coordinates and audit the numbers. Screenshots hide 2-10px offsets.
+- Use one gutter scale per row and even card widths. Odd gutters such as 17px are a tell; 20px gutters on three-card rows and 12px on four-card rows both preserve 20px side margins.
+- Keep right-column stack gaps equal to the band gap. If a box is short, add a useful legend note instead of leaving dead space.
+- Audit icon badge insets; they must be identical from the card edge on every row.
 
 ## Prerequisites
 
