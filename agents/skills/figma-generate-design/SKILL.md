@@ -75,6 +75,8 @@ Check before delivery: every card subtitle fits inside its border, every color i
 
 Route each group arrow to the band it actually targets. Inspect the endpoint; a horizontal arrow can land on the wrong layer when actors sit beside stacked bands. When two workflows share a board, give each one color and cover both in the legend. Place a data store beside the workflow that reads it; a store placed too high forces a floating arrow.
 
+For reference-grade boards, add short service badges (API, lambda, DB, S3, KMS) when official icons are unavailable, and a numbered workflow key. Reserve the top-right column for the legend and workflow key; do not let it overlap actor groups. Group a section before moving it so the background, cards, text, and badges move together.
+
 ## Prerequisites
 
 - Figma MCP server must be connected
