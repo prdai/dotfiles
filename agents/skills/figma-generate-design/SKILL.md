@@ -73,6 +73,8 @@ For a platform capability map, prefer nested bands, actor groups, and group-leve
 
 Check before delivery: every card subtitle fits inside its border, every color in use appears in the legend, actor groups sit tight around their cards, group arrows are labelled, and the board answers one question.
 
+Route each group arrow to the band it actually targets. Inspect the endpoint; a horizontal arrow can land on the wrong layer when actors sit beside stacked bands. When two workflows share a board, give each one color and cover both in the legend. Place a data store beside the workflow that reads it; a store placed too high forces a floating arrow.
+
 ## Prerequisites
 
 - Figma MCP server must be connected
