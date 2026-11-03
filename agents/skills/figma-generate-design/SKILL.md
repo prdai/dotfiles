@@ -47,13 +47,13 @@ Local addition, derived from the `apple-design` skill. Applies to every screen o
 
 ## Self-review loop
 
-Do not deliver the first render. Compose, screenshot, inspect, fix, repeat.
+Do not deliver an uninspected render. Compose, screenshot, inspect, fix, repeat.
 
 1. Build the view in retry-safe sections.
 2. Take one full-view screenshot and inspect it at 100% and at fit-to-screen.
 3. Check hierarchy, spacing rhythm, type styles, material weight, alignment, clipping, and whether every connector or component instance is attached to the right parent.
 4. Fix the source and re-render. Do not patch individual visual symptoms that the source can prevent.
-5. Stop after two attempts at the same screenshot. If the issue is still unclear, state what is wrong and ask before spending more calls.
+5. Inspect every candidate and revise when a check fails. Use at most two attempts for the same screenshot, then switch approach or report the unresolved defect. A user request for a new direction starts a new budget.
 
 For a high-stakes screen, run the `council` skill on the screenshot with vision-capable models, apply the actionable fixes, then run one fresh round. Do not use the council for routine screens.
 

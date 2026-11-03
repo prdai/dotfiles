@@ -13,30 +13,31 @@ description: "MANDATORY prerequisite — load this skill BEFORE every `generate_
 
 Local addition, derived from the `apple-design` skill. Applies to every diagram, alongside the type-specific rules below.
 
-- **One message per diagram.** Decide the question the diagram answers, then remove nodes and edges that do not serve it. A partial diagram of the real system beats a complete diagram of an invented one.
+- **One message per diagram.** Define the question and scope before layout. Keep every verified dependency inside that scope; if you omit one, disclose it. A partial diagram of the real system beats a complete diagram of an invented one.
 - **Lanes reflect real boundaries.** Group by ownership, deployment, or trust boundary, not by convenience. Keep one dominant left-to-right flow and align nodes to a consistent grid.
 - **Labels are specific.** Prefer a concrete verb and object ("Writes runs", "Consumes events") over generic words ("Data", "Process"). No duplicate edges and no ambiguous crossings.
-- **Restraint in color.** Color encodes one meaningful category at most. Decorative color, gradients, and per-node styling make the structure harder to read.
+- **Restraint in color.** Color encodes category, not decoration. Use at most one accent per category, keep tints subtle, and keep them consistent across lanes.
 - **Legibility at fit-to-screen.** Check the diagram zoomed out. Node labels, edge labels, and lane titles must stay readable in both light and dark FigJam themes.
-- **Craft pass.** No overlapping connectors, clipped text, uneven gaps, or mismatched node sizes. Re-read the diagram after generation and fix the source rather than nudging nodes.
+- **Craft pass.** No overlapping connectors, clipped text, uneven gaps, or mismatched node sizes. Re-read the diagram after generation and fix the source or layout rather than accepting visual symptoms.
 
 ## Self-review loop
 
-Do not deliver the first render. Generate, capture, inspect, fix, regenerate.
+Do not deliver an uninspected render. Generate, capture, inspect, fix, repeat.
 
-1. Call `generate_diagram`.
-2. Capture the result and inspect it at fit-to-screen, not just at 100%.
-3. Check every item:
-   - every connector terminates on a node edge; no floating or detached arrowheads
+1. Call `generate_diagram`, or build the hybrid FigJam version when Mermaid cannot express the diagram.
+2. Capture the result and inspect it at fit-to-screen and at 100%.
+3. Run the checks that apply to the diagram type:
+   - every connector terminates on the intended node edge; no floating or detached arrowheads
    - no connector passes through a node or its label
-   - no two connectors share the same endpoint and magnet
+   - shared endpoints are separated when they obscure direction, labels, or distinct dependencies
    - labels do not overlap nodes, lanes, or other labels
    - lane order matches the real deployment or trust boundaries
+   - every verified dependency is present, or its omission is disclosed
    - the diagram answers one question; no decorative edges
-4. Fix the Mermaid source or the lane ordering and regenerate. Do not try to nudge individual nodes after generation; the tool cannot edit node by node.
-5. Stop after two attempts at the same diagram. Ask what specifically is wrong, or switch to the hybrid FigJam workflow.
+4. For `generate_diagram` output, fix the Mermaid source and regenerate; you cannot nudge individual nodes. For hybrid FigJam work, adjust positions and magnets programmatically.
+5. Inspect every candidate and revise when a check fails. Use at most two Mermaid generations for the same diagram, then switch to hybrid correction or report the unresolved defect. A user request for a new direction starts a new budget.
 
-### Hybrid FigJam corrections
+### Layout and connector corrections
 
 When composing with `use_figma` and `figma.createConnector()`:
 
@@ -44,19 +45,20 @@ When composing with `use_figma` and `figma.createConnector()`:
 - `ELBOWED` connectors put the vertical leg at the midpoint. Row-align source and target nodes so the leg runs through a gap, or route with `BOTTOM` magnets or `CURVED` when a lane must be bypassed.
 - Never fake a connection with a line. Users expect attachments to survive node moves.
 - Never drop a real dependency to simplify the layout. Route it below the lanes or annotate it, and say so.
-- Align a node with its primary edge partner. A straight horizontal edge beats an elbow every time.
+- Align a node with its primary edge partner. Prefer a straight horizontal edge when it does not sacrifice correctness or clearance.
 - Route cross-cutting dependencies on the perimeter with a curved connector. A long clean route beats a short edge that cuts through a node.
-- If a connector label collides, remove the label or reroute the edge. Do not move the node into the corridor; that usually creates a new collision.
+- If a connector label collides, reroute or reposition first. Omit the label only when the edge meaning stays explicit elsewhere. Do not move the node into the corridor; that usually creates a new collision.
 - Use lane tints only to encode category, and keep them subtle. Color should explain the diagram, not decorate it.
 
 ## Council review
 
-For a shared or decision-bearing architecture diagram, run the `council` skill on the rendered image after the self-review.
+For a shared or decision-bearing architecture diagram, run the `council` skill on the rendered image after the self-review. Propose it and get the user's confirmation before spending the model calls.
 
-- Use three vision-capable models from different providers. If a model cannot read images, give it a text/vector dump (node IDs, positions, connector endpoints, magnets) and mark its visual-craft feedback as unverified.
-- Brief the council with the image, the system facts, the audience, and the failure list above. Ask for a score, concrete fixes, and the strongest objection.
-- Apply only fixes that improve clarity without inventing architecture. Re-render, then run one fresh round.
-- Stop after two rounds or when the remaining item is disputed. Record the round scores in the PR or final reply.
+- Resolve the `council` skill and available providers before this stage. If either is unavailable, report the limitation and finish with local review.
+- Use three vision-capable models from different providers. If no model can read images, give them a text/vector dump (node IDs, positions, connector endpoints, magnets) and mark visual-craft feedback as unverified. A text-only verdict is not a visual pass.
+- Brief the council with the image, the system facts, the audience, and the checks above. Ask for a score, concrete fixes, and the strongest objection.
+- Apply only fixes that improve clarity without inventing architecture. Re-render, then run at most one fresh verification round.
+- Council feedback does not reset the Mermaid generation budget. Stop after the verification round or when the remaining item is disputed. Record the round scores in the PR or final reply.
 - Do not run the council for a routine sketch.
 
 ## Step 1: Is `generate_diagram` the right tool?
@@ -143,9 +145,19 @@ Do **not** call `create_new_file` before `generate_diagram` — the tool creates
 
 ## Step 7: After generation
 
+- Run the self-review loop from the top of this skill before delivery.
+- If the diagram is shared or decision-bearing, run the council review after the self-review passes.
 - The tool returns a link (or widget) the user can click to open the diagram in FigJam. Show it as a markdown link unless the client renders an inline widget.
 - If extensions are warranted (see Step 5), compose with `use_figma` now — the pattern and recipes are in [references/workflow.md](./references/workflow.md).
-- If the user is dissatisfied after 2 attempts at the same diagram, stop regenerating. Ask what specifically is wrong, or suggest they open it in Figma and edit manually rather than burning more tool calls.
+- If a defect remains after the generation budget, stop regenerating. Switch to hybrid correction or report the defect instead of burning more tool calls.
+
+### Done criteria
+
+- The final candidate was inspected and passes the checks in the self-review loop.
+- Every verified dependency is present, or its omission is disclosed.
+- Labels are readable and do not collide with nodes, lanes, or other labels.
+- The FigJam link is returned to the user.
+- Remaining defects are stated. If capture was unavailable, say that visual verification was not completed.
 
 ### Reuse the same file when iterating or adding related diagrams
 
@@ -157,6 +169,6 @@ Every call to `generate_diagram` without a `fileKey` creates a new FigJam file i
 How to reuse:
 
 1. **Pass `fileKey`** on subsequent `generate_diagram` calls. Extract from a `figma.com/board/{fileKey}/...` URL. The diagram is added to the existing file rather than creating a new one.
-2. If you want to replace the previous diagram rather than adding next to it, use the `use_figma` tool (see the `figma-use-figjam` skill) to delete the old diagram's nodes first, then call `generate_diagram` with the same `fileKey`. Or leave the old diagram and place the new one beside it — readers often benefit from seeing the history of attempts.
+2. If you want to replace the previous diagram rather than adding next to it, use the `use_figma` tool (see the `figma-use-figjam` skill) to delete the old diagram's nodes first, then call `generate_diagram` with the same `fileKey`. Keep any superseded attempt clearly separated and labelled; do not leave it in the final delivery area.
 
 Ask the user which they prefer the first time you iterate — "regenerate over the old one, or keep both side-by-side?" — and remember their answer for subsequent iterations in the session.
