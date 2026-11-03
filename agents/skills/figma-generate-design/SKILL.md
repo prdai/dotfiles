@@ -86,6 +86,9 @@ Alignment pass before delivery:
 - Align the title block to the outermost group margin.
 - Keep the outer boundary padding symmetric, including any section label inside it.
 - Put all left-side arrow labels on one x column and all right-side labels on one; keep the same offset above the arrow.
+- Align actor cards to the band rows they feed. Do not center each actor group independently.
+- Share one left and right edge across right-column boxes; keep their vertical gaps equal or within a few pixels.
+- After the visual pass, dump node coordinates and audit the numbers. Screenshots hide 2-10px offsets.
 
 ## Prerequisites
 
