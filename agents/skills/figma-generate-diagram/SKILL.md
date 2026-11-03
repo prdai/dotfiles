@@ -39,6 +39,21 @@ Do not deliver an uninspected render. Generate, capture, inspect, fix, repeat.
 4. For `generate_diagram` output, fix the Mermaid source and regenerate; you cannot nudge individual nodes. For hybrid FigJam work, adjust positions and magnets programmatically.
 5. Inspect every candidate and revise when a check fails. Use at most two Mermaid generations for the same diagram, then switch to hybrid correction or report the unresolved defect. A user request for a new direction starts a new budget.
 
+### Type-specific checks
+
+- **Sequence:** every message attaches to the intended lifeline; requests are solid and responses dashed; no notes; message labels are readable and do not overlap lifelines.
+- **ERD:** verify every cardinality symbol and relationship verb; table names and columns are readable; no table is clipped. The generator renders relationship labels very small. If they fail at fit-to-screen, reduce columns or entities, or rebuild the ERD in a Design file with custom labels. Do not claim a font-size fix that the connector does not support.
+- **State:** check branch labels where several transitions leave the same node; long back-edges must not graze nodes; if the layout is very sparse, simplify the state set or use the hybrid workflow.
+- **Flowchart:** decision labels are present on every branch; color encodes outcome only; loops read cleanly and do not cross unrelated nodes.
+
+### Capture framing
+
+Capture the whole diagram with padding. Use a group or section when the diagram exceeds the page bounds, and never crop at a node edge. A wide ERD can extend past the visible page even when it is structurally correct.
+
+### Review corpus
+
+When refining this skill, generate one diagram of each supported type, capture each with padding, and run these checks. Record recurring failures here so the next run starts from the sharper checklist instead of rediscovering the same defects.
+
 ### Layout and connector corrections
 
 When composing with `use_figma` and `figma.createConnector()`:
