@@ -78,6 +78,11 @@
         "CODEX_CONNECTORS_MODE": "compact",
         "CODEX_CONNECTORS_WRITES": "allow"
       }
+    },
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "-y", "@playwright/mcp@latest", "--extension"],
+      "enabled": true
     }
   },
   "permission": "allow"
