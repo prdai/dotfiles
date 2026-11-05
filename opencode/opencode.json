@@ -60,6 +60,14 @@
       "enabled": false,
       "oauth": {}
     },
+    "excalidraw": {
+      "type": "remote",
+      "url": "https://api.excalidraw.com/api/v1/mcp",
+      "enabled": true,
+      "headers": {
+        "Authorization": "Bearer {file:./secrets/excalidraw-api-key}"
+      }
+    },
     "excalidash": {
       "type": "local",
       "command": ["npx", "-y", "excalidash-mcp@1"],

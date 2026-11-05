@@ -178,6 +178,7 @@ plugin notes:
 - `opencode-snip` disables itself until the `snip` binary is on `PATH`.
 - `opencode-token-tracker` also installs an `opencode-tokens` CLI.
 - i-have-adhd always-on: `touch ~/.config/opencode/.i-have-adhd-always` (gitignored).
+- Excalidraw+ MCP: reads its bearer key from `secrets/excalidraw-api-key` (gitignored, `chmod 600`); create the file on a new machine or the server authenticates with an empty token.
 - Cloudflare MCP: only `cloudflare-docs` is enabled by default; the other Cloudflare servers stay in config but `enabled: false` until authenticated/needed (keeps the tool-schema prefix smaller).
 - TUI-only plugins (sidebars/statuslines) do not render in the desktop app and are intentionally excluded.
 - skills live in `../agents/skills/` and are shared by opencode, pi, and T3 Code; see the skills section above.
