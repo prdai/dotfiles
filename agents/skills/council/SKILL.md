@@ -23,9 +23,9 @@ Do not convene for routine edits, formatting, single-file fixes, factual
 lookups, brainstorming without stakes, or anything cheap to reverse.
 
 The agent proposes, the user confirms. State which criterion matched and the cost
-(three voices, two rounds, six model calls per round), then wait for an explicit
-yes. Manual triggers: "council", "council this", "run the council", "critical
-check", "pressure-test this".
+(three voices, two rounds, six model calls total, one metered OpenCode Go voice),
+then wait for an explicit yes. Manual triggers: "council", "council this", "run
+the council", "critical check", "pressure-test this".
 
 ## Before a review round
 
@@ -38,18 +38,28 @@ implementation and explore new ideas, skip fixes to code being replaced.
 
 Default trio:
 
-| Voice | Model |
-|---|---|
-| 1 | `opencode-go/kimi-k3.1-pro` |
-| 2 | `opencode-go/deepseek-v4-pro` |
-| 3 | `opencode-go/glm-5.3` |
+| Voice | Provider | Model | Cost |
+|---|---|---|---|
+| 1 | Codex subscription | `gpt-6-luna`, reasoning effort low | subscription |
+| 2 | Gemini subscription (antigravity) | `gemini-3.8-flash-high` | subscription |
+| 3 | OpenCode Go | `opencode-go/mimo-v2.6-flash` | $0.14 / $0.28 per M tokens |
 
-Prefer one strong model from three different providers when the harness can
-reach them; otherwise use the configured trio. A project overrides the trio in
-its `AGENTS.md` with:
+The trio spans three providers. Codex and Gemini run on the user's
+subscriptions; only voice 3 spends metered OpenCode Go usage, so it stays on a
+cheap tool-capable model rather than a pro tier. Do not swap voice 3 for a
+pro-tier model without the user asking. Gemini always uses the highest tier the
+subscription exposes.
+
+A project overrides the trio in its `AGENTS.md` with:
 
 ```
-Council: provider/model, provider/model, provider/model
+Council: providerInstanceId:model:option=value, ...
+```
+
+For example:
+
+```
+Council: codex:gpt-6-luna:reasoningEffort=low, antigravity:gemini-3.8-flash-high, opencode:opencode-go/mimo-v2.6-flash
 ```
 
 Use the override when it is in context. If the user names council members, use
@@ -88,7 +98,8 @@ Ask for:
 
 ### T3 Code
 
-If a `delegate_task` tool is available, call it three times in one message:
+If a `delegate_task` tool is available, call it three times in one message, one
+target per provider:
 
 ```
 delegate_task(
@@ -96,26 +107,41 @@ delegate_task(
   role: "research",
   isolation: "shared",
   mode: "wait",
-  target: { providerInstanceId: "opencode", model: "opencode-go/kimi-k3.1-pro" }
+  target: { providerInstanceId: "codex", model: "gpt-6-luna", options: { reasoningEffort: "low" } }
+)
+delegate_task(
+  task: "<brief + round 1 instructions>",
+  role: "research",
+  isolation: "shared",
+  mode: "wait",
+  target: { providerInstanceId: "antigravity", model: "gemini-3.8-flash-high" }
+)
+delegate_task(
+  task: "<brief + round 1 instructions>",
+  role: "research",
+  isolation: "shared",
+  mode: "wait",
+  target: { providerInstanceId: "opencode", model: "opencode-go/mimo-v2.6-flash" }
 )
 ```
 
-Repeat for the other two models. Keep the three outputs separate and labelled by
-voice.
+Keep the three outputs separate and labelled by voice. If a provider is
+unavailable, report the gap and continue with the voices that answered.
 
 ### CLI fallback
 
-Use this when T3 tools or the provider are unavailable:
+`opencode run` only reaches the OpenCode Go voice. The Codex and Gemini voices
+are subscription-only and cannot run through it.
 
 ```bash
 mkdir -p /tmp/council
-opencode run -m opencode-go/kimi-k3.1-pro "$(cat /tmp/council/brief.md)" > /tmp/council/voice-1.md 2>&1
-opencode run -m opencode-go/deepseek-v4-pro "$(cat /tmp/council/brief.md)" > /tmp/council/voice-2.md 2>&1
-opencode run -m opencode-go/glm-5.3 "$(cat /tmp/council/brief.md)" > /tmp/council/voice-3.md 2>&1
+opencode run -m opencode-go/mimo-v2.6-flash "$(cat /tmp/council/brief.md)" > /tmp/council/voice-3.md 2>&1
 ```
 
-Run the three commands in parallel. Add `--pure` only if plugins interfere with a
-non-interactive run.
+Add `--pure` only if plugins interfere with a non-interactive run. If T3 tools
+are unavailable there is no second provider, so do not invent one: run the cheap
+voice alone, report that the council was degraded to one voice, and lower
+confidence. Ask the user before spending OpenCode Go usage on extra paid voices.
 
 ## Round 2: anonymized peer review
 
@@ -188,9 +214,9 @@ Rounds: 2
 
 | Delegate | Round 1 | Round 2 |
 | --- | --- | --- |
-| Claude Opus | 7/10 | 9/10 |
-| GPT Sol | 8/10 | 10/10 |
-| Gemini Pro | 7/10 | 9/10 |
+| Codex Luna | 7/10 | 9/10 |
+| Gemini 3.8 Flash | 8/10 | 10/10 |
+| MiMo V2.6 Flash | 7/10 | 9/10 |
 ```
 
 Use the real delegate names. If a delegate gives no score, write `no score`; do
@@ -210,8 +236,11 @@ Retry a failed voice at most once.
 
 ## Cost
 
-Six model calls per round: three independent answers, three reviews. The default
-trio is the fast and cheap tier. Do not run the council twice for the same
-decision without new evidence.
+Six model calls across a two-round pass: three independent answers, then three
+reviews. Only the OpenCode Go voice is metered; the Codex and Gemini voices bill
+against subscriptions. The paid voice is a cheap tool-capable model at $0.14 /
+$0.28 per M tokens. Do not run the council twice for the same decision without
+new evidence, and do not promote the paid voice to a pro-tier model without the
+user's say.
 
 Origin: adapted from Karpathy's LLM Council by way of aiwithremy/claude-skills-llm-council and gcpdev/llm-council-skill, merged with t3dotgg/tstack council.
