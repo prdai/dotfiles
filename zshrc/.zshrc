@@ -544,3 +544,6 @@ esac
 # pnpm end
 
 . "$HOME/.local/share/../bin/env"
+
+# speedrunner: warm tool daemons while typing
+command -v speedrunner >/dev/null && eval "$(speedrunner init zsh)"

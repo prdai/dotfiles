@@ -94,3 +94,13 @@ Optimize for turnaround time on what the user asks for. The time a requested tas
 
 - Parallelize aggressively. Run independent tool calls together, fan work out across multiple agents at once, and push long-running commands to the background so the session is never blocked waiting on them.
 - Never trade correctness or the user's stated scope for speed. Fast and wrong is not the goal; fast and right is.
+
+## Speedrunner
+
+`srr` and `speedrunner` live in `~/.local/bin`. They keep Python, Ruby, PHP and Node CLIs loaded in a daemon and fork them per call, saving most of each tool's start-up.
+
+- Prefix one-off tool calls: `srr pytest -q`, `srr black --check .`, `srr rubocop lib/`, `srr eslint src/`.
+- Run a script that calls such tools more than once through `speedrunner exec ./script.sh`.
+- `speedrunner init` and `speedrunner enroll` only patch interactive zsh and bash, so they do nothing in agent shells. Use the `srr` prefix or `exec`.
+- What speedrunner cannot serve runs natively with the same output; `srr --native <cmd>` skips the daemon for one call.
+- Skip it when the command's own work or the network dominates. Wrapping long-running commands gains nothing.
