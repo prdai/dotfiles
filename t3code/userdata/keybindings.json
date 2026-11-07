@@ -1,5 +1,10 @@
 [
   {
+    "key": "mod+shift+d",
+    "command": "composer.dictation",
+    "when": "!terminalFocus"
+  },
+  {
     "key": "f6",
     "command": "workspace.focusNext"
   },

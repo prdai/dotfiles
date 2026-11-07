@@ -123,11 +123,11 @@ alt-shift-right = [
 ]
 
 [[on-window-detected]]
-if.app-id = 'net.ghostty.Ghostty'
+if.app-id = 'com.mitchellh.ghostty'
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
-if.app-id = 'net.zen.Zen'
+if.app-id = 'app.zen-browser.zen'
 run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]

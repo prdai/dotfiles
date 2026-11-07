@@ -23,3 +23,9 @@ user-dirs.locale
 # Vicinae: GUI-mutable runtime state, per-machine
 vicinae/settings.json
 
+# Local runtime secrets
+opencode/service.json
+
+# macOS
+.DS_Store
+
