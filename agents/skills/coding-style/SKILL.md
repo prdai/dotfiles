@@ -63,6 +63,7 @@ Patterns distilled from prdai's authored PRs across repos (dotfiles, sfia-skill-
 - Style-trim passes, typo fixes, and renames get their own commits. One concern per commit; stacked PRs say "Stacked on #N".
 - PR bodies: `## what changed` / `## why` / `## verification` (exact commands, honest not-verified gaps). Skip sections that add nothing.
 - Commit trailers: follow the `agent-commit-provenance` skill for `Co-authored-by` identities, session and log URLs, and `Signed-off-by`.
+- PR media: GitHub has no API to attach images or video to a PR body or comment ([cli/cli#14302](https://github.com/cli/cli/issues/14302)). Commit the file to a separate assets branch in the head fork, for example `assets/pr-<number>`, and link its blob path from the PR body. Keep that branch out of the code PR; reviewers play or download it from the link, and the alternative is manual drag-and-drop.
 - No emoji, anywhere.
 
 ## Agent PR review loop (when putting up PRs or handling review under delegation)
