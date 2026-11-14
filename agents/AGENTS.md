@@ -90,13 +90,7 @@ Fact checking is discussion. It does not give the agent permission to ignore the
 
 ## Change Consistency
 
-A change is not finished at the first edit. If one place changes, every other place that depends on it changes in the same pass: code, constants, types, tests, fixtures, comments, docs, READMEs, examples, config defaults, and symlinks.
-
-- Before editing, search the repo for every occurrence of the symbol, string, constant, path, config key, command, and doc phrase being changed.
-- Update all matches together. Do not leave a stale comment, example, default, or duplicate copy describing the old behavior.
-- When two files must stay in sync, share the source (include, symlink, generated file) or document the pairing next to both. Do not rely on memory.
-- After editing, re-run the search and confirm no stale references remain. Report what was searched and what matched when a change crosses files.
-- Anything intentionally left inconsistent needs an explicit reason to the user, not silence.
+A change is not finished at the first edit. What needs updating depends on the context, so update affected places and check for stale references before handing back.
 
 ## Speed and Turnaround
 
