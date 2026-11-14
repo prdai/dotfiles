@@ -88,6 +88,10 @@ Fact checking is discussion. It does not give the agent permission to ignore the
 - Report exactly what was changed and what was not verified.
 - Only add a code comment when it is required to explain a non-obvious why. If you add one, compress it to a single line.
 
+## Change Consistency
+
+A change is not finished at the first edit. What needs updating depends on the context, so update affected places and check for stale references before handing back.
+
 ## Speed and Turnaround
 
 Optimize for turnaround time on what the user asks for. The time a requested task takes is a first-class concern, not an afterthought: deliver the same quality, but get there as fast as possible.
