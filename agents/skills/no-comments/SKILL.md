@@ -66,3 +66,6 @@ constraint open, and sketch the out-of-scope work.
 Report the deletion count, any restored comments, fixes made, encoding offers and
 results, unenforced constraints, and other open work. State what was verified and
 what was not.
+
+Origin: adapted from cursor/plugins pstack no-comments. MIT, Copyright (c) 2026
+Lauren Tan. See [../ATTRIBUTION.md](../ATTRIBUTION.md).

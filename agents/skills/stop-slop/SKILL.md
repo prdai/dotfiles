@@ -76,4 +76,5 @@ See [references/examples.md](references/examples.md) for before/after transforma
 
 ## License
 
-MIT
+MIT. Portions adapted from cursor/plugins pstack unslop. Copyright (c) 2026
+Lauren Tan. See [../ATTRIBUTION.md](../ATTRIBUTION.md).

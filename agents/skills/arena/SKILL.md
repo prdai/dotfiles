@@ -130,4 +130,5 @@ One synthesized artifact, plus a short synthesis note alongside it:
 - the verification result
 
 Origin: adapted from cursor/plugins pstack arena for this repo's providers and
-T3 Code delegation.
+T3 Code delegation. MIT, Copyright (c) 2026 Lauren Tan. See
+[../ATTRIBUTION.md](../ATTRIBUTION.md).
