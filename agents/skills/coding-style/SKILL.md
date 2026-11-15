@@ -15,6 +15,7 @@ Patterns distilled from prdai's authored PRs across repos (dotfiles, sfia-skill-
 - Before handing work back, do a trim pass: delete redundant comments, shrink multi-line comments to one line, drop ones that became obsolete after a refactor. In existing repos, do this as its own commit (e.g. `Trim comments in attest.go`) rather than mixed into feature commits.
 - Docstrings/doc comments only at the class or function that embodies a design decision; keep them 1-4 lines, present tense.
 - Config files (dotfiles, lua, bash) are the exception: block-level "why" comments explaining intent are fine there.
+- For a diff-wide audit, follow the `no-comments` skill.
 
 ## Control flow: flat, happy-path first
 
