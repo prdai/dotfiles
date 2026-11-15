@@ -132,3 +132,58 @@ Wh- openers become a crutch. "What makes this hard is..." becomes "The constrain
 |---------|---------|
 | Lazy extremes (every, always, never, everyone, everybody, nobody) | False authority. Use specifics instead of sweeping claims. |
 | All adverbs (-ly words, "really," "just," "literally," "genuinely," "honestly," "simply," "actually") | Empty emphasis. See phrases.md for full list. |
+
+## Superficial -ing Phrases
+
+A participle clause bolted onto a sentence to imply depth without evidence.
+
+| Pattern | Problem |
+|---------|---------|
+| "..., highlighting the importance of X" | Claims significance without support |
+| "..., ensuring correctness" | Asserts an outcome the sentence did not show |
+| "..., reflecting a broader trend" | Adds a trend nobody sourced |
+| "..., showcasing the power of X" | Marketing voice |
+
+**Instead:** Delete the clause or replace it with the real source or mechanism.
+
+## Inline-Header Lists
+
+A bold label and colon that only restates the line.
+
+| Pattern | Problem |
+|---------|---------|
+| "**Performance:** Performance improved..." | Label repeats the sentence |
+| "**Security:** We made it secure." | Says nothing |
+
+**Instead:** Convert to prose. A bold lead-in that ends in a period, names the item, and adds new detail ("**Schema in TypeScript.** Tables live in one file.") is fine.
+
+## Over-Compression
+
+Dropped articles, verbless fragments, arrows, and abbreviations that make the reader decode instead of read.
+
+| Pattern | Fix |
+|---------|-----|
+| "Parser rejects bad date -> exit 2, no write" | "The parser rejects a bad date, exits with code 2, and writes nothing." |
+| "Config load fail: retry" | "If the config fails to load, retry." |
+
+**Instead:** Whole sentences with articles and verbs. Spell out arrows and abbreviations.
+
+## Mannered Prose
+
+Metaphor or flourish where a literal phrase exists.
+
+| Pattern | Fix |
+|---------|-----|
+| Aphorisms ("wire it or delete it") | Say the literal rule |
+| Personified code ("the plan holds it") | Name what the code does |
+| Figurative verbs ("rides along", "stands on") | Use the literal verb |
+| "A dial worth turning" | "A parameter worth varying" |
+
+**Instead:** Say what you mean. See the abstract metaphor nouns in phrases.md.
+
+## Synonym Cycling and False Ranges
+
+| Pattern | Problem |
+|---------|---------|
+| Protagonist, main character, central figure, hero in one paragraph | Synonym cycling. Pick one word and repeat it. |
+| "From onboarding to observability" where the ends are unrelated | False range. List the topics directly. |

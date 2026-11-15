@@ -25,6 +25,12 @@ Eliminate predictable AI writing patterns from prose.
 
 8. **Cut quotables.** If it sounds like a pull-quote, rewrite it.
 
+9. **Say what it does, not how it feels.** "The database stays close at hand" names a feeling. Name the mechanism or a number instead: "`.toSQL()` returns the exact string sent to the database". If you cannot restate a sentence as a concrete instruction, fact, or number, cut it. If it could appear unchanged in another project's docs, it says nothing about this one.
+
+10. **Prefer the plain word and the whole sentence.** "Utilize" and "leverage" become "use". Cut abstract metaphor nouns (substrate, wedge, vector, harness, surface, paradigm, north star) for the concrete word. Repeat one noun instead of cycling synonyms. Avoid "from X to Y" ranges that are not on a real scale. Write whole sentences with articles and verbs, not symbol-speak like "Parser rejects bad date -> exit 2, no write".
+
+11. **Strip formatting tells.** Sentence-case headings, straight quotes, no decorative emoji, no bold labels that merely restate the line. Use a colon only before a list or example, never as a mid-sentence connector.
+
 ## Quick Checks
 
 Before delivering prose:
@@ -41,6 +47,14 @@ Before delivering prose:
 - Vague declarative ("The implications are significant")? Name the specific implication.
 - Narrator-from-a-distance ("Nobody designed this")? Put the reader in the scene.
 - Meta-joiners ("The rest of this essay...")? Delete. Let the essay move.
+- Superficial -ing clause ("highlighting...", "ensuring...")? Delete or back it with a real source.
+- "-ing" or participle phrase tacked onto a sentence to fake depth? Split it or cut it.
+- "From X to Y" where X and Y are not on a scale? List the items directly.
+- One idea named four ways in a paragraph? Pick one word and repeat it.
+- Bold label plus colon restating the bullet? Convert to prose.
+- Colon in the middle of a sentence? Rewrite without it.
+- Title-case heading, curly quotes, or emoji in a heading? Fix it.
+- Sentence that has to be decoded, not read? Split it into two.
 
 ## Scoring
 

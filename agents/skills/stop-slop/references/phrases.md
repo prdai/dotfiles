@@ -126,3 +126,81 @@ Sentences that announce importance without naming the specific thing. Kill these
 - "The consequences are real"
 
 If a sentence says something is important/deep/structural without showing the specific thing, cut it or replace it with the specific thing.
+
+## AI Vocabulary
+
+Replace with plain words.
+
+- Additionally
+- Crucial
+- Delve
+- Enduring
+- Enhance
+- Fostering
+- Garner
+- Interplay
+- Intricate
+- Landscape (abstract)
+- Pivotal
+- Showcase
+- Tapestry (abstract)
+- Testament
+- Underscore
+- Vibrant
+
+## Abstract Metaphor Nouns
+
+These read technical but usually have a concrete word.
+
+| Avoid | Use instead |
+|-------|-------------|
+| Substrate | Base |
+| Wedge, wedge in | Add |
+| Vector | Way, method |
+| Locus, vantage, nexus | Place, view, connection |
+| Primitive (as a noun) | The real type or operation |
+| Harness (as metaphor) | Use |
+| Surface ("API surface") | API |
+| Bedrock, scaffolding | Foundation, setup |
+| Modality | Mode, type |
+| Paradigm | Pattern |
+| North star, flywheel | Goal, feedback loop |
+| Endgame | Last phase |
+| Evacuate (moving code) | Move out |
+| Ratchet (as metaphor) | The mechanism's name, or a limit that only tightens |
+
+## Vague Attributions
+
+Name the source or delete the claim.
+
+- "Experts believe"
+- "Industry reports suggest"
+- "Some critics argue"
+- "Studies show" without the study
+- "It is widely known"
+
+## Filler Phrases
+
+| Avoid | Use instead |
+|-------|-------------|
+| In order to | To |
+| Due to the fact that | Because |
+| It is important to note that | (delete) |
+| Facilitate | Help |
+| Numerous | Many |
+| In the event that | If |
+| Could potentially possibly be argued that it might | May |
+| Serves as, stands as, boasts, features | Is, has |
+| The future is bright | State the specific plan or fact |
+
+## Chatbot and Sycophancy
+
+- "I hope this helps!"
+- "Let me know if..."
+- "Of course!"
+- "Certainly!"
+- "Great question!"
+- "You're absolutely right!"
+- "Found the smoking gun!"
+
+Respond directly instead.
