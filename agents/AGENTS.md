@@ -87,7 +87,7 @@ Fact checking is discussion. It does not give the agent permission to ignore the
 - Verify meaningful behavior with commands or tests when possible.
 - Report exactly what was changed and what was not verified.
 - Only add a code comment when it is required to explain a non-obvious why. If you add one, compress it to a single line.
-- **IMPORTANT: Never block the main thread.** Blocking I/O, CPU-heavy work, and anything slow runs off the main/UI thread, so the end user can keep interacting while it runs. Use the platform's own offload (async tasks, worker threads, background queues) rather than hand-rolled threads.
+- Never block the main thread. Blocking I/O, CPU-heavy work, and anything slow runs off the main/UI thread, so the end user can keep interacting while it runs. Use the platform's own offload (async tasks, worker threads, background queues) rather than hand-rolled threads.
 
 ## Change Consistency
 
@@ -98,7 +98,7 @@ A change is not finished at the first edit. What needs updating depends on the c
 Optimize for turnaround time on what the user asks for. The time a requested task takes is a first-class concern, not an afterthought: deliver the same quality, but get there as fast as possible.
 
 - Parallelize aggressively. Run independent tool calls together, fan work out across multiple agents at once, and push long-running commands to the background so the session is never blocked waiting on them.
-- **IMPORTANT: Never block the session.** Anything that can run without the next decision goes to the background immediately: long commands, builds, tests, downloads, subagents. The main thread stays free for the user. Block only when the very next step needs the result.
+- Never block the session. Anything that can run without the next decision goes to the background immediately: long commands, builds, tests, downloads, subagents. The main thread stays free for the user. Block only when the very next step needs the result.
 - Never trade correctness or the user's stated scope for speed. Fast and wrong is not the goal; fast and right is.
 
 ## Speedrunner
