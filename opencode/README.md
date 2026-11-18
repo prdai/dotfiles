@@ -9,6 +9,7 @@ config for the [opencode](https://opencode.ai) agentic CLI/TUI, symlinked into `
 | `opencode.json` | server/runtime config: default models, permissions, compaction, tool output, global plugins |
 | `tui.json` | terminal UI: theme, cursor, scroll, attention notifications |
 | `AGENTS.md` | global agentic engineering rules (applied to all opencode sessions) |
+| `commands/` | global slash commands: `/sync`, `/pr`, `/judge` |
 | `themes/codex.json` | custom dark theme matching the Codex desktop app (`#181818` surfaces, light-blue accent, one-dark syntax) |
 | `skills/` | relative symlinks to the vendored skills in `../agents/skills/`, loaded globally by opencode |
 | `plugins/rtk.ts` | rtk command rewriting for bash/shell tool calls (needs `rtk` on PATH) |
@@ -86,8 +87,9 @@ repo skills are not duplicated outside `agents/skills/`.
 | `figma` | figma/mcp-server-guide + openai/skills curated (Figma Developer Terms), patched locally | umbrella router for design-to-code, screens, design systems, diagrams, specs, and new files; playbooks live under `references/`; terms in `LICENSE.txt` |
 
 the remaining skills in `../agents/skills/` (`agent-commit-provenance`, `agents-md`,
-`karpathy-guidelines`, `orchestrator`, `stop-slop`, `writing-style`) are shared agent skills,
-vendored here so opencode, pi, and T3 Code all read one copy.
+`commit-judge`, `karpathy-guidelines`, `orchestrator`, `writing-style`) are shared agent skills,
+vendored here so opencode, pi, and T3 Code all read one copy. the `no-comments` and `stop-slop`
+passes live as references under `coding-style` and `writing-style` instead of separate skills.
 
 to add another: vendor the skill folder into `agents/skills/<name>/` and run the symlink
 setup from the root README. no per-harness copy is needed. if the skill ships supporting
@@ -178,7 +180,7 @@ plugin notes:
 - `opencode-snip` disables itself until the `snip` binary is on `PATH`.
 - `opencode-token-tracker` also installs an `opencode-tokens` CLI.
 - i-have-adhd always-on: `touch ~/.config/opencode/.i-have-adhd-always` (gitignored).
-- Excalidraw+ MCP: reads its bearer key from `secrets/excalidraw-api-key` (gitignored, `chmod 600`); create the file on a new machine or the server authenticates with an empty token.
+- drawio MCP: enabled through `npx -y @drawio/mcp`; no local secret required. The Excalidraw and ExcaliDash servers were removed in favor of it.
 - Cloudflare MCP: only `cloudflare-docs` is enabled by default; the other Cloudflare servers stay in config but `enabled: false` until authenticated/needed (keeps the tool-schema prefix smaller).
 - TUI-only plugins (sidebars/statuslines) do not render in the desktop app and are intentionally excluded.
 - skills live in `../agents/skills/` and are shared by opencode, pi, and T3 Code; see the skills section above.

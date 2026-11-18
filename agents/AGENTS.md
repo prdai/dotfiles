@@ -33,6 +33,7 @@ Work happens through normal feature branches and pull requests.
 - Before a new feature, sync and branch: `git checkout main && git pull && git checkout -b <feature-branch>`.
 - Use small branches for coherent units of work.
 - Keep PRs small and reviewable. The PR describes the important behavior change, verification performed, and any known review or test gaps.
+- UI changes: automatically capture before/after screenshots and a short screen recording, commit them to an `assets/pr-<number>` branch, and link them from the PR body. Do not wait to be asked.
 - Never force-push a PR under review unless the user asks.
 - The agent never replies to reviewers or posts comments on the PR. All reviewer communication is the user's. When delegated, review-reply conventions (per-comment "Done in `<sha>` —" replies with evidence, honest verification gaps, supersede hygiene) live in the `coding-style` skill's "Agent PR review loop" section.
 - Address review feedback by pushing fixes as new commits.
@@ -41,6 +42,7 @@ Work happens through normal feature branches and pull requests.
 
 - **Commit messages are single-line subjects by default: no description/body unless the user explicitly asks for one.**
 - **IMPORTANT: Never commit private credentials, secrets, tokens, or sensitive local machine details.** Redact or ask the user how to handle it if sensitive data shows up.
+- **Before every commit, run the `commit-judge` skill on the staged diff. Fix every blocker and re-run until it returns `PASS`; only then commit.**
 - Do not commit unless the user asks.
 - Do not squash or rewrite history unless the user explicitly asks.
 - Do not stage or commit unrelated files.
@@ -92,6 +94,17 @@ Fact checking is discussion. It does not give the agent permission to ignore the
 ## Change Consistency
 
 A change is not finished at the first edit. What needs updating depends on the context, so update affected places and check for stale references before handing back.
+
+## Model Selection
+
+Use the cheapest model that clears the task. Keep the implementer and the judge on different models.
+
+- Judges, reviews, and hard implementation: `gpt-6.1-sol` or `gpt-6-astra` at `low` reasoning effort, picked by remaining quota.
+- If OpenAI is unavailable or exhausted: `opencode-go/deepseek-v4.1-flash` (DeepSeek V4.1 Flash 1017) at `high`, or `max` when quota allows and the work is large or risky.
+- Check quota with `mystatus` before selecting. If it errors, treat OpenAI as unavailable.
+- Background delegates and monitors: `opencode-go/deepseek-v4.1-flash` at `high`.
+- Plumbing (sync, checkouts, PR mechanics): `opencode-go/deepseek-v4.1-flash` at `low`.
+- Never judge a commit with the model that wrote it.
 
 ## Speed and Turnaround
 

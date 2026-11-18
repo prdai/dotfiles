@@ -54,6 +54,9 @@ for s in ~/.agents/skills/*/; do
   ln -sfn "${s%/}" ~/.codex/skills/"$(basename "$s")"
 done
 
+# cli shims
+ln -sf ~/.dotfiles/bin/gh ~/.local/bin/gh
+
 # t3 code desktop config (app + launcher: see t3code/README.md)
 cp ~/.dotfiles/t3code/userdata/*.json ~/.t3/userdata/
 
@@ -68,6 +71,7 @@ source ~/.bashrc   # or: source ~/.zshrc
 | `aerospace/` | aerospace tiling window manager config for macos |
 | `agents/` | shared agent rules (AGENTS.md) + vendored skills, referenced by opencode, pi, and T3 Code |
 | `bash/` | bash config, aliases, prompt, helper functions |
+| `bin/` | cli shims (currently a quiet `gh` wrapper for mise) |
 | `btop/` | btop system monitor config |
 | `fish/` | fish environment setup snippets |
 | `ghostty/` | primary terminal emulator config |

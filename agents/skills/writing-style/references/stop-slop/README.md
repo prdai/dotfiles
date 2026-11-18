@@ -1,17 +1,12 @@
----
-name: stop-slop
-description: Remove AI writing patterns from prose. Use when drafting, editing, or reviewing text to eliminate predictable AI tells.
----
+# Slop audit
 
-# Stop Slop
-
-Eliminate predictable AI writing patterns from prose.
+Eliminate predictable AI writing patterns from prose. Full checklist for a dedicated pass; `writing-style` is the default voice.
 
 ## Core Rules
 
-1. **Cut filler phrases.** Remove throat-clearing openers, emphasis crutches, and all adverbs. See [references/phrases.md](references/phrases.md).
+1. **Cut filler phrases.** Remove throat-clearing openers, emphasis crutches, and all adverbs. See [phrases.md](phrases.md).
 
-2. **Break formulaic structures.** Avoid binary contrasts, negative listings, dramatic fragmentation, rhetorical setups, false agency. See [references/structures.md](references/structures.md).
+2. **Break formulaic structures.** Avoid binary contrasts, negative listings, dramatic fragmentation, rhetorical setups, false agency. See [structures.md](structures.md).
 
 3. **Use active voice.** Every sentence needs a human subject doing something. No passive constructions. No inanimate objects performing human actions ("the complaint becomes a fix").
 
@@ -72,9 +67,9 @@ Below 35/50: revise.
 
 ## Examples
 
-See [references/examples.md](references/examples.md) for before/after transformations.
+See [examples.md](examples.md) for before/after transformations.
 
 ## License
 
 MIT. Portions adapted from cursor/plugins pstack unslop. Copyright (c) 2026
-Lauren Tan. See [../ATTRIBUTION.md](../ATTRIBUTION.md).
+Lauren Tan. See [../../../ATTRIBUTION.md](../../../ATTRIBUTION.md).

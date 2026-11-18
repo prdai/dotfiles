@@ -43,6 +43,8 @@ Direct, task-focused, low ceremony. Say the thing, give the evidence, state the 
 - Numbers as digits. Inline links, never "click here".
 - No emoji-style emoticons in issue or PR bodies, docs, or blog. In comments only, and rarely: `:)`, `:))`.
 
+For a dedicated slop pass, follow [references/stop-slop/README.md](references/stop-slop/README.md).
+
 ## Surface calibration
 
 | Surface | Register | Length | Shape |

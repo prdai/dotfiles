@@ -1,9 +1,6 @@
----
-name: no-comments
-description: Audits comments in the current diff or named files, kills the ones that should not exist, keeps only proven "why" comments, fixes root causes instead of adding narration, and encodes real constraints. Use for /no-comments, "clean up comments", "trim comments", or a comment-only review pass.
----
+# Comments audit
 
-# No comments
+A comment-only review pass. Use for "clean up comments", "trim comments", or a diff-wide audit.
 
 Run the audit yourself. No subagent and no second opinion: read the diff, judge
 every comment against the rules below, and make the smallest fix in scope.
@@ -68,4 +65,4 @@ results, unenforced constraints, and other open work. State what was verified an
 what was not.
 
 Origin: adapted from cursor/plugins pstack no-comments. MIT, Copyright (c) 2026
-Lauren Tan. See [../ATTRIBUTION.md](../ATTRIBUTION.md).
+Lauren Tan. See [../../ATTRIBUTION.md](../../ATTRIBUTION.md).

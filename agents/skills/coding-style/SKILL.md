@@ -15,7 +15,7 @@ Patterns distilled from prdai's authored PRs across repos (dotfiles, sfia-skill-
 - Before handing work back, do a trim pass: delete redundant comments, shrink multi-line comments to one line, drop ones that became obsolete after a refactor. In existing repos, do this as its own commit (e.g. `Trim comments in attest.go`) rather than mixed into feature commits.
 - Docstrings/doc comments only at the class or function that embodies a design decision; keep them 1-4 lines, present tense.
 - Config files (dotfiles, lua, bash) are the exception: block-level "why" comments explaining intent are fine there.
-- For a diff-wide audit, follow the `no-comments` skill.
+- For a diff-wide audit, follow [references/comments-audit.md](references/comments-audit.md).
 
 ## Control flow: flat, happy-path first
 
@@ -64,7 +64,8 @@ Patterns distilled from prdai's authored PRs across repos (dotfiles, sfia-skill-
 - Style-trim passes, typo fixes, and renames get their own commits. One concern per commit; stacked PRs say "Stacked on #N".
 - PR bodies: `## what changed` / `## why` / `## verification` (exact commands, honest not-verified gaps). Skip sections that add nothing.
 - Commit trailers: follow the `agent-commit-provenance` skill for `Co-authored-by` identities, session and log URLs, and `Signed-off-by`.
-- PR media: GitHub has no API to attach images or video to a PR body or comment ([cli/cli#14302](https://github.com/cli/cli/issues/14302)). Commit the file to a separate assets branch in the head fork, for example `assets/pr-<number>`, and link its blob path from the PR body. Keep that branch out of the code PR; reviewers play or download it from the link, and the alternative is manual drag-and-drop.
+- PR media: UI changes always ship with before/after screenshots and a short screen recording, published to an `assets/pr-<number>` branch and linked from the PR body. Do this without being asked. GitHub cannot upload media through its API ([cli/cli#14302](https://github.com/cli/cli/issues/14302)). Steps: [references/pr-media.md](references/pr-media.md).
+- Commit gate: before every commit, run the `commit-judge` skill on the staged diff and loop until it returns `PASS`.
 - No emoji, anywhere.
 
 ## Agent PR review loop (when putting up PRs or handling review under delegation)

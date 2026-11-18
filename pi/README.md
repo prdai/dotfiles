@@ -41,7 +41,8 @@ pi
 |---|---|
 | **omarchy** | Linux desktop / Hyprland / Waybar / system config management |
 | **orchestrator** | Multi-agent task orchestration |
-| **stop-slop** | Anti-slop — cuts AI fluff and filler language |
+| **writing-style** | Public voice, plus the slop audit under `references/stop-slop/` |
+| **commit-judge** | Independent commit review gate |
 
 ### Theme
 

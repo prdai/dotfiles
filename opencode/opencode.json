@@ -18,7 +18,7 @@
     "./vendor/i-have-adhd/.opencode/plugins/i-have-adhd.mjs"
   ],
   "model": "openai/gpt-5.6-luna",
-  "small_model": "opencode-go/deepseek-v4-flash",
+  "small_model": "opencode-go/glm-5.3-flash",
   "autoupdate": true,
   "share": "disabled",
   "snapshot": true,
@@ -60,23 +60,10 @@
       "enabled": false,
       "oauth": {}
     },
-    "excalidraw": {
-      "type": "remote",
-      "url": "https://api.excalidraw.com/api/v1/mcp",
-      "enabled": true,
-      "headers": {
-        "Authorization": "Bearer {file:./secrets/excalidraw-api-key}"
-      }
-    },
-    "excalidash": {
+    "drawio": {
       "type": "local",
-      "command": ["npx", "-y", "excalidash-mcp@1"],
-      "enabled": true,
-      "environment": {
-        "EXCALIDASH_BACKEND_URL": "https://draw.prdai.dev/api",
-        "EXCALIDASH_URL": "https://draw.prdai.dev",
-        "EXCALIDASH_API_KEY": "{env:EXCALIDASH_API_KEY}"
-      }
+      "command": ["npx", "-y", "@drawio/mcp"],
+      "enabled": true
     },
     "codex-connectors": {
       "type": "local",
@@ -90,8 +77,37 @@
     "playwright": {
       "type": "local",
       "command": ["npx", "-y", "@playwright/mcp@latest", "--extension"],
-      "enabled": true
+      "enabled": false
     }
   },
-  "permission": "allow"
+  "agent": {
+    "general": {
+      "model": "opencode-go/deepseek-v4.1-flash#high"
+    }
+  },
+  "permission": {
+    "bash": {
+      "git push": "ask",
+      "git push *": "ask",
+      "git push --force*": "deny",
+      "git push -f*": "deny",
+      "git push * --force*": "deny",
+      "git push * -f*": "deny",
+      "git reset --hard": "ask",
+      "git reset --hard *": "ask",
+      "git clean -f*": "ask",
+      "gh repo delete": "ask",
+      "gh repo delete *": "ask",
+      "gh repo archive": "ask",
+      "gh repo archive *": "ask",
+      "gh release delete": "ask",
+      "gh release delete *": "ask",
+      "rm -rf": "ask",
+      "rm -rf *": "ask",
+      "rm -fr": "ask",
+      "rm -fr *": "ask",
+      "sudo": "ask",
+      "sudo *": "ask"
+    }
+  }
 }

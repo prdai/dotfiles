@@ -7,8 +7,8 @@ Original sources:
 | Skill | Source |
 |---|---|
 | `arena` | https://github.com/cursor/plugins/blob/main/pstack/skills/arena/SKILL.md |
-| `no-comments` | https://github.com/cursor/plugins/blob/main/pstack/skills/no-comments/SKILL.md |
-| `stop-slop` (unslop rules) | https://github.com/cursor/plugins/blob/main/pstack/skills/unslop/SKILL.md |
+| `coding-style` comments audit | https://github.com/cursor/plugins/blob/main/pstack/skills/no-comments/SKILL.md |
+| `writing-style` slop audit | https://github.com/cursor/plugins/blob/main/pstack/skills/unslop/SKILL.md |
 
 ## License
 
