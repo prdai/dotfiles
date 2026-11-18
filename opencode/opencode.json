@@ -63,25 +63,15 @@
     "excalidraw": {
       "type": "remote",
       "url": "https://api.excalidraw.com/api/v1/mcp",
-      "enabled": true,
+      "enabled": false,
       "headers": {
         "Authorization": "Bearer {file:./secrets/excalidraw-api-key}"
-      }
-    },
-    "excalidash": {
-      "type": "local",
-      "command": ["npx", "-y", "excalidash-mcp@1"],
-      "enabled": true,
-      "environment": {
-        "EXCALIDASH_BACKEND_URL": "https://draw.prdai.dev/api",
-        "EXCALIDASH_URL": "https://draw.prdai.dev",
-        "EXCALIDASH_API_KEY": "{env:EXCALIDASH_API_KEY}"
       }
     },
     "codex-connectors": {
       "type": "local",
       "command": ["npx", "-y", "@wileai/codex-connectors-mcp@0.2.0"],
-      "enabled": true,
+      "enabled": false,
       "environment": {
         "CODEX_CONNECTORS_MODE": "compact",
         "CODEX_CONNECTORS_WRITES": "allow"
@@ -90,7 +80,7 @@
     "playwright": {
       "type": "local",
       "command": ["npx", "-y", "@playwright/mcp@latest", "--extension"],
-      "enabled": true
+      "enabled": false
     }
   },
   "permission": "allow"
