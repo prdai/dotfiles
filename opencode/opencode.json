@@ -60,14 +60,6 @@
       "enabled": false,
       "oauth": {}
     },
-    "excalidraw": {
-      "type": "remote",
-      "url": "https://api.excalidraw.com/api/v1/mcp",
-      "enabled": false,
-      "headers": {
-        "Authorization": "Bearer {file:./secrets/excalidraw-api-key}"
-      }
-    },
     "codex-connectors": {
       "type": "local",
       "command": ["npx", "-y", "@wileai/codex-connectors-mcp@0.2.0"],
