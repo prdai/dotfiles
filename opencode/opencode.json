@@ -71,7 +71,7 @@
     "codex-connectors": {
       "type": "local",
       "command": ["npx", "-y", "@wileai/codex-connectors-mcp@0.2.0"],
-      "enabled": false,
+      "enabled": true,
       "environment": {
         "CODEX_CONNECTORS_MODE": "compact",
         "CODEX_CONNECTORS_WRITES": "allow"
