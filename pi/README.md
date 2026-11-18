@@ -42,7 +42,7 @@ pi
 | **omarchy** | Linux desktop / Hyprland / Waybar / system config management |
 | **orchestrator** | Multi-agent task orchestration |
 | **writing-style** | Public voice, plus the slop audit under `references/stop-slop/` |
-| **commit-judge** | Independent commit review gate |
+| **pr-judge** | Independent PR review gate before ready-for-review |
 
 ### Theme
 

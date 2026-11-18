@@ -35,6 +35,7 @@ Work happens through normal feature branches and pull requests.
 - Keep PRs small and reviewable. The PR describes the important behavior change, verification performed, and any known review or test gaps.
 - UI changes: automatically capture before/after screenshots and a short screen recording, commit them to an `assets/pr-<number>` branch, and link them from the PR body. Do not wait to be asked.
 - Never force-push a PR under review unless the user asks.
+- **Before marking a PR ready for review (draft to ready, or when I ask), run the `pr-judge` skill on the full PR diff. Fix every blocker, push new commits, and re-run until it returns `PASS`; only then mark it ready.**
 - The agent never replies to reviewers or posts comments on the PR. All reviewer communication is the user's. When delegated, review-reply conventions (per-comment "Done in `<sha>` —" replies with evidence, honest verification gaps, supersede hygiene) live in the `coding-style` skill's "Agent PR review loop" section.
 - Address review feedback by pushing fixes as new commits.
 
@@ -42,7 +43,6 @@ Work happens through normal feature branches and pull requests.
 
 - **Commit messages are single-line subjects by default: no description/body unless the user explicitly asks for one.**
 - **IMPORTANT: Never commit private credentials, secrets, tokens, or sensitive local machine details.** Redact or ask the user how to handle it if sensitive data shows up.
-- **Before every commit, run the `commit-judge` skill on the staged diff. Fix every blocker and re-run until it returns `PASS`; only then commit.**
 - Do not commit unless the user asks.
 - Do not squash or rewrite history unless the user explicitly asks.
 - Do not stage or commit unrelated files.

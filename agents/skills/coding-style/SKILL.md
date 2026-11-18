@@ -65,7 +65,7 @@ Patterns distilled from prdai's authored PRs across repos (dotfiles, sfia-skill-
 - PR bodies: `## what changed` / `## why` / `## verification` (exact commands, honest not-verified gaps). Skip sections that add nothing.
 - Commit trailers: follow the `agent-commit-provenance` skill for `Co-authored-by` identities, session and log URLs, and `Signed-off-by`.
 - PR media: UI changes always ship with before/after screenshots and a short screen recording, published to an `assets/pr-<number>` branch and linked from the PR body. Do this without being asked. GitHub cannot upload media through its API ([cli/cli#14302](https://github.com/cli/cli/issues/14302)). Steps: [references/pr-media.md](references/pr-media.md).
-- Commit gate: before every commit, run the `commit-judge` skill on the staged diff and loop until it returns `PASS`.
+- PR-ready gate: before marking a PR ready for review, run the `pr-judge` skill on the full PR diff and loop until it returns `PASS`. Commits do not need a judge; the gate is the ready transition.
 - No emoji, anywhere.
 
 ## Agent PR review loop (when putting up PRs or handling review under delegation)

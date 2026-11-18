@@ -87,7 +87,7 @@ repo skills are not duplicated outside `agents/skills/`.
 | `figma` | figma/mcp-server-guide + openai/skills curated (Figma Developer Terms), patched locally | umbrella router for design-to-code, screens, design systems, diagrams, specs, and new files; playbooks live under `references/`; terms in `LICENSE.txt` |
 
 the remaining skills in `../agents/skills/` (`agent-commit-provenance`, `agents-md`,
-`commit-judge`, `karpathy-guidelines`, `orchestrator`, `writing-style`) are shared agent skills,
+`pr-judge`, `karpathy-guidelines`, `orchestrator`, `writing-style`) are shared agent skills,
 vendored here so opencode, pi, and T3 Code all read one copy. the `no-comments` and `stop-slop`
 passes live as references under `coding-style` and `writing-style` instead of separate skills.
 
