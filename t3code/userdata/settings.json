@@ -292,6 +292,7 @@
   "automaticGitFetchInterval": 15000,
   "providerHealthRefreshInterval": 60000,
   "backgroundActivityProfile": "performance",
+  "worktreeSubmodules": "none",
   "textGenerationModelSelection": {
     "instanceId": "antigravity",
     "model": "gemini-3.8-flash-high"
