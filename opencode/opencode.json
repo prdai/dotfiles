@@ -60,6 +60,11 @@
       "enabled": false,
       "oauth": {}
     },
+    "drawio": {
+      "type": "local",
+      "command": ["npx", "-y", "@drawio/mcp"],
+      "enabled": true
+    },
     "codex-connectors": {
       "type": "local",
       "command": ["npx", "-y", "@wileai/codex-connectors-mcp@0.2.0"],
