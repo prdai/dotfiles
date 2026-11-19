@@ -461,6 +461,8 @@ export NVM_DIR="$HOME/.nvm"
 
 # Load global environment variables
 [[ -f "$HOME/.env" ]] && load_env "$HOME/.env"
+# Load dotfiles environment variables (gitignored secret values)
+[[ -f "$HOME/.dotfiles/.env" ]] && load_env "$HOME/.dotfiles/.env" >/dev/null 2>&1
 # Load project-specific environment variables
 [[ -f "$(pwd)/.env" ]] && load_env "$(pwd)/.env"
 

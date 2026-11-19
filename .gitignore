@@ -25,6 +25,7 @@ vicinae/settings.json
 
 # Local runtime secrets
 opencode/service.json
+.env
 
 # macOS
 .DS_Store

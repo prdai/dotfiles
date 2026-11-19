@@ -23,9 +23,9 @@ Do not convene for routine edits, formatting, single-file fixes, factual
 lookups, brainstorming without stakes, or anything cheap to reverse.
 
 The agent proposes, the user confirms. State which criterion matched and the cost
-(three voices, two rounds, six model calls total, one metered OpenCode Go voice),
-then wait for an explicit yes. Manual triggers: "council", "council this", "run
-the council", "critical check", "pressure-test this".
+(three voices, two rounds, six model calls on the NVIDIA free tier), then wait
+for an explicit yes. Manual triggers: "council", "council this", "run the
+council", "critical check", "pressure-test this".
 
 ## Before a review round
 
@@ -36,30 +36,34 @@ implementation and explore new ideas, skip fixes to code being replaced.
 
 ## Voices
 
-Default trio:
+All three voices run on the NVIDIA hosted NIM API through
+`~/.dotfiles/scripts/nvidia-chat.sh`, which reads `NVIDIA_API_KEY` from
+`~/.dotfiles/.env`. Nothing metered is involved: the free tier allows roughly 40
+requests per minute, and a two-round council makes six calls.
 
-| Voice | Provider | Model | Cost |
-|---|---|---|---|
-| 1 | Codex subscription | `gpt-6-luna`, reasoning effort low | subscription |
-| 2 | Gemini subscription (antigravity) | `gemini-3.8-flash-high` | subscription |
-| 3 | OpenCode Go | `opencode-go/mimo-v2.6-flash` | $0.14 / $0.28 per M tokens |
+| Voice | Model | Notes |
+|---|---|---|
+| 1 | `nvidia/nemotron-3-ultra-550b-a55b` | 550B MoE, ~2s, strongest fast model |
+| 2 | `mistralai/mistral-large-4-1t-a52b` | 1T, ~10s, different training lineage |
+| 3 | `moonshotai/kimi-k3.1-pro` | frontier reasoning, ~2min, slowest |
 
-The trio spans three providers. Codex and Gemini run on the user's
-subscriptions; only voice 3 spends metered OpenCode Go usage, so it stays on a
-cheap tool-capable model rather than a pro tier. Do not swap voice 3 for a
-pro-tier model without the user asking. Gemini always uses the highest tier the
-subscription exposes.
+The trio spans three unrelated families, which is the point. Do not run three
+Nemotron tiers as the trio; shared lineage defeats the exercise.
+
+Model ids are the upstream ids. Availability is per key: some catalog models
+return `404 Function ... not found for account`. If a voice fails that way,
+report it and continue with the voices that answered.
 
 A project overrides the trio in its `AGENTS.md` with:
 
 ```
-Council: providerInstanceId:model:option=value, ...
+Council: model, model, model
 ```
 
 For example:
 
 ```
-Council: codex:gpt-6-luna:reasoningEffort=low, antigravity:gemini-3.8-flash-high, opencode:opencode-go/mimo-v2.6-flash
+Council: nvidia/nemotron-3-ultra-550b-a55b, z-ai/glm-5.3-flash, minimaxai/minimax-m3.1-flash
 ```
 
 Use the override when it is in context. If the user names council members, use
@@ -96,52 +100,27 @@ Ask for:
 5. what evidence would change the recommendation
 6. for a code review, a score out of 10
 
-### T3 Code
+### Running the voices
 
-If a `delegate_task` tool is available, call it three times in one message, one
-target per provider:
-
-```
-delegate_task(
-  task: "<brief + round 1 instructions>",
-  role: "research",
-  isolation: "shared",
-  mode: "wait",
-  target: { providerInstanceId: "codex", model: "gpt-6-luna", options: { reasoningEffort: "low" } }
-)
-delegate_task(
-  task: "<brief + round 1 instructions>",
-  role: "research",
-  isolation: "shared",
-  mode: "wait",
-  target: { providerInstanceId: "antigravity", model: "gemini-3.8-flash-high" }
-)
-delegate_task(
-  task: "<brief + round 1 instructions>",
-  role: "research",
-  isolation: "shared",
-  mode: "wait",
-  target: { providerInstanceId: "opencode", model: "opencode-go/mimo-v2.6-flash" }
-)
-```
-
-Keep the three outputs separate and labelled by voice. If a provider is
-unavailable, report the gap and continue with the voices that answered.
-
-### CLI fallback
-
-`opencode run` only reaches the OpenCode Go voice. The Codex and Gemini voices
-are subscription-only and cannot run through it.
+Run all three in parallel, one background job each:
 
 ```bash
 mkdir -p /tmp/council
-opencode run -m opencode-go/mimo-v2.6-flash "$(cat /tmp/council/brief.md)" > /tmp/council/voice-3.md 2>&1
+brief=/tmp/council/brief.md
+~/.dotfiles/scripts/nvidia-chat.sh nvidia/nemotron-3-ultra-550b-a55b < "$brief" > /tmp/council/voice-1.md 2>&1 &
+~/.dotfiles/scripts/nvidia-chat.sh mistralai/mistral-large-4-1t-a52b < "$brief" > /tmp/council/voice-2.md 2>&1 &
+~/.dotfiles/scripts/nvidia-chat.sh moonshotai/kimi-k3.1-pro < "$brief" > /tmp/council/voice-3.md 2>&1 &
+wait
 ```
 
-Add `--pure` only if plugins interfere with a non-interactive run. If T3 tools
-are unavailable there is no second provider, so do not invent one: run the cheap
-voice alone, report that the council was degraded to one voice, and lower
-confidence. Ask the user before spending OpenCode Go usage on extra paid voices.
+The script sends no token cap and no client timeout, so each voice runs to its
+own stop. Kimi is the slowest by far; several minutes is normal, not a hang. If a
+call exits non-zero, its error sits in that voice file: report it and continue
+with the others. Do not retry more than once.
+
+Keep the three outputs separate and labelled by voice. If the script cannot run
+at all (`NVIDIA_API_KEY` unset, network down), stop and report that the council
+is unavailable rather than inventing answers.
 
 ## Round 2: anonymized peer review
 
@@ -160,7 +139,8 @@ Ask for:
 3. the strongest objection to the current leading answer
 4. whether their round-1 view changed, and why
 
-Use the same T3 or CLI path. Keep the label map to yourself until synthesis.
+Use the same script and the same parallel pattern. Keep the label map to
+yourself until synthesis.
 
 ## Synthesis
 
@@ -214,9 +194,9 @@ Rounds: 2
 
 | Delegate | Round 1 | Round 2 |
 | --- | --- | --- |
-| Codex Luna | 7/10 | 9/10 |
-| Gemini 3.8 Flash | 8/10 | 10/10 |
-| MiMo V2.6 Flash | 7/10 | 9/10 |
+| Nemotron 3 Ultra | 7/10 | 9/10 |
+| Mistral Large 4 | 8/10 | 10/10 |
+| Kimi K3.1 Pro | 7/10 | 9/10 |
 ```
 
 Use the real delegate names. If a delegate gives no score, write `no score`; do
@@ -237,10 +217,10 @@ Retry a failed voice at most once.
 ## Cost
 
 Six model calls across a two-round pass: three independent answers, then three
-reviews. Only the OpenCode Go voice is metered; the Codex and Gemini voices bill
-against subscriptions. The paid voice is a cheap tool-capable model at $0.14 /
-$0.28 per M tokens. Do not run the council twice for the same decision without
-new evidence, and do not promote the paid voice to a pro-tier model without the
-user's say.
+reviews. All six run on the NVIDIA hosted NIM free tier, so nothing is metered,
+but they share a roughly 40 requests/minute budget and that is easy to exhaust
+with parallel agents. Do not run the council twice for the same decision without
+new evidence. If a model is unavailable on the key, report the gap instead of
+reaching for a paid provider.
 
 Origin: adapted from Karpathy's LLM Council by way of aiwithremy/claude-skills-llm-council and gcpdev/llm-council-skill, merged with t3dotgg/tstack council.
