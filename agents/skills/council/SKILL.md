@@ -107,15 +107,16 @@ Run all three in parallel, one background job each:
 ```bash
 mkdir -p /tmp/council
 brief=/tmp/council/brief.md
-~/.dotfiles/scripts/nvidia-chat.sh nvidia/nemotron-3-ultra-550b-a55b 2048 < "$brief" > /tmp/council/voice-1.md 2>&1 &
-~/.dotfiles/scripts/nvidia-chat.sh mistralai/mistral-large-4-1t-a52b 2048 < "$brief" > /tmp/council/voice-2.md 2>&1 &
-~/.dotfiles/scripts/nvidia-chat.sh moonshotai/kimi-k3.1-pro      2048 < "$brief" > /tmp/council/voice-3.md 2>&1 &
+~/.dotfiles/scripts/nvidia-chat.sh nvidia/nemotron-3-ultra-550b-a55b < "$brief" > /tmp/council/voice-1.md 2>&1 &
+~/.dotfiles/scripts/nvidia-chat.sh mistralai/mistral-large-4-1t-a52b < "$brief" > /tmp/council/voice-2.md 2>&1 &
+~/.dotfiles/scripts/nvidia-chat.sh moonshotai/kimi-k3.1-pro < "$brief" > /tmp/council/voice-3.md 2>&1 &
 wait
 ```
 
-Kimi takes around two minutes; that is expected, not a hang. If a call exits
-non-zero, its error sits in that voice file: report it and continue with the
-others. Do not retry more than once.
+The script sends no token cap and no client timeout, so each voice runs to its
+own stop. Kimi is the slowest by far; several minutes is normal, not a hang. If a
+call exits non-zero, its error sits in that voice file: report it and continue
+with the others. Do not retry more than once.
 
 Keep the three outputs separate and labelled by voice. If the script cannot run
 at all (`NVIDIA_API_KEY` unset, network down), stop and report that the council
