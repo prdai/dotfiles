@@ -35,7 +35,7 @@ Work happens through normal feature branches and pull requests.
 - Keep PRs small and reviewable. The PR describes the important behavior change, verification performed, and any known review or test gaps.
 - Never force-push a PR under review unless the user asks.
 - After every commit and push, if the branch has an open PR, update its title and body so they match what the PR now contains. Stale PR details are a bug, not a follow-up.
-- The agent never replies to reviewers or posts comments on the PR. All reviewer communication is the user's. When delegated, review-reply conventions (per-comment "Done in `<sha>` —" replies with evidence, honest verification gaps, supersede hygiene) live in the `coding-style` skill's "Agent PR review loop" section.
+- The agent never replies to reviewers or posts comments on the PR unless the user authorizes it for that task. When delegated, the full watch, triage, fix, CI, reply, and re-request loop lives in the `pr-review-loop` skill; review-reply wording lives in `coding-style`'s "Agent PR review loop" section.
 - Address review feedback by pushing fixes as new commits.
 
 ## Commit Discipline
