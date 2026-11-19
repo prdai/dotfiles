@@ -184,11 +184,11 @@
     "command": "editor.openFavorite"
   },
   {
-    "key": "mod+shift+[",
+    "key": "ctrl+shift+tab",
     "command": "thread.previous"
   },
   {
-    "key": "mod+shift+]",
+    "key": "ctrl+tab",
     "command": "thread.next"
   },
   {
