@@ -8,6 +8,12 @@ set -euo pipefail
 model="${1:?usage: nvidia-chat.sh <model>}"
 base="${NVIDIA_BASE_URL:-https://integrate.api.nvidia.com/v1}"
 
+if [[ -z "${NVIDIA_API_KEY:-}" && -f "$HOME/.dotfiles/.env" ]]; then
+  set -a
+  . "$HOME/.dotfiles/.env"
+  set +a
+fi
+
 : "${NVIDIA_API_KEY:?NVIDIA_API_KEY is not set; copy .env.example to .env in ~/.dotfiles}"
 
 prompt="$(cat)"

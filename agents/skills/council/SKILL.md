@@ -1,11 +1,11 @@
 ---
 name: council
-description: Runs a critical decision or code review through three independent models, an anonymized peer review, and a chaired verdict, looping until delegates are satisfied. Use when a decision hits the critical bar (irreversible or destructive action, public API or architecture, large refactor or release, production incident) or when the user says "council", "council this", "run the council", "critical check", or "pressure-test this". Do not use for routine edits, factual lookups, or reversible low-cost choices.
+description: Runs a critical decision or code review through four independent models, an anonymized peer review, and a chaired verdict, looping until delegates are satisfied. Use when a decision hits the critical bar (irreversible or destructive action, public API or architecture, large refactor or release, production incident) or when the user says "council", "council this", "run the council", "critical check", or "pressure-test this". Do not use for routine edits, factual lookups, or reversible low-cost choices.
 ---
 
 # Council
 
-Three models answer independently. They review each other blind. The current
+Four models answer independently. They review each other blind. The current
 agent chairs and verifies. The point is to surface disagreement, not manufacture
 consensus.
 
@@ -23,9 +23,9 @@ Do not convene for routine edits, formatting, single-file fixes, factual
 lookups, brainstorming without stakes, or anything cheap to reverse.
 
 The agent proposes, the user confirms. State which criterion matched and the cost
-(three voices, two rounds, six model calls on the NVIDIA free tier), then wait
-for an explicit yes. Manual triggers: "council", "council this", "run the
-council", "critical check", "pressure-test this".
+(four voices, two rounds, eight model calls: four on the NVIDIA free tier and
+four Copilot calls), then wait for an explicit yes. Manual triggers: "council",
+"council this", "run the council", "critical check", "pressure-test this".
 
 ## Before a review round
 
@@ -36,34 +36,39 @@ implementation and explore new ideas, skip fixes to code being replaced.
 
 ## Voices
 
-All three voices run on the NVIDIA hosted NIM API through
+Two voices run on the NVIDIA hosted NIM API through
 `~/.dotfiles/scripts/nvidia-chat.sh`, which reads `NVIDIA_API_KEY` from
-`~/.dotfiles/.env`. Nothing metered is involved: the free tier allows roughly 40
-requests per minute, and a two-round council makes six calls.
+`~/.dotfiles/.env`. Two voices run on the GitHub Copilot CLI through
+`~/.dotfiles/scripts/copilot-chat.sh`, using the logged-in Copilot account.
 
-| Voice | Model | Notes |
-|---|---|---|
-| 1 | `nvidia/nemotron-3-ultra-550b-a55b` | 550B MoE, ~2s, strongest fast model |
-| 2 | `mistralai/mistral-large-4-1t-a52b` | 1T, ~10s, different training lineage |
-| 3 | `moonshotai/kimi-k3.1-pro` | frontier reasoning, ~2min, slowest |
+| Voice | Provider | Model | Notes |
+|---|---|---|---|
+| 1 | NVIDIA NIM | `nvidia/nemotron-3-ultra-550b-a55b` | 550B MoE, ~2s, strongest fast model |
+| 2 | NVIDIA NIM | `moonshotai/kimi-k3.1-pro` | frontier reasoning, ~2min, slowest |
+| 3 | GitHub Copilot | `auto` | Copilot Fusion picks the model; uses AI credits |
+| 4 | GitHub Copilot | `auto` | same Fusion router as voice 3 |
 
-The trio spans three unrelated families, which is the point. Do not run three
-Nemotron tiers as the trio; shared lineage defeats the exercise.
+The NVIDIA pair spans two unrelated families, which is the point. The two
+Copilot seats share one Auto router, so they are two samples of the same lineage,
+not two independent families. On the Copilot Student plan `auto` is the only
+usable model: every specific id in `/model` is gated. Do not claim four distinct
+families.
 
-Model ids are the upstream ids. Availability is per key: some catalog models
-return `404 Function ... not found for account`. If a voice fails that way,
-report it and continue with the voices that answered.
+NVIDIA model ids are the upstream ids. Availability is per key: some catalog
+models return `404 Function ... not found for account`. If a voice fails that
+way, report it and continue with the voices that answered.
 
-A project overrides the trio in its `AGENTS.md` with:
-
-```
-Council: model, model, model
-```
-
-For example:
+A project overrides the lineup in its `AGENTS.md` with:
 
 ```
-Council: nvidia/nemotron-3-ultra-550b-a55b, z-ai/glm-5.3-flash, minimaxai/minimax-m3.1-flash
+Council: model, model, model, model
+```
+
+Prefix a member with `copilot/` to run it through Copilot; anything else runs on
+NVIDIA NIM. For example:
+
+```
+Council: nvidia/nemotron-3-ultra-550b-a55b, moonshotai/kimi-k3.1-pro, copilot/auto, copilot/auto
 ```
 
 Use the override when it is in context. If the user names council members, use
@@ -85,9 +90,9 @@ as "Evaluate: migrate X to Y", not "Should we do what the user wants".
 
 ## Round 1: independent answers
 
-Send the same brief to all three, in parallel. Tell each voice:
+Send the same brief to all four, in parallel. Tell each voice:
 
-- it is one of three independent advisors and cannot see the others
+- it is one of four independent advisors and cannot see the others
 - do not edit files, do not run commands, do not ask questions, do not start subagents
 - label uncertain facts as unverified
 
@@ -102,33 +107,34 @@ Ask for:
 
 ### Running the voices
 
-Run all three in parallel, one background job each:
+Run all four in parallel, one background job each:
 
 ```bash
 mkdir -p /tmp/council
 brief=/tmp/council/brief.md
 ~/.dotfiles/scripts/nvidia-chat.sh nvidia/nemotron-3-ultra-550b-a55b < "$brief" > /tmp/council/voice-1.md 2>&1 &
-~/.dotfiles/scripts/nvidia-chat.sh mistralai/mistral-large-4-1t-a52b < "$brief" > /tmp/council/voice-2.md 2>&1 &
-~/.dotfiles/scripts/nvidia-chat.sh moonshotai/kimi-k3.1-pro < "$brief" > /tmp/council/voice-3.md 2>&1 &
+~/.dotfiles/scripts/nvidia-chat.sh moonshotai/kimi-k3.1-pro < "$brief" > /tmp/council/voice-2.md 2>&1 &
+~/.dotfiles/scripts/copilot-chat.sh auto < "$brief" > /tmp/council/voice-3.md 2>&1 &
+~/.dotfiles/scripts/copilot-chat.sh auto < "$brief" > /tmp/council/voice-4.md 2>&1 &
 wait
 ```
 
-The script sends no token cap and no client timeout, so each voice runs to its
-own stop. Kimi is the slowest by far; several minutes is normal, not a hang. If a
-call exits non-zero, its error sits in that voice file: report it and continue
-with the others. Do not retry more than once.
+Neither script caps tokens and both run to their own stop. Kimi is the slowest
+by far; several minutes is normal, not a hang. If a call exits non-zero, its
+error sits in that voice file: report it and continue with the others. Do not
+retry more than once.
 
-Keep the three outputs separate and labelled by voice. If the script cannot run
-at all (`NVIDIA_API_KEY` unset, network down), stop and report that the council
-is unavailable rather than inventing answers.
+Keep the four outputs separate and labelled by voice. If one provider cannot run
+at all (`NVIDIA_API_KEY` unset, Copilot not logged in, network down), report that
+gap; do not invent answers for the missing voices.
 
 ## Round 2: anonymized peer review
 
-Relabel the answers A, B, C in a fixed order. Remove model names and anything
-self-identifying. Send all three answers to all three voices with:
+Relabel the answers A, B, C, D in a fixed order. Remove model names and anything
+self-identifying. Send all four answers to all four voices with:
 
 - the same neutral brief
-- all three anonymous answers
+- all four anonymous answers
 - do not guess authors
 - do not converge for agreement's sake
 
@@ -139,7 +145,7 @@ Ask for:
 3. the strongest objection to the current leading answer
 4. whether their round-1 view changed, and why
 
-Use the same script and the same parallel pattern. Keep the label map to
+Use the same scripts and the same parallel pattern. Keep the label map to
 yourself until synthesis.
 
 ## Synthesis
@@ -167,7 +173,7 @@ Rules:
 - Majority is not truth. Model agreement is not evidence; shared training bias is possible.
 - Preserve dissent. Do not average incompatible recommendations.
 - Do not soften a verdict to match the user. If their position lost, say so.
-- Do not say "all three agreed" unless they did.
+- Do not say "all four agreed" unless they did.
 - Do not edit code during the council. Implement only after the verdict and the user's go-ahead.
 
 ## Loop after fixes
@@ -195,8 +201,9 @@ Rounds: 2
 | Delegate | Round 1 | Round 2 |
 | --- | --- | --- |
 | Nemotron 3 Ultra | 7/10 | 9/10 |
-| Mistral Large 4 | 8/10 | 10/10 |
 | Kimi K3.1 Pro | 7/10 | 9/10 |
+| Copilot Auto A | 7/10 | 9/10 |
+| Copilot Auto B | 8/10 | 9/10 |
 ```
 
 Use the real delegate names. If a delegate gives no score, write `no score`; do
@@ -207,7 +214,7 @@ comment. If there is no PR, put the same results in the final reply only.
 
 | Failure | Action |
 |---|---|
-| One voice fails | Continue with two, state the gap, lower confidence |
+| One voice fails | Continue with three, state the gap, lower confidence |
 | Two or more fail | Stop. Report the errors. Do not invent answers |
 | Round 2 partial | Synthesize from available reviews, mark confidence low |
 | Same decision asked twice | Reuse the verdict unless new evidence exists |
@@ -216,11 +223,12 @@ Retry a failed voice at most once.
 
 ## Cost
 
-Six model calls across a two-round pass: three independent answers, then three
-reviews. All six run on the NVIDIA hosted NIM free tier, so nothing is metered,
-but they share a roughly 40 requests/minute budget and that is easy to exhaust
-with parallel agents. Do not run the council twice for the same decision without
-new evidence. If a model is unavailable on the key, report the gap instead of
-reaching for a paid provider.
+Eight model calls across a two-round pass: four independent answers, then four
+reviews. The two NVIDIA voices run free on the NIM tier and share its roughly
+40 requests/minute budget. The two Copilot voices draw on the 200-credit monthly
+allowance of the Copilot Student plan, so a full pass costs about 4 credits;
+roughly 50 passes per month, and NVIDIA keeps working after Copilot credits run
+out. Do not run the council twice for the same decision without new evidence. If
+a model is unavailable, report the gap instead of reaching for a paid provider.
 
 Origin: adapted from Karpathy's LLM Council by way of aiwithremy/claude-skills-llm-council and gcpdev/llm-council-skill, merged with t3dotgg/tstack council.
