@@ -139,6 +139,10 @@ if.app-id = 'com.t3tools.t3code'
 run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
+if.app-id = 'com.apple.iCal'
+run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
 if.app-id = 'com.spotify.client'
 run = 'move-node-to-workspace 7'
 
@@ -149,15 +153,3 @@ run = 'move-node-to-workspace 8'
 [[on-window-detected]]
 if.app-id = 'net.whatsapp.WhatsApp'
 run = 'move-node-to-workspace 9'
-
-[workspace-to-monitor-force-assignment]
-1 = 'secondary'
-2 = 'secondary'
-3 = 'secondary'
-4 = 'secondary'
-5 = 'secondary'
-
-6 = 'main'
-7 = 'main'
-8 = 'main'
-9 = 'main'

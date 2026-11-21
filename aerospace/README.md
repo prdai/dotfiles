@@ -45,12 +45,13 @@ cd /Applications && mdls -name kMDItemCFBundleIdentifier "AppName.app"
 | 1 | Ghostty (terminal) |
 | 2 | Zen Browser |
 | 3 | Obsidian |
+| 4 | T3 Code |
+| 5 | Calendar |
 | 7 | Spotify |
-| 8 | Cron (calendar) |
+| 8 | Slack |
 | 9 | WhatsApp |
 
-Workspaces 1-5 → secondary monitor  
-Workspaces 6-9 → main monitor
+Workspaces are not pinned to a display; they open on the monitor in use.
 
 ## features
 
