@@ -35,12 +35,15 @@ npm install
 
 npx wrangler login
 npx wrangler d1 create agent-mail
-# paste the returned database_id into wrangler.jsonc
+# replace database_id in wrangler.jsonc with the new one
 
 npm run db:init
 npx wrangler secret put API_TOKEN
 npx wrangler deploy
 ```
+
+The committed `wrangler.jsonc` already points at the live account and D1
+database, so a redeploy only needs `npx wrangler deploy`.
 
 `API_TOKEN` is any long random string, for example `openssl rand -hex 32`.
 
