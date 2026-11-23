@@ -66,6 +66,7 @@ source ~/.bashrc   # or: source ~/.zshrc
 | path | purpose |
 |------|---------|
 | `aerospace/` | aerospace tiling window manager config for macos |
+| `agent-mail/` | receive-only Cloudflare Worker + D1 inbox for agent@prdai.dev |
 | `agents/` | shared agent rules (AGENTS.md) + vendored skills, referenced by opencode, pi, and T3 Code |
 | `bash/` | bash config, aliases, prompt, helper functions |
 | `btop/` | btop system monitor config |
