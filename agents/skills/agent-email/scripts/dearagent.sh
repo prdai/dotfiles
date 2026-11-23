@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-: "${DEARAGENT_URL:=https://dearagent.prdai.workers.dev}"
+: "${DEARAGENT_URL:=https://dearagent.prdai.dev}"
 
 if [[ -z "${DEARAGENT_API_KEY:-}" && -r "${HOME}/.config/dearagent/token" ]]; then
   DEARAGENT_API_KEY="$(tr -d '\r\n' < "${HOME}/.config/dearagent/token")"

@@ -17,7 +17,7 @@ Receiving is free. Sending needs a paid Workers plan and is not relied on here.
 ## Before use
 
 The wrapper resolves configuration on its own. `DEARAGENT_URL` defaults to
-`https://dearagent.prdai.workers.dev`. The key comes from `DEARAGENT_API_KEY`,
+`https://dearagent.prdai.dev`. The key comes from `DEARAGENT_API_KEY`,
 else `~/.config/dearagent/token`, else the repo `.env`.
 
 If no key exists anywhere, do not stop and ask. Generate one, install it as the
