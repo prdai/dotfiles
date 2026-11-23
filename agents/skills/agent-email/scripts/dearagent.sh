@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-: "${DEARAGENT_URL:?set DEARAGENT_URL to the dearagent worker base URL}"
-: "${DEARAGENT_API_KEY:?set DEARAGENT_API_KEY to the dearagent API key}"
+: "${DEARAGENT_URL:=https://dearagent.prdai.workers.dev}"
+
+if [[ -z "${DEARAGENT_API_KEY:-}" && -r "${HOME}/.config/dearagent/token" ]]; then
+  DEARAGENT_API_KEY="$(tr -d '\r\n' < "${HOME}/.config/dearagent/token")"
+fi
+
+if [[ -z "${DEARAGENT_API_KEY:-}" ]]; then
+  printf 'missing DEARAGENT_API_KEY and ~/.config/dearagent/token; install one with: wrangler secret put API_KEY\n' >&2
+  exit 1
+fi
 
 base="${DEARAGENT_URL%/}"
 inbox="agent%40prdai.dev"

@@ -16,18 +16,28 @@ Receiving is free. Sending needs a paid Workers plan and is not relied on here.
 
 ## Before use
 
-- `DEARAGENT_URL`: server base URL, no trailing slash.
-- `DEARAGENT_API_KEY`: bearer key.
+The wrapper resolves configuration on its own. `DEARAGENT_URL` defaults to
+`https://dearagent.prdai.workers.dev`. The key comes from `DEARAGENT_API_KEY`,
+else `~/.config/dearagent/token`, else the repo `.env`.
 
-Every request sends `Authorization: Bearer $DEARAGENT_API_KEY`. The inbox id is
-`agent@prdai.dev`; URL-encode it as `agent%40prdai.dev` in paths.
+If no key exists anywhere, do not stop and ask. Generate one, install it as the
+Worker secret, and persist it:
 
 ```bash
-export DEARAGENT_URL="https://dearagent.prdai.workers.dev"
-export DEARAGENT_API_KEY="..."
+KEY="da_$(openssl rand -hex 24)"
+cd ~/Storage/projects/dearagent
+printf '%s' "$KEY" | npx wrangler secret put API_KEY
+mkdir -p ~/.config/dearagent
+printf '%s' "$KEY" > ~/.config/dearagent/token
+chmod 600 ~/.config/dearagent/token
 ```
 
-If either is missing, stop and ask the user; do not guess a URL.
+That rotates the shared key, so other holders must pick up the new value. If
+`wrangler` is not authenticated, run `npx wrangler login` first; no chat round
+trip is needed.
+
+Never bypass auth. Every request must carry the bearer key and the Worker
+rejects anything else; a made-up key will just return 401.
 
 ## Endpoints
 
