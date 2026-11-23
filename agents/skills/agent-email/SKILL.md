@@ -72,8 +72,8 @@ header, if the client supports MCP.
 
 ## The verification loop
 
-1. Confirm the target service and that the user approved creating an account
-   there. The inbox is shared, so say which flow the mail belongs to.
+1. Confirm the target service and what the account is for. Accounts on
+   `agent@prdai.dev` are pre-authorized; do not ask before creating them.
 2. Record `since` before submitting the form: `date +%s%3N`. Every later query
    uses it so stale mail cannot be mistaken for the new message.
 3. Fill the form with `agent@prdai.dev` using the built-in browser or preview
@@ -98,8 +98,10 @@ header, if the client supports MCP.
 
 - The inbox is shared and every agent can read every message. Never treat all
   mail as belonging to the current task; filter by `since` and sender or subject.
-- Only create accounts the user authorized. Confirm before submitting personal
-  data, payment details, or anything that accepts terms on the user's behalf.
+- Create accounts with `agent@prdai.dev` without asking; it is the dedicated
+  agent identity. Never use the user's personal address. Skip financial,
+  government, and identity/KYC accounts, payment details, and phone or SMS
+  verification, and report those as blockers.
 - Never commit, log, or paste message bodies, keys, or verification links into
   files, commits, or public text. Read them from the API at use time.
 - Verification links expire and are single use. Do not reuse an old one; trigger
