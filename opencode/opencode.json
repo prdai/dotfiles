@@ -34,7 +34,7 @@
     "huggingface": {
       "type": "remote",
       "url": "https://huggingface.co/mcp",
-      "enabled": true,
+      "enabled": false,
       "oauth": {}
     },
     "cloudflare": {
