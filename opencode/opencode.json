@@ -31,6 +31,12 @@
     "max_bytes": 8192
   },
   "mcp": {
+    "huggingface": {
+      "type": "remote",
+      "url": "https://huggingface.co/mcp",
+      "enabled": false,
+      "oauth": {}
+    },
     "cloudflare": {
       "type": "remote",
       "url": "https://mcp.cloudflare.com/mcp",
