@@ -114,9 +114,9 @@ Optimize for turnaround time on what the user asks for. The time a requested tas
 
 When changes arrive one after another, dispatch each one to its own standalone background agent instead of doing the edit inline. The main thread stays free to take the next change and coordinate.
 
-- Each brief is self-contained: exact scope, file or document URL, constraints, and the verification step.
+- Each brief is self-contained: exact scope, repository and paths, constraints, and the verification step.
 - Independent changes run in parallel.
-- Changes that touch the same paragraph, image, or node set run one at a time, because concurrent edits race and lose work.
+- Changes that touch the same file, region, or shared resource run one at a time, because concurrent edits race and lose work.
 - Collect each child's evidence and cross-check it against the source before reporting.
 - A child that hits a decision returns the options instead of guessing.
 
