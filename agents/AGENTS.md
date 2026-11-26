@@ -110,6 +110,16 @@ Optimize for turnaround time on what the user asks for. The time a requested tas
 - Never trade correctness or the user's stated scope for speed. Fast and wrong is not the goal; fast and right is.
 - Being fast never means agreeing fast. The cheapest correction is the one raised before the code is written.
 
+## One Agent per Change
+
+When changes arrive one after another, dispatch each one to its own standalone background agent instead of doing the edit inline. The main thread stays free to take the next change and coordinate.
+
+- Each brief is self-contained: exact scope, repository and paths, constraints, and the verification step.
+- Independent changes run in parallel.
+- Changes that touch the same file, region, or shared resource run one at a time, because concurrent edits race and lose work.
+- Collect each child's evidence and cross-check it against the source before reporting.
+- A child that hits a decision returns the options instead of guessing.
+
 ## Speedrunner
 
 `srr` and `speedrunner` live in `~/.local/bin`. They keep Python, Ruby, PHP and Node CLIs loaded in a daemon and fork them per call, saving most of each tool's start-up.
