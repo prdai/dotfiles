@@ -99,3 +99,13 @@ Optimize for turnaround time on what the user asks for. The time a requested tas
 - Default to spinning off a background subagent for substantive or long-running work (builds, tests, investigations, multi-file implementation) rather than running it in the main thread. The main thread should stay free for the user to keep directing work while agents run in the background.
 - Never trade correctness or the user's stated scope for speed. Fast and wrong is not the goal; fast and right is.
 - Being fast never means agreeing fast. The cheapest correction is the one raised before the code is written.
+
+## One Agent per Change
+
+When changes arrive one after another, dispatch each one to its own standalone background agent instead of doing the edit inline. The main thread stays free to take the next change and coordinate.
+
+- Each brief is self-contained: exact scope, repository and paths, constraints, and the verification step.
+- Independent changes run in parallel.
+- Changes that touch the same file, region, or shared resource run one at a time, because concurrent edits race and lose work.
+- Collect each child's evidence and cross-check it against the source before reporting.
+- A child that hits a decision returns the options instead of guessing.
