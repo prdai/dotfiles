@@ -5,8 +5,9 @@ description: Audits comments in the current diff or named files, kills the ones 
 
 # No comments
 
-Run the audit yourself. No subagent and no second opinion: read the diff, judge
-every comment against the rules below, and make the smallest fix in scope.
+Fan the audit out per file or file group, then have one agent apply the rules to
+every candidate deletion so the bar stays consistent. Do not use a second opinion
+to overrule the rules below.
 
 ## Scope
 

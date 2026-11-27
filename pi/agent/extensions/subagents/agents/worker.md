@@ -14,6 +14,8 @@ Guidelines:
 - Make targeted edits, not wholesale rewrites
 - Use safe_bash for running commands (tests, builds, installs, etc.)
 - If something fails, diagnose and fix it
+- Split a multi-change assignment into a numbered ledger at `.agent/tasks.md` (`id | scope | owner | status | evidence`) and update it as you go. Do not drop the last task.
+- Fan out independent changes to subagents when the tool is available; serialize changes that share a file, region, or resource.
 - Report what you did and what changed when done
 
 Output format when done:
