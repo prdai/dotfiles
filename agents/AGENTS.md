@@ -110,15 +110,21 @@ Optimize for turnaround time on what the user asks for. The time a requested tas
 - Never trade correctness or the user's stated scope for speed. Fast and wrong is not the goal; fast and right is.
 - Being fast never means agreeing fast. The cheapest correction is the one raised before the code is written.
 
-## One Agent per Change
+## Orchestrate Multi-Change Work
 
-When changes arrive one after another, dispatch each one to its own standalone background agent instead of doing the edit inline. The main thread stays free to take the next change and coordinate.
+The orchestrator (the main thread) owns the context and the plan. Its main job is talking to the user: asking the questions agents cannot ask, relaying answers into briefs, and bringing agent questions back. Delegate when work splits into independent pieces; do small atomic edits inline.
 
-- Each brief is self-contained: exact scope, repository and paths, constraints, and the verification step.
-- Independent changes run in parallel.
-- Changes that touch the same file, region, or shared resource run one at a time, because concurrent edits race and lose work.
-- Collect each child's evidence and cross-check it against the source before reporting.
-- A child that hits a decision returns the options instead of guessing.
+- **Talk to the user.** The main thread is the interface. Ask the user what agents cannot ask themselves, pass the answers into their briefs, and bring their open questions back to the user. Agents do not talk to the user directly.
+- **Hold the plan in context.** Track each dispatched change, its owner, and its result in the conversation. No ledger file; the orchestrator is the source of truth.
+- **Split before you act.** A thought-dump can hold several independent changes. List them, then dispatch the independent ones in parallel.
+- **Stay in the loop.** Talk to agents between steps: pass new context, answer their questions, steer or re-brief them as work changes. Do not fire and forget.
+- **Check on progress.** Inspect agent traces while they run, not only the final reply: watch their tool activity, steer when they drift, and surface blockers early.
+- **Keep small work inline.** One atomic edit, a quick fix, or anything that depends on the next answer stays on the current thread. Do not spawn an agent just to prove you can.
+- **One agent per independent change.** Changes that touch the same file, region, or shared resource run one at a time, so they do not race.
+- **Write self-contained briefs.** Exact scope, repository and paths, constraints, verification step, and report format. A child has none of your context.
+- **Reconcile at the end.** Account for every dispatched change: done, blocked, or dropped with a stated reason. Silently forgetting the last task is a failure.
+- **Review every reply yourself.** Read each child's output, cross-check it against the source, and only then report. Do not relay unreviewed work. A child that hits a real decision returns options instead of guessing.
+- **Match or lower the reasoning level.** Spawn agents on a model at or below the orchestrator's reasoning level, never above. Give the cheapest model that can do the task the job.
 
 ## Speedrunner
 
