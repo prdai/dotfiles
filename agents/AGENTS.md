@@ -110,15 +110,20 @@ Optimize for turnaround time on what the user asks for. The time a requested tas
 - Never trade correctness or the user's stated scope for speed. Fast and wrong is not the goal; fast and right is.
 - Being fast never means agreeing fast. The cheapest correction is the one raised before the code is written.
 
-## One Agent per Change
+## Fan Out Every Change
 
-When changes arrive one after another, dispatch each one to its own standalone background agent instead of doing the edit inline. The main thread stays free to take the next change and coordinate.
+Delegation is the default, not an exception. Treat every request as a batch of changes and dispatch each change to its own standalone background agent. The main thread decomposes, dispatches, verifies, and reconciles; it does not do edits it can hand off.
 
-- Each brief is self-contained: exact scope, repository and paths, constraints, and the verification step.
-- Independent changes run in parallel.
-- Changes that touch the same file, region, or shared resource run one at a time, because concurrent edits race and lose work.
-- Collect each child's evidence and cross-check it against the source before reporting.
-- A child that hits a decision returns the options instead of guessing.
+- **Parse the dump first.** The user often thinks out loud, so one message can hold several independent changes. Split it into a numbered task ledger before acting, then dispatch one agent per task, even when the message reads as a single ask.
+- **Keep a durable ledger.** The ledger lives at `.agent/tasks.md` in the checkout root (gitignored). Write the numbered task list there before dispatching, with `id | scope | owner | status | evidence` per line. It is the source of truth, not chat memory: pass the path in every brief, and have every agent, main thread or subagent, append its own sub-tasks and update status in the same file. A task nobody can see is a task that gets forgotten.
+- **Every agent fans out, not just the main thread.** A child that receives more than one change splits it again and dispatches its own children. Every brief grants the same dispatch authority and ledger access to its child. A harness default that tells children to work inline is overridden by the brief. Only atomic changes bottom out and do the work directly.
+- **Independent changes run in parallel.** Fire them in one message at the harness's concurrency limit.
+- **Serialize shared targets.** Changes that touch the same file, region, or shared resource run one at a time, because concurrent edits race and lose work.
+- **Write self-contained briefs.** Exact scope, repository and paths, constraints, verification step, and report format. A child has none of your context.
+- **Do not ration agent calls.** Quota is plentiful; optimize for wall-clock turnaround, not token spend.
+- **Reconcile before you fan out.** Fan-out multiplies a wrong assumption across N agents. Resolve only genuinely blocking ambiguity with one question, state any assumption you proceed on, then dispatch.
+- **Reconcile before you hand back.** Walk the ledger and account for every task: done, blocked, or dropped with a stated reason. Silently forgetting the last task is a failure, not an oversight.
+- **Verify, do not trust.** Collect each child's evidence and cross-check it against the source before reporting. A child that hits a real decision returns options instead of guessing.
 
 ## Speedrunner
 

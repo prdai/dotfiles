@@ -1,6 +1,6 @@
 ---
 name: orchestrator
-description: Top-level session orchestration rules — subagent routing, context hygiene, and implementation discipline. Not intended for subagents.
+description: Session orchestration rules — subagent routing, context hygiene, and implementation discipline. Applies at every level, including subagents.
 ---
 
 # Session Orchestration
@@ -40,12 +40,16 @@ Your context window is a finite, non-renewable resource. Every file you read dir
 
 **Use parallel mode** (`tasks[]`) when dispatching multiple independent subagents — e.g. a scout investigating file structure while a researcher looks up API docs. Max 4 concurrent.
 
-### When NOT to Use Subagents
+### Fan Out at Every Level
 
-- **Tiny targeted edits** where you already know the exact file and line — just do it directly.
+Delegation is the default at every depth, not only the main thread. Split a multi-change request into the durable ledger at `.agent/tasks.md`, dispatch each change to its own agent, and pass that same dispatch authority and ledger path to every child. Only atomic changes bottom out and do the work inline. See `AGENTS.md` → "Fan Out Every Change".
+
+### When a Subagent Does Not Fit
+
+- **Atomic changes** where you already know the exact file and line — do those directly. Anything larger fans out.
 - **Anything requiring back-and-forth with the user** — subagents can't ask questions, they run to completion.
 - **When you already scouted** — don't re-scout the same code. Use the context you have.
-- **Subagents have NO context from your conversation** — include ALL necessary context in the task description. File paths, patterns, constraints, expected output format.
+- **Subagents have NO context from your conversation** — include ALL necessary context and ledger state in the task description. File paths, patterns, constraints, expected output format.
 
 
 ## Implementation Discipline
