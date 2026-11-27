@@ -121,7 +121,8 @@ The orchestrator (the main thread) owns the context and the plan. Delegate when 
 - **One agent per independent change.** Changes that touch the same file, region, or shared resource run one at a time, so they do not race.
 - **Write self-contained briefs.** Exact scope, repository and paths, constraints, verification step, and report format. A child has none of your context.
 - **Reconcile at the end.** Account for every dispatched change: done, blocked, or dropped with a stated reason. Silently forgetting the last task is a failure.
-- **Verify, do not trust.** Cross-check each child's evidence before reporting. A child that hits a real decision returns options instead of guessing.
+- **Review every reply yourself.** Read each child's output, cross-check it against the source, and only then report. Do not relay unreviewed work. A child that hits a real decision returns options instead of guessing.
+- **Match or lower the reasoning level.** Spawn agents on a model at or below the orchestrator's reasoning level, never above. Give the cheapest model that can do the task the job.
 
 ## Speedrunner
 
