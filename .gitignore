@@ -27,9 +27,6 @@ vicinae/settings.json
 opencode/service.json
 .env
 
-# Agent task ledger (per-checkout scratch)
-.agent/
-
 # macOS
 .DS_Store
 

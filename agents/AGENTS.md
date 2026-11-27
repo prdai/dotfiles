@@ -110,17 +110,17 @@ Optimize for turnaround time on what the user asks for. The time a requested tas
 - Never trade correctness or the user's stated scope for speed. Fast and wrong is not the goal; fast and right is.
 - Being fast never means agreeing fast. The cheapest correction is the one raised before the code is written.
 
-## Delegate Multi-Change Work
+## Orchestrate Multi-Change Work
 
-Delegate when work splits into independent pieces; do small atomic edits inline. The main thread decomposes, dispatches, verifies, and reconciles.
+The orchestrator (the main thread) owns the context and the plan. Delegate when work splits into independent pieces; do small atomic edits inline.
 
+- **Hold the plan in context.** Track each dispatched change, its owner, and its result in the conversation. No ledger file; the orchestrator is the source of truth.
 - **Split before you act.** A thought-dump can hold several independent changes. List them, then dispatch the independent ones in parallel.
+- **Stay in the loop.** Talk to agents between steps: pass new context, answer their questions, steer or re-brief them as work changes. Do not fire and forget.
 - **Keep small work inline.** One atomic edit, a quick fix, or anything that depends on the next answer stays on the current thread. Do not spawn an agent just to prove you can.
-- **One agent per independent change.** Changes that touch the same file, region, or shared resource run one at a time, or in the same agent, so they do not race.
-- **Children can split, but not endlessly.** A child handed several independent changes may dispatch them; an atomic change is done inline. Stop recursing once the work no longer splits.
+- **One agent per independent change.** Changes that touch the same file, region, or shared resource run one at a time, so they do not race.
 - **Write self-contained briefs.** Exact scope, repository and paths, constraints, verification step, and report format. A child has none of your context.
-- **Ledger only when it helps.** More than a couple of tasks or work across agents goes in `.agent/tasks.md` (`id | scope | owner | status | evidence`), so nothing is dropped. A single change does not need one.
-- **Reconcile at the end.** Account for every dispatched task: done, blocked, or dropped with a stated reason. Silently forgetting the last task is a failure.
+- **Reconcile at the end.** Account for every dispatched change: done, blocked, or dropped with a stated reason. Silently forgetting the last task is a failure.
 - **Verify, do not trust.** Cross-check each child's evidence before reporting. A child that hits a real decision returns options instead of guessing.
 
 ## Speedrunner

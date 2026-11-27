@@ -40,16 +40,16 @@ Your context window is a finite, non-renewable resource. Every file you read dir
 
 **Use parallel mode** (`tasks[]`) when dispatching multiple independent subagents — e.g. a scout investigating file structure while a researcher looks up API docs. Max 4 concurrent.
 
-### Delegate Multi-Change Work
+### Orchestrate Multi-Change Work
 
-Delegate when work splits into independent pieces; do small atomic edits inline. Split a thought-dump into tasks, dispatch the independent ones in parallel, and serialize changes that share a file, region, or resource. A child handed several independent changes may split them too, but stop once the work is atomic. Track more than a couple of tasks in `.agent/tasks.md` so nothing is dropped. See `AGENTS.md` → "Delegate Multi-Change Work".
+The orchestrator owns the context and the plan; there is no ledger file. Delegate when work splits into independent pieces, keep small or atomic edits inline, and stay in the loop with agents between steps: pass new context, answer questions, steer or re-brief as work changes. Serialize changes that share a file, region, or resource. See `AGENTS.md` → "Orchestrate Multi-Change Work".
 
 ### When a Subagent Does Not Fit
 
 - **Atomic changes** where you already know the exact file and line — do those directly.
 - **Anything requiring back-and-forth with the user** — subagents can't ask questions, they run to completion.
 - **When you already scouted** — don't re-scout the same code. Use the context you have.
-- **Subagents have NO context from your conversation** — include ALL necessary context and ledger state in the task description. File paths, patterns, constraints, expected output format.
+- **Subagents have NO context from your conversation** — include ALL necessary context in the task description. File paths, patterns, constraints, expected output format.
 
 
 ## Implementation Discipline
