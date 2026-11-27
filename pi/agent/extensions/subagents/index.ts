@@ -652,8 +652,8 @@ export default function (pi: ExtensionAPI) {
 		promptSnippet: "Run subagents for delegated tasks",
 		promptGuidelines: [
 			"Parallel tool calls are your primary parallelism mechanism for simple I/O — put multiple independent read/fetch/search calls in one function_calls block. Do not spawn a subagent just to parallelize I/O.",
-			"Fan out every change: split a multi-change request into a numbered ledger at `.agent/tasks.md` (`id | scope | owner | status | evidence`) and dispatch one subagent per change. Independent changes run in parallel; changes sharing a file, region, or resource run one at a time.",
-			"Every task brief is self-contained and carries the same dispatch authority plus the ledger path, so children can fan out under the same rule. Only atomic changes run inline.",
+			"Delegate multi-change work: split a multi-change request into tasks and dispatch the independent ones in parallel. Serialize changes that share a file, region, or resource. Keep small or atomic changes inline.",
+			"Track more than a couple of tasks in `.agent/tasks.md` (`id | scope | owner | status | evidence`) so nothing is dropped. A child handed several independent changes may split them too, but stop once the work is atomic.",
 			"Use subagent to delegate *reasoning and decisions*: codebase exploration (scout), web research (researcher), or isolated code changes (worker)",
 			"For multiple independent subagent tasks, use parallel mode with tasks[] array",
 			"Subagents have NO context from the current conversation — include ALL necessary context in the task description",

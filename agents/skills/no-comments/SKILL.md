@@ -5,9 +5,7 @@ description: Audits comments in the current diff or named files, kills the ones 
 
 # No comments
 
-Fan the audit out per file or file group, then have one agent apply the rules to
-every candidate deletion so the bar stays consistent. Do not use a second opinion
-to overrule the rules below.
+Audit small diffs directly. For a large diff, split it by file or file group and reconcile the candidate deletions in one pass so the bar stays consistent. Do not use a second opinion to overrule the rules below.
 
 ## Scope
 
