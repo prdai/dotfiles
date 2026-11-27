@@ -654,6 +654,8 @@ export default function (pi: ExtensionAPI) {
 			"Parallel tool calls are your primary parallelism mechanism for simple I/O — put multiple independent read/fetch/search calls in one function_calls block. Do not spawn a subagent just to parallelize I/O.",
 			"Delegate multi-change work: split a multi-change request into tasks and dispatch the independent ones in parallel. Serialize changes that share a file, region, or resource. Keep small or atomic changes inline.",
 			"The orchestrator owns the plan and context; keep it in the conversation, not in a file. Stay in the loop with subagents between steps: pass new context, answer questions, steer or re-brief as work changes.",
+			"The main thread is the user interface: ask the user what subagents cannot ask themselves, relay answers into briefs, and bring their questions back. Subagents do not talk to the user.",
+			"Check on subagents while they run: inspect their tool activity and traces, steer when they drift, and surface blockers early.",
 			"Review every subagent reply yourself before reporting, and spawn subagents at or below your reasoning level, never above.",
 			"Use subagent to delegate *reasoning and decisions*: codebase exploration (scout), web research (researcher), or isolated code changes (worker)",
 			"For multiple independent subagent tasks, use parallel mode with tasks[] array",

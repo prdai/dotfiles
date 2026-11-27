@@ -42,7 +42,7 @@ Your context window is a finite, non-renewable resource. Every file you read dir
 
 ### Orchestrate Multi-Change Work
 
-The orchestrator owns the context and the plan; there is no ledger file. Delegate when work splits into independent pieces, keep small or atomic edits inline, and stay in the loop with agents between steps: pass new context, answer questions, steer or re-brief as work changes. Review every reply yourself before reporting, and spawn agents at or below the orchestrator's reasoning level, never above. Serialize changes that share a file, region, or resource. See `AGENTS.md` → "Orchestrate Multi-Change Work".
+The orchestrator owns the context and the plan; there is no ledger file. Its main job is talking to the user: ask the questions agents cannot ask, relay answers into briefs, and bring their questions back. Delegate when work splits into independent pieces, keep small or atomic edits inline, and stay in the loop with agents between steps: pass new context, answer questions, steer or re-brief as work changes. Check on their traces while they run, review every reply yourself before reporting, and spawn agents at or below the orchestrator's reasoning level, never above. Serialize changes that share a file, region, or resource. See `AGENTS.md` → "Orchestrate Multi-Change Work".
 
 ### When a Subagent Does Not Fit
 

@@ -112,11 +112,13 @@ Optimize for turnaround time on what the user asks for. The time a requested tas
 
 ## Orchestrate Multi-Change Work
 
-The orchestrator (the main thread) owns the context and the plan. Delegate when work splits into independent pieces; do small atomic edits inline.
+The orchestrator (the main thread) owns the context and the plan. Its main job is talking to the user: asking the questions agents cannot ask, relaying answers into briefs, and bringing agent questions back. Delegate when work splits into independent pieces; do small atomic edits inline.
 
+- **Talk to the user.** The main thread is the interface. Ask the user what agents cannot ask themselves, pass the answers into their briefs, and bring their open questions back to the user. Agents do not talk to the user directly.
 - **Hold the plan in context.** Track each dispatched change, its owner, and its result in the conversation. No ledger file; the orchestrator is the source of truth.
 - **Split before you act.** A thought-dump can hold several independent changes. List them, then dispatch the independent ones in parallel.
 - **Stay in the loop.** Talk to agents between steps: pass new context, answer their questions, steer or re-brief them as work changes. Do not fire and forget.
+- **Check on progress.** Inspect agent traces while they run, not only the final reply: watch their tool activity, steer when they drift, and surface blockers early.
 - **Keep small work inline.** One atomic edit, a quick fix, or anything that depends on the next answer stays on the current thread. Do not spawn an agent just to prove you can.
 - **One agent per independent change.** Changes that touch the same file, region, or shared resource run one at a time, so they do not race.
 - **Write self-contained briefs.** Exact scope, repository and paths, constraints, verification step, and report format. A child has none of your context.
