@@ -12,6 +12,7 @@ my main terminal emulator.
 - **Titlebar**: Transparent (macOS)
 - **Shell integration**: zsh
 - **Auto-update**: Enabled
+- **Close**: No confirmation prompt; closing the last window quits the app (tmux session survives and reattaches)
 
 ## key bindings
 
